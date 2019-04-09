@@ -1,0 +1,127 @@
+{
+        "id": "bahmni.registration",
+        "instanceOf":"bahmni.template.registration",
+        "description": "Bahmni Patient Registration App",
+        "extensionPoints": [
+            {
+                "id": "org.bahmni.registration.patient.search.result.action",
+                "description": "Bahmni Patient Search Result Action"
+            },
+            {
+                "id": "org.bahmni.registration.patient.next",
+                "description": "After Bahmni Patient Registration, forward url configuration"
+            }
+        ],
+        "contextModel": [
+            "patientUuid",
+            "activeVisitUuid"
+        ],
+        "config" : {
+
+	     "disablePhotoCapture": true,
+             "forwardUrlsForVisitTypes": [
+               {
+                   "visitType": "Urgences",
+                   "forwardUrl": "../registration/index.html#/patient/new",
+                   "shortcutKey": "c"
+               },{
+                   "visitType": "Ambulatoire",
+                   "forwardUrl": "../registration/index.html#/patient/new",
+                   "shortcutKey": "c"
+               },{
+                   "visitType": "Hospitalisation",
+                   "forwardUrl": "../registration/index.html#/patient/new",
+                   "shortcutKey": "c"
+               }],
+            "patientInformation": {
+                "caretakerDetails": {
+                    "title": "Caretaker details",
+                    "translationKey": "CARETAKER_DETAILS",
+                    "attributes": [
+                        "Full name",
+                        "Phone number",
+                        "Relationship with the patient"
+                    ]
+                },
+                "patientContactDetails" : {
+                    "title": "Patient Contact details",
+                    "translationKey": "PATIENT_CONTACT_DETAILS",
+                    "attributes": [
+                        "Phone number 1",
+                        "Phone number 2"
+                    ]
+                },
+                "hidden": {
+                    "attributes": [
+                        "primaryContact"
+                    ]
+                },
+                "defaults":  {
+                    "class": "General",
+                    "landHolding": 2
+                }
+            },
+            "addressHierarchy": {
+                "showAddressFieldsTopDown": false,
+                "strictAutocompleteFromLevel": "stateProvince"
+            },
+            "relationshipTypeMap": {
+                "Doctor":"provider",
+                "Parent":"patient"
+            },
+
+            "autoCompleteFields":["familyName", "caste"],
+            "defaultIdentifierPrefix": "GAN",
+            "defaultVisitType": "Hospitalisation",
+            "searchByIdForwardUrl": "/patient/{{patientUuid}}",
+            "showMiddleName": true,
+            "showLastName": true,
+            "isLastNameMandatory": true,
+            "showSaveConfirmDialog": false,
+            "showBirthTime": false,
+            "showCasteSameAsLastNameCheckbox": false,
+            "printOptions": [
+                {
+                    "translationKey": "REGISTRATION_PRINT_STICKER_KEY",
+                    "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/print_stickers.html",
+                    "shortcutKey": "t"
+                }
+            ],
+            "conceptSetUI": {
+                "REGISTRATION FEES": {
+                    "required": true,
+                    "label": "Fee"
+                },
+                "FHS": {
+                    "buttonSelect": true
+                },
+                "defaults":{
+                    "FHS": "Present"
+                }
+            },
+            "fieldValidation" : {
+                "Phone number 1" : {"pattern" : "[0-9]{8}", "errorMessage" : "Devrait avoir 8 caractères"},
+                "Phone number 2" : {"pattern" : "[0-9]{8}", "errorMessage" : "Devrait avoir 8 caractères"},
+                "Phone number" : {"pattern" : "[0-9]{8}", "errorMessage" : "Devrait avoir 8 caractères"},
+                "Ancien No de dossier" : {"pattern" : "[0-9]{6}", "errorMessage" : "Devrait avoir 6 caractères"}
+            },
+            "patientSearch": {
+                "customAttributes": {
+                    "label": "Ancien No de dossier",
+                    "placeholder": "Ancien No de dossier",
+                    "fields": ["Ancien No de dossier"]
+                }
+            },
+            "patientSearchResults": {
+                "address": {
+                    "fields" : ["address3"]
+                },
+                "personAttributes": {
+                    "fields": ["Ancien No de dossier"]
+                }
+            },
+            "mandatoryPersonAttributes" : [
+                "Refferé par"
+            ]
+        }
+}

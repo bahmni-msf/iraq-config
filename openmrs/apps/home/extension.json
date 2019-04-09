@@ -1,0 +1,33 @@
+{
+  "registration": {
+    "id": "bahmni.registration",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "translationKey": "MODULE_LABEL_REGISTRATION_KEY",
+    "url": "../registration/index.html",
+    "icon": "fa-user",
+    "order": 1,
+    "requiredPrivilege": "app:registration"
+  },
+  "admin": {
+    "id": "bahmni.admin",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "translationKey": "MODULE_LABEL_ADMIN_KEY",
+    "url": "../admin/#/dashboard/home",
+    "icon": "icon-bahmni-admin",
+    "order": 3,
+    "requiredPrivilege": "app:admin"
+  },
+  "appointmentScheduling": {
+    "id": "bahmni.appointment.scheduling",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "translationKey": "MODULE_LABEL_APPOINTMENT_SCHEDULING_KEY",
+    "url": "../appointments",
+    "icon": "fa fa-calendar",
+    "order": 2,
+    "requiredPrivilege": "app:appointments"
+  }
+
+}
