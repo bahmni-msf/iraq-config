@@ -17,66 +17,65 @@
             "activeVisitUuid"
         ],
         "config" : {
-
-	     "disablePhotoCapture": true,
+	     "disablePhotoCapture": false,
              "forwardUrlsForVisitTypes": [
                {
-                   "visitType": "Urgences",
-                   "forwardUrl": "../registration/index.html#/patient/new",
+                   "visitType": "OPD",
+                   "forwardUrl": "../appointments/#/home/manage/appointments/calendar/new",
+                   "translationKey": "Go to Appointment scheduling",
                    "shortcutKey": "c"
-               },{
-                   "visitType": "Ambulatoire",
-                   "forwardUrl": "../registration/index.html#/patient/new",
-                   "shortcutKey": "c"
-               },{
-                   "visitType": "Hospitalisation",
-                   "forwardUrl": "../registration/index.html#/patient/new",
-                   "shortcutKey": "c"
-               }],
+               },
+               {
+                   "visitType": "IPD",
+                   "forwardUrl": "../clinical/#/default/patient/{{patientUuid}}/dashboard",
+                   "translationKey": "Back to Search Page",
+                   "shortcutKey": "d"
+               }
+             ],
             "patientInformation": {
-                "caretakerDetails": {
-                    "title": "Caretaker details",
-                    "translationKey": "CARETAKER_DETAILS",
-                    "attributes": [
-                        "Full name",
-                        "Phone number",
-                        "Relationship with the patient"
-                    ]
-                },
-                "patientContactDetails" : {
+                "patientContactDetails": {
                     "title": "Patient Contact details",
                     "translationKey": "PATIENT_CONTACT_DETAILS",
                     "attributes": [
-                        "Phone number 1",
-                        "Phone number 2"
+                        "phoneNumber 1",
+                        "phoneNumber 2"
+                    ],
+                     "expanded": true
+                },
+                "emergencyContactDetails" : {
+                    "title": "Emergency contact details",
+                    "translationKey": "EMERGENCY_CONTACT_DETAILS",
+                    "attributes": [
+                        "fullNameOfFriendOrRelative",
+                        "relationshipWithThePatient",
+                        "phoneNumber",
+                        "addressOfRelative"
+                    ]
+                },
+                "admissionAndDischarge" : {
+                    "title": "Admission and Discharge",
+                    "translationKey": "ADMISSION_AND_DISCHARGE",
+                    "attributes": [
+                        "dateOfEntry",
+                        "dateOfExit"
                     ]
                 },
                 "hidden": {
-                    "attributes": [
-                        "primaryContact"
-                    ]
+                    "attributes": []
                 },
-                "defaults":  {
-                    "class": "General",
-                    "landHolding": 2
-                }
+                "defaults":  {}
             },
             "addressHierarchy": {
-                "showAddressFieldsTopDown": false,
-                "strictAutocompleteFromLevel": "stateProvince"
+                "showAddressFieldsTopDown": false
             },
-            "relationshipTypeMap": {
-                "Doctor":"provider",
-                "Parent":"patient"
-            },
-
-            "autoCompleteFields":["familyName", "caste"],
+            "mandatoryPersonAttributes": ["phoneNumber 1","givenNameLocal"],
+            "autoCompleteFields":[],
             "defaultIdentifierPrefix": "GAN",
-            "defaultVisitType": "Hospitalisation",
+            "defaultVisitType": "OPD",
             "searchByIdForwardUrl": "/patient/{{patientUuid}}",
-            "showMiddleName": true,
+            "showMiddleName": false,
             "showLastName": true,
-            "isLastNameMandatory": true,
+            "isLastNameMandatory": false,
             "showSaveConfirmDialog": false,
             "showBirthTime": false,
             "showCasteSameAsLastNameCheckbox": false,
@@ -87,41 +86,29 @@
                     "shortcutKey": "t"
                 }
             ],
-            "conceptSetUI": {
-                "REGISTRATION FEES": {
-                    "required": true,
-                    "label": "Fee"
-                },
-                "FHS": {
-                    "buttonSelect": true
-                },
-                "defaults":{
-                    "FHS": "Present"
-                }
-            },
             "fieldValidation" : {
-                "Phone number 1" : {"pattern" : "[0-9]{8}", "errorMessage" : "Devrait avoir 8 caractères"},
-                "Phone number 2" : {"pattern" : "[0-9]{8}", "errorMessage" : "Devrait avoir 8 caractères"},
-                "Phone number" : {"pattern" : "[0-9]{8}", "errorMessage" : "Devrait avoir 8 caractères"},
-                "Ancien No de dossier" : {"pattern" : "[0-9]{6}", "errorMessage" : "Devrait avoir 6 caractères"}
+                  "familyName" : {"pattern" : "^[-a-zA-Z ' _]+$", "errorMessage" : "Should contain characters"},
+                  "givenName" : {"pattern" :  "^[-a-zA-Z -' _]+$",  "errorMessage" : "Should contain characters"},
+                  "phoneNumber 1" : {"pattern" : "[0-9]{11,14}", "errorMessage" : "Should be between 11 to 14 characters"},
+                  "phoneNumber 2" : {"pattern" : "[0-9]{11,14}", "errorMessage" : "Should be between 11 to 14 characters"},
+                  "phoneNumber" : {"pattern" : "[0-9]{11,14}", "errorMessage" : "Should be between 11 to 14 characters"},
+                  "previousBMRCIDNumber": {"pattern" : "[0-9]{3}", "errorMessage" : "Should contain 3 characters"},
+                  "iraqNationalIdentificationNumber": {"pattern" : "^[a-zA-Z0-9_]*$", "errorMessage" : "Alphanumeric entry"}
             },
             "patientSearch": {
-                "customAttributes": {
-                    "label": "Ancien No de dossier",
-                    "placeholder": "Ancien No de dossier",
-                    "fields": ["Ancien No de dossier"]
-                }
+              "customAttributes": {
+                  "label": "Name in Arabic / BMRC ID",
+                  "placeholder": "Enter Name in Arabic / BMRC ID",
+                  "fields": ["givenNameLocal", "familyNameLocal","previousBMRCIDNumber"]
+              }
             },
             "patientSearchResults": {
-                "address": {
-                    "fields" : ["address3"]
-                },
                 "personAttributes": {
-                    "fields": ["Ancien No de dossier"]
+                    "fields": ["phoneNumber 1"]
+                },
+                "address": {
+                    "fields" : ["address2"]
                 }
-            },
-            "mandatoryPersonAttributes" : [
-                "Refferé par"
-            ]
+            }
         }
 }

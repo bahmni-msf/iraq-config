@@ -23,5 +23,8 @@
   "NUTRITIONAL_VALUES_LOCALE_KEY": "Nutritional Values",
   "REGISTRATION_PRINT_WITH_BARCODE": "Bar<u>c</u>ode Print",
   "PATIENT_CONTACT_DETAILS": "Patient Contact details",
-  "CARETAKER_DETAILS": "Caretaker details"
+  "CARETAKER_DETAILS": "Caretaker details",
+  "EMERGENCY_CONTACT_DETAILS": "Emergency contact details",
+  "ADMISSION_AND_DISCHARGE": "Admission and Discharge",
+  "REGISTRATION_PRINT_STICKER_KEY":"P<u>r</u>int Stickers"
 }

@@ -148,3 +148,36 @@ h1, h2, h3 {
 .hindi-text {
   vertical-align: bottom;
 }
+.subpage {
+    height: 100%;
+    margin-top: 0.9cm;
+    margin-left: 0.9cm;
+    margin-right: 0.56cm;
+    margin-bottom: 0.56cm;
+    font-size: 11px;
+    line-height: 0.9;
+}
+.subpage ul{
+  margin:0;
+  padding: 0;
+  list-style: none;
+  width:100%;
+  overflow: hidden;
+  clear: both;
+}
+.subpage ul li{
+  width:25%;
+  height: 2.5cm;
+  display: block;
+  border: 0px solid;
+  padding-top : 10px;
+  padding-right : 20px;
+  float:left;
+  box-sizing: border-box;
+
+}
+.subpage ul li span.localname{
+  display: block;
+  line-height: 1;
+  font-size: 13px;
+}
