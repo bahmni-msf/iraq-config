@@ -60,7 +60,7 @@
             "addressHierarchy": {
                 "showAddressFieldsTopDown": false
             },
-            "mandatoryPersonAttributes": ["phoneNumber 1","givenNameLocal"],
+            "mandatoryPersonAttributes": ["Patient Phone Number 1","givenNameLocal"],
             "autoCompleteFields":[],
             "defaultIdentifierPrefix": "GAN",
             "defaultVisitType": "OPD",
@@ -81,8 +81,8 @@
             "fieldValidation" : {
                   "familyName" : {"pattern" : "^[-a-zA-Z ' _]+$", "errorMessage" : "Should contain characters"},
                   "givenName" : {"pattern" :  "^[-a-zA-Z -' _]+$",  "errorMessage" : "Should contain characters"},
-                  "phoneNumber 1" : {"pattern" : "[0-9]{11,14}", "errorMessage" : "Should be between 11 to 14 characters"},
-                  "phoneNumber 2" : {"pattern" : "[0-9]{11,14}", "errorMessage" : "Should be between 11 to 14 characters"},
+                  "Patient Phone Number 1" : {"pattern" : "[0-9]{11,14}", "errorMessage" : "Should be between 11 to 14 characters"},
+                  "Patient Phone Number 2" : {"pattern" : "[0-9]{11,14}", "errorMessage" : "Should be between 11 to 14 characters"},
                   "phoneNumber" : {"pattern" : "[0-9]{11,14}", "errorMessage" : "Should be between 11 to 14 characters"},
                   "previousBMRCIDNumber": {"pattern" : "[0-9]{3}", "errorMessage" : "Should contain 3 characters"},
                   "iraqNationalIdentificationNumber": {"pattern" : "^[a-zA-Z0-9_]*$", "errorMessage" : "Alphanumeric entry"}
@@ -96,7 +96,7 @@
             },
             "patientSearchResults": {
                 "personAttributes": {
-                    "fields": ["phoneNumber 1"]
+                    "fields": ["Patient Phone Number 1"]
                 },
                 "address": {
                     "fields" : ["address2"]
