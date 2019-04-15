@@ -17,11 +17,10 @@
             "activeVisitUuid"
         ],
         "config" : {
-	     "disablePhotoCapture": false,
              "forwardUrlsForVisitTypes": [
                {
                    "visitType": "OPD",
-                   "forwardUrl": "../appointments/#/home/manage/appointments/calendar/new",
+                   "forwardUrl": "../appointments/#/home/manage/appointments/calendar",
                    "translationKey": "Go to Appointment scheduling",
                    "shortcutKey": "c"
                },
@@ -33,15 +32,6 @@
                }
              ],
             "patientInformation": {
-                "patientContactDetails": {
-                    "title": "Patient Contact details",
-                    "translationKey": "PATIENT_CONTACT_DETAILS",
-                    "attributes": [
-                        "phoneNumber 1",
-                        "phoneNumber 2"
-                    ],
-                     "expanded": true
-                },
                 "emergencyContactDetails" : {
                     "title": "Emergency contact details",
                     "translationKey": "EMERGENCY_CONTACT_DETAILS",
@@ -50,7 +40,8 @@
                         "relationshipWithThePatient",
                         "phoneNumber",
                         "addressOfRelative"
-                    ]
+                    ],
+                    "expanded": true
                 },
                 "admissionAndDischarge" : {
                     "title": "Admission and Discharge",
@@ -58,7 +49,8 @@
                     "attributes": [
                         "dateOfEntry",
                         "dateOfExit"
-                    ]
+                    ],
+                    "expanded": true
                 },
                 "hidden": {
                     "attributes": []
@@ -97,8 +89,8 @@
             },
             "patientSearch": {
               "customAttributes": {
-                  "label": "Name in Arabic / BMRC ID",
-                  "placeholder": "Enter Name in Arabic / BMRC ID",
+                  "label": "Name in Arabic /  Previous BMRC Number",
+                  "placeholder": "Arabic Name/BMRC ID",
                   "fields": ["givenNameLocal", "familyNameLocal","previousBMRCIDNumber"]
               }
             },
