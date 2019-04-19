@@ -12,7 +12,6 @@
     "enableSpecialities": false,
     "startOfWeek": 1,
     "weekStart": "week",
-    "calendarSlotDuration": "00:30",
     "calendarSlotLabelInterval": "01:00",
     "startOfDay":"08:00",
     "endOfDay":"16:45",

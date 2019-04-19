@@ -84,7 +84,7 @@
                   "Patient Phone Number 1" : {"pattern" : "[0-9]{11,14}", "errorMessage" : "Should be between 11 to 14 characters"},
                   "Patient Phone Number 2" : {"pattern" : "[0-9]{11,14}", "errorMessage" : "Should be between 11 to 14 characters"},
                   "phoneNumber" : {"pattern" : "[0-9]{11,14}", "errorMessage" : "Should be between 11 to 14 characters"},
-                  "previousBMRCIDNumber": {"pattern" : "[0-9]{3}", "errorMessage" : "Should contain 3 characters"},
+                  "previousBMRCIDNumber": {"pattern" : "[0-9]{1,3}", "errorMessage" : "Should be between 1 to 3 characters"},
                   "iraqNationalIdentificationNumber": {"pattern" : "^[a-zA-Z0-9_]*$", "errorMessage" : "Alphanumeric entry"}
             },
             "patientSearch": {
