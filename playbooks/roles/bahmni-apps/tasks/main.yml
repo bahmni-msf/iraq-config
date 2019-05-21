@@ -1,6 +1,6 @@
 - name: Get bahmniapps zip artifact from s3 bucket
   get_url:
-    url: "{{ bahmni-apps-artifact }}"
+    url: "{{ bahmniapps }}"
     dest: /opt/bahmni-web/etc/bahmniapps.zip
     mode: 0755
 

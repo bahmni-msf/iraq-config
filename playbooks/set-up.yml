@@ -1,4 +1,4 @@
-implementer-interface-artifact: https://s3.ap-south-1.amazonaws.com/form2-artifacts-on-bahmni-91-release/implementer-interface/rpm/bahmni-implementer-interface-91.noarch.rpm
-bahmni-apps-artifact: https://s3.ap-south-1.amazonaws.com/form2-artifacts-on-bahmni-91-release/implementer-interface/rpm/bahmni-implementer-interface-91.noarch.rpm
-bahmni-core-artifact: https://s3.ap-south-1.amazonaws.com/form2-artifacts-on-bahmni-91-release/bahmni-core/omod/bahmnicore-0.92-SNAPSHOT.omod
-appointments-artifact: https://s3.ap-south-1.amazonaws.com/form2-artifacts-on-bahmni-91-release/appointments/omod/appointments.omod
+implementerinterface: https://s3.ap-south-1.amazonaws.com/form2-artifacts-on-bahmni-91-release/implementer-interface/rpm/bahmni-implementer-interface-91.noarch.rpm
+bahmniapps: https://s3.ap-south-1.amazonaws.com/form2-artifacts-on-bahmni-91-release/implementer-interface/rpm/bahmni-implementer-interface-91.noarch.rpm
+bahmnicore: https://s3.ap-south-1.amazonaws.com/form2-artifacts-on-bahmni-91-release/bahmni-core/omod/bahmnicore-0.92-SNAPSHOT.omod
+appointments: https://s3.ap-south-1.amazonaws.com/form2-artifacts-on-bahmni-91-release/appointments/omod/appointments.omod

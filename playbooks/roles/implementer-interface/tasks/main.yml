@@ -1,6 +1,6 @@
 - name: Get implementer-interface rpm from s3 bucket
   get_url:
-    url: "{{ implementer-interface-artifact }}"
+    url: "{{ implementerinterface }}"
     dest: /opt/bahmni-implementer-interface.rpm
     mode: 0755
 - name: check if implementer-interface is installed

@@ -14,7 +14,7 @@
 
 - name: Get bahmnicore rpm from s3 bucket and place it in /opt/openmrs/modules
   get_url:
-      url: "{{ appointments-artifact }}"
+      url: "{{ appointments }}"
       dest: /opt/openmrs/modules/appointments.omod
       mode: 0644
 

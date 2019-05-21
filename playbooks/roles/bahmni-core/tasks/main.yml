@@ -10,7 +10,7 @@
   with_items: "{{ result.files }}"
 - name: Get bahmnicore rpm from s3 bucket and place it in /opt/openmrs/modules
   get_url:
-      url: "{{ bahmni-core-artifact }}"
+      url: "{{ bahmnicore }}"
       dest: /opt/openmrs/modules/bahmnicore.omod
       mode: 0644
 - name: Change ownership of bahmnicore file
