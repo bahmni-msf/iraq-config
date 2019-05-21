@@ -1,18 +1,18 @@
 
-- name: Find existing bahmnicore omod
+- name: Find existing appointment omod
   find:
     paths: /opt/openmrs/modules
     patterns: appointment*.omod
   register: result
 
-- name: Delete bahmnicore omod
+- name: Delete appointment omod
   file:
     path: "{{ item.path }}"
     state: absent
   with_items: "{{ result.files }}"
 
 
-- name: Get bahmnicore rpm from s3 bucket and place it in /opt/openmrs/modules
+- name: Get appointment rpm from s3 bucket and place it in /opt/openmrs/modules
   get_url:
       url: "{{ appointments }}"
       dest: /opt/openmrs/modules/appointments.omod
