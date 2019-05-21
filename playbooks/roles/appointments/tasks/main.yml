@@ -1,4 +1,3 @@
-
 - name: Find existing appointment omod
   find:
     paths: /opt/openmrs/modules
@@ -11,7 +10,6 @@
     state: absent
   with_items: "{{ result.files }}"
 
-
 - name: Get appointment rpm from s3 bucket and place it in /opt/openmrs/modules
   get_url:
       url: "{{ appointments }}"
@@ -19,4 +17,4 @@
       mode: 0644
 
 - name: Change ownership of bahmnicore file
-    action: file state=file path=/opt/openmrs/modules/bahmnicore.omod owner=bahmni group=bahmni
+  action: file state=file path=/opt/openmrs/modules/appointments.omod owner=bahmni group=bahmni
