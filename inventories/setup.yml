@@ -1,0 +1,7 @@
+timezone: Asia/Baghdad
+bahmni_repo_url: https://dl.bintray.com/bahmni/rpm/
+implementation_name: iraq
+omods: []
+nagios_contact_email: xyz@gmail.com
+ssmtp_auth_user: xyz@gmail.com
+ssmtp_auth_pass: pass123123
