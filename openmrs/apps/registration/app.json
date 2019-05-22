@@ -17,6 +17,7 @@
             "activeVisitUuid"
         ],
         "config" : {
+             "showPatientIdentifier": false,
              "forwardUrlsForVisitTypes": [
                {
                    "visitType": "OPD",
