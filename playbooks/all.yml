@@ -3,5 +3,3 @@
   roles:
     - { role: implementer-interface }
     - { role: bahmni-apps }
-    - { role: bahmni-core }
-    - { role: appointments }
