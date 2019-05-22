@@ -1,7 +1,6 @@
 - hosts: bahmni-emr
   become: yes
   roles:
-    - { role: bahmni-mrs-batch }
     - { role: implementer-interface }
     - { role: bahmni-apps }
     - { role: bahmni-core }
