@@ -2,6 +2,7 @@
 192.168.33.11 ansible_connection=ssh ansible_ssh_user=root 
 
 [nagios-server]
+192.168.33.11
 
 [bahmni-emr]
 192.168.33.10
