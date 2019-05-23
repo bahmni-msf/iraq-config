@@ -1,7 +1,8 @@
 timezone: Asia/Baghdad
 bahmni_repo_url: https://dl.bintray.com/bahmni/rpm/
 implementation_name: iraq
-omods: [https://s3.ap-south-1.amazonaws.com/bahmni-msf/iraq-release-artifacts/release-1.0/patientidentifiergenerator-0.1.0.omod]
+selinux_state: disabled
+omods: ["https://s3.ap-south-1.amazonaws.com/bahmni-msf/iraq-release-artifacts/release-1.0/patientidentifiergenerator-0.1.0.omod"]
 nagios_contact_email: xyz@gmail.com
 ssmtp_auth_user: xyz@gmail.com
 ssmtp_auth_pass: pass123123
