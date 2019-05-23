@@ -30,6 +30,12 @@
 192.168.33.10
 192.168.33.11 passive=yes
 
+[bahmni-reports-db]
+192.168.33.10
+
+[bahmni-reports-db-slave]
+192.168.33.11
+
 [pacs-integration]
 
 [pacs-integration-db]
@@ -58,6 +64,8 @@ bahmni-erp
 bahmni-erp-db
 bahmni-erp-db-slave
 bahmni-reports
+bahmni-reports-db
+bahmni-reports-db-slave
 pacs-integration
 pacs-integration-db
 pacs-integration-db-slave
