@@ -38,6 +38,16 @@
     "icon": "fa fa-calendar",
     "order": 2,
     "requiredPrivilege": "app:appointments"
+  },
+  "implementerInterface": {
+    "id": "bahmni.implementer.interface",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "translationKey": "MODULE_LABEL_IMPLEMENTER_INTERFACE_KEY",
+    "url": "/implementer-interface",
+    "icon": "fa fa-pencil-square-o",
+    "order": 12,
+    "requiredPrivilege": "app:implementer-interface"
   }
 
 }
