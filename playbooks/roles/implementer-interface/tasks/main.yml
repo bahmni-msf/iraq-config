@@ -3,6 +3,7 @@
     url: "{{ implementerinterface }}"
     dest: /opt/bahmni-implementer-interface.rpm
     mode: 0755
+    force: yes
 - name: check if implementer-interface is installed
   yum:
     list: bahmni-implementer-interface
