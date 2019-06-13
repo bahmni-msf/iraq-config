@@ -1,4 +1,4 @@
 implementerinterface: https://s3.ap-south-1.amazonaws.com/bahmni-msf/iraq-release-artifacts/release-1.0/bahmni-implementer-interface-91.noarch.rpm
 bahmniapps: https://s3.ap-south-1.amazonaws.com/bahmni-msf/iraq-release-artifacts/release-1.0/bahmniapps.zip
-appointments: https://s3.ap-south-1.amazonaws.com/bahmni-msf/iraq-release-artifacts/release-1.0/appointments-1.2-SNAPSHOT.omod
+appointments: https://bahmni-msf.s3.ap-south-1.amazonaws.com/iraq-release-artifacts/release-1.1/appointments.omod
 bahmnicore: https://s3.ap-south-1.amazonaws.com/bahmni-msf/iraq-release-artifacts/release-1.0/bahmnicore-0.92-SNAPSHOT.omod
