@@ -1,0 +1,27 @@
+set @concept_id = 0;
+set @concept_short_id = 0;
+set @concept_full_id = 0;
+set @count = 0;
+set @uuid = NULL;
+
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Valid','Valid','N/A','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Pending','Pending','N/A','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Refused','Refused','N/A','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Refer to Amman RSP','Refer to Amman RSP','N/A','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Other','Other','N/A','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'OPD','OPD','N/A','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'IPD','IPD','N/A','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Out of criteria','Out of criteria','N/A','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Nothing to be done','Nothing to be done','N/A','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Acceptable degree of function','Acceptable degree of function','N/A','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Patient refused treatment','Patient refused treatment','N/A','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Date of presentation','Date of presentation','Date','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Outcome of admission committee','Outcome of admission committee','Coded','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Requested admission','Requested admission','Coded','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Reason case is pending','Reason case is pending','Text','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Reason for refusal','Reason for refusal','Coded','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Reason for refusal, other','Reason for refusal, other','Text','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Comments about refusal','Comments about refusal','Text','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Reason for Amman RSP referral','Reason for Amman RSP referral','Text','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'General comments from admission committee','General comments from admission committee','Text','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Admission Committee Form Template','Admission Committee','N/A','Misc',true);
