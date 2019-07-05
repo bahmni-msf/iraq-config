@@ -85,4 +85,26 @@
             INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_id, @location_tag_id);
         </sql>
     </changeSet>
+    <changeSet id="IRAQ-201907051457" author="Alekhya, Pritam">
+        <comment>Stored Procedure to add concept</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_concept;
+        </sql>
+        <sqlFile path="utils/addConceptProcedure.sql" endDelimiter="#"/>
+    </changeSet>
+    <changeSet id="IRAQ-201907051458" author="Alekhya, Pritam">
+        <comment>Stored Procedure to add concept answer</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_concept_answer;
+        </sql>
+        <sqlFile path="utils/addConceptAnswerProcedure.sql" endDelimiter="#"/>
+    </changeSet>
+    <changeSet id="IRAQ-201907051459" author="Alekhya, Pritam">
+        <comment>Stored Procedure to add reference term</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_CEIL;
+        </sql>
+        <sqlFile path="utils/createProcedureForCEIL.sql" endDelimiter="#"/>
+    </changeSet>
+    <include file ="admissionCommittee/admissionCommittee.xml"/>
 </databaseChangeLog>
