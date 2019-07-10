@@ -107,4 +107,6 @@
         <sqlFile path="utils/createProcedureForCEIL.sql" endDelimiter="#"/>
     </changeSet>
     <include file ="admissionCommittee/admissionCommittee.xml"/>
+    <include file ="mloForm/mloForm.xml"/>
+    <include file ="documentUpload.xml"/>
 </databaseChangeLog>
