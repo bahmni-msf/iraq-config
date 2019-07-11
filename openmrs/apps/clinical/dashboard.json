@@ -30,6 +30,130 @@
           "Admission Committee"
         ],
         "translationKey": "Edit Forms (2.0)"
+      },
+      "MLO Medical Assessment": {
+        "translationKey": "MLO_MEDICAL_ASSESSMENT_KEY",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 2,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "numberOfVisits": 5,
+          "conceptNames": [
+            "Date of Assessment",
+            "Type of assessment",
+            "Hospital of Origin",
+            "Other Hospital of Origin",
+            "Treating Surgeon",
+            "History of present illness",
+            "Date of injury",
+            "Cause of injury",
+            "Date of last surgery",
+            "Type of fixation",
+            "Presumed diagnosis",
+            "Gustilo classification of fractures",
+            "Associated injuries and need",
+            "Other associated injury or condition,comments",
+            "Prophylactic antibiotics",
+            "Specify prophylactic antibiotic",
+            "Examination of injured area",
+            "Patient mobility",
+            "Bed to wheelchair transfer",
+            "Sitting position",
+            "Weight-bearing status",
+            "Physiotherapy before assessment",
+            "Physiotherapy, comments",
+            "Current treatment in orthopedic ward",
+            "Anti-tetanus vaccination status",
+            "Care requested for this patient",
+            "Weight-bearing recommendation",
+            "Joint authorized range of motion mobilization",
+            "Any contraindications to care requested",
+            "General notes and comments",
+            "Patient video"
+          ],
+          "showGroupDateTime": true
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Date of Assessment",
+            "Type of assessment",
+            "Hospital of Origin",
+            "Other Hospital of Origin",
+            "Treating Surgeon",
+            "History of present illness",
+            "Date of injury",
+            "Cause of injury",
+            "Date of last surgery",
+            "Type of fixation",
+            "Presumed diagnosis",
+            "Gustilo classification of fractures",
+            "Associated injuries and need",
+            "Other associated injury or condition,comments",
+            "Prophylactic antibiotics",
+            "Specify prophylactic antibiotic",
+            "Examination of injured area",
+            "Patient mobility",
+            "Bed to wheelchair transfer",
+            "Sitting position",
+            "Weight-bearing status",
+            "Physiotherapy before assessment",
+            "Physiotherapy, comments",
+            "Current treatment in orthopedic ward",
+            "Anti-tetanus vaccination status",
+            "Care requested for this patient",
+            "Weight-bearing recommendation",
+            "Joint authorized range of motion mobilization",
+            "Any contraindications to care requested",
+            "General notes and comments",
+            "Patient video"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        },
+        "hideEmptyDisplayControl": true
+      },
+      "Admission Committee": {
+        "translationKey": "ADMISSION_COMMITTEE_KEY",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 3,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "numberOfVisits": 5,
+          "conceptNames": [
+            "Date of presentation",
+            "Outcome of admission committee",
+            "Requested admission",
+            "Reason case is pending",
+            "Reason for refusal",
+            "Reason for refusal, other",
+            "Comments about refusal",
+            "Reason for Amman RSP referral",
+            "General comments from admission committee"
+          ],
+          "showGroupDateTime": true
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "Date of presentation",
+            "Outcome of admission committee",
+            "Requested admission",
+            "Reason case is pending",
+            "Reason for refusal",
+            "Reason for refusal, other",
+            "Comments about refusal",
+            "Reason for Amman RSP referral",
+            "General comments from admission committee"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        },
+        "hideEmptyDisplayControl": true
       }
     }
   }
