@@ -70,7 +70,7 @@
             "mandatoryPersonAttributes": ["Patient Phone Number 1","givenNameLocal"],
             "autoCompleteFields":[],
             "defaultIdentifierPrefix": "GAN",
-            "defaultVisitType": "OPD",
+            "defaultVisitType": "MLO",
             "searchByIdForwardUrl": "/patient/{{patientUuid}}",
             "showMiddleName": false,
             "showLastName": true,
