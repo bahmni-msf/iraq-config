@@ -109,4 +109,16 @@
     <include file ="admissionCommittee/admissionCommittee.xml"/>
     <include file ="mloForm/mloForm.xml"/>
     <include file ="documentUpload.xml"/>
+
+    <changeSet id="IRAQ-1562847265" author="Siva">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(1) from visit_type where name = 'MLO';
+            </sqlCheck>
+        </preConditions>
+        <comment>Add MLO visit type</comment>
+        <sql>
+            INSERT INTO visit_type(name, description, creator, date_created, retired, uuid) VALUES ('MLO', 'MLO vist', 1, now(), 0, uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
