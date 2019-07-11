@@ -1,24 +1,36 @@
 {
-    "general":{
-        "translationKey":"DASHBOARD_TAB_GENERAL_KEY",
-        "displayByDefault":true,
-        "maxRecentlyViewedPatients":10,
-        "sections":{
-            "patientInformation":{
-                "translationKey":"DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
-                "type":"patientInformation",
-                "displayOrder":0,
-                "ageLimit":100,
-                "patientAttributes":[
-
-                ],
-                "addressFields":[
-                    "address1",
-                    "address2",
-                    "cityVillage",
-                    "countyDistrict"
-                ]
-            }
-        }
+  "general": {
+    "translationKey": "DASHBOARD_TAB_GENERAL_KEY",
+    "displayByDefault": true,
+    "maxRecentlyViewedPatients": 10,
+    "sections": {
+      "patientInformation": {
+        "translationKey": "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
+        "type": "patientInformation",
+        "displayOrder": 0,
+        "ageLimit": 100,
+        "patientAttributes": [
+        ],
+        "addressFields": [
+          "address1",
+          "address2",
+          "cityVillage",
+          "countyDistrict"
+        ]
+      },
+      "validationForms-2.0": {
+        "type": "formsV2",
+        "displayOrder": 1,
+        "dashboardConfig": {
+          "title": null,
+          "maximumNoOfVisits": 5
+        },
+        "formGroup": [
+          "MLO Medical Assessment",
+          "Admission Committee"
+        ],
+        "translationKey": "Edit Forms (2.0)"
+      }
     }
+  }
 }
