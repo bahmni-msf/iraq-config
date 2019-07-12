@@ -67,56 +67,34 @@
     "order": 1,
     "requiredPrivilege": "app:clinical"
   },
-  "bahmniClinicalPatientsSearchActivePatientsForPrograms": {
-    "id": "bahmni.clinical.patients.search.activePatients",
+  "bahmniClinicalPatientsSearchAwaitingValidationPatients": {
+    "id": "bahmni.clinical.patients.search.awaitingValidationPatients",
     "extensionPointId": "org.bahmni.patient.search",
     "type": "config",
     "extensionParams": {
-      "searchHandler": "emrapi.sqlSearch.activePatients",
-      "translationKey": "MODULE_LABEL_PROGRAMS_KEY",
-      "forwardUrl": "#/default/patient/{{patientUuid}}/consultationContext"
+      "searchHandler": "emrapi.sqlSearch.awaitingValidation",
+      "translationKey": "MODULE_LABEL_AWAITING_VALIDATION",
+      "forwardUrl": "#/default/patient/{{patientUuid}}/dashboard",
+      "view": "tabular",
+      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME"]
     },
-    "label": "Active",
-    "order": 1,
+    "label": "Awaiting Patients",
+    "order": 5,
     "requiredPrivilege": "app:clinical"
   },
-  "bahmniClinicalPatientsASearchActivePatientsByProvider": {
-    "id": "bahmni.clinical.patients.search.activePatientsByProvider",
+  "bahmniClinicalPatientsSearchValidPatients": {
+    "id": "bahmni.clinical.patients.search.validPatients",
     "extensionPointId": "org.bahmni.patient.search",
     "type": "config",
     "extensionParams": {
-      "searchHandler": "emrapi.sqlSearch.activePatientsByProvider",
-      "translationKey": "MODULE_LABEL_MY_PATIENTS_KEY",
-      "forwardUrl": "#/default/patient/{{patientUuid}}/dashboard"
+      "searchHandler": "emrapi.sqlSearch.validPatients",
+      "translationKey": "MODULE_LABEL_VALID_PATIENTS",
+      "forwardUrl": "#/default/patient/{{patientUuid}}/dashboard",
+      "view": "tabular",
+      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME"]
     },
-    "label": "Active",
-    "order": 2,
-    "requiredPrivilege": "app:clinical"
-  },
-  "bahmniClinicalPatientsSearchOPDActivePatientsByProvider": {
-    "id": "bahmni.clinical.patients.search.OPDActivePatientsByProvider",
-    "extensionPointId": "org.bahmni.patient.search",
-    "type": "config",
-    "extensionParams": {
-      "searchHandler": "emrapi.sqlSearch.activePatientsByProvider",
-      "translationKey": "MODULE_LABEL_OPD_1_KEY",
-      "forwardUrl": "#/default/patient/{{patientUuid}}/consultationContext"
-    },
-    "label": "OPD-1",
-    "order": 3,
-    "requiredPrivilege": "app:clinical"
-  },
-  "activePatientsByLocation": {
-    "id": "bahmni.clinical.patients.search.activePatientsByLocation",
-    "extensionPointId": "org.bahmni.patient.search",
-    "type": "config",
-    "extensionParams": {
-      "searchHandler": "emrapi.sqlSearch.activePatientsByLocation",
-      "translationKey": "MODULE_LABEL_ACTIVE_PATIENTS_BY_LOCATION",
-      "forwardUrl": "#/default/patient/{{patientUuid}}/dashboard"
-    },
-    "label": "Active",
-    "order": 4,
+    "label": "Valid Patients",
+    "order": 6,
     "requiredPrivilege": "app:clinical"
   },
   "bahmniClinicalPatientsSearchAllPatients": {
@@ -128,7 +106,7 @@
       "forwardUrl": "#/default/patient/{{patientUuid}}/dashboard"
     },
     "label": "All",
-    "order": 5,
+    "order": 7,
     "requiredPrivilege": "app:clinical"
   },
   "bahmniClinicalConceptSetGroupObservationsHistory": {

@@ -121,4 +121,12 @@
             INSERT INTO visit_type(name, description, creator, date_created, retired, uuid) VALUES ('MLO', 'MLO vist', 1, now(), 0, uuid());
         </sql>
     </changeSet>
+    <changeSet id="IRAQ-1562913957582" author="Vinay, Sowmika" runOnChange="true">
+        <comment>Adding patient listing queues in clinical module for patients of MLO visit with date of presentation in Admission Committee form is not filled and date of assessment in MLO Medical Assessment form is filled</comment>
+        <sqlFile path="clinicalQueues/awaitingValidationPatientsQueue.sql"/>
+    </changeSet>
+    <changeSet id="IRAQ-1562914144466" author="Vinay, Sowmika" runOnChange="true">
+        <comment>Adding patient listing queues in clinical module for patients of MLO visit with date of presentation in Admission Committee form is filled and outcome of admission in Admission Committe form is Valid</comment>
+        <sqlFile path="clinicalQueues/validPatientsQueue.sql"/>
+    </changeSet>
 </databaseChangeLog>
