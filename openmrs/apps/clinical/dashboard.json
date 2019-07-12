@@ -154,6 +154,15 @@
           "pivotTable": {}
         },
         "hideEmptyDisplayControl": true
+      },
+      "Radiology": {
+        "type": "radiology",
+        "groupByVisits": true,
+        "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
+        "displayOrder": 4,
+        "config": {
+          "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY"
+        }
       }
     }
   }
