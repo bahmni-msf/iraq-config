@@ -19,13 +19,13 @@
     "order": 4,
     "requiredPrivilege": "app:admin"
   },
-  "patientDocumentUpload": {
-    "id": "bahmni.patient.document.upload",
+  "radiologyDocumentUpload": {
+    "id": "bahmni.radiology.document.upload",
     "extensionPointId": "org.bahmni.home.dashboard",
     "type": "link",
-    "translationKey": "MODULE_LABEL_PATIENT_DOCUMENTS_KEY",
-    "url": "../document-upload/?encounterType=Patient Document&topLevelConcept=Patient Document&defaultOption=Patient file",
-    "icon": "icon-bahmni-documents",
+    "translationKey": "MODULE_LABEL_RADIOLOGY_UPLOAD_KEY",
+    "url": "../document-upload/?encounterType=RADIOLOGY&topLevelConcept=Radiology",
+    "icon": "icon-bahmni-radiology",
     "order": 5,
     "requiredPrivilege": "app:document-upload"
   },
