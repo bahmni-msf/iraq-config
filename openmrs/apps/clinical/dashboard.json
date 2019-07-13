@@ -163,6 +163,16 @@
         "config": {
           "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY"
         }
+      },
+      "visits":{
+        "translationKey":"DASHBOARD_TITLE_VISITS_KEY",
+        "type":"visits",
+        "displayOrder":5,
+        "dashboardConfig":{
+            "title":null,
+            "maximumNoOfVisits":5,
+            "groupByVisits":true
+        }
       }
     }
   }
