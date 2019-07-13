@@ -461,7 +461,7 @@
                 call add_concept_answer(@concept_id, @child5_concept_id, 5);
             </sql>
         </changeSet>
-        <!-- <changeSet id="IRAQ-201907101307" author="Pritam">
+        <changeSet id="IRAQ-201907101307" author="Pritam">
             <preConditions onFail="MARK_RAN">
                 <sqlCheck expectedResult="0">
                     select count(*) from concept_answer ca
@@ -497,7 +497,7 @@
                 call add_concept_answer(@concept_id, @child2_concept_id, 2);
                 call add_concept_answer(@concept_id, @child3_concept_id, 3);
             </sql>
-        </changeSet> -->
+        </changeSet>
         <changeSet id="IRAQ-201907051308" author="Pritam">
             <preConditions onFail="MARK_RAN">
                 <sqlCheck expectedResult="0">
@@ -935,4 +935,231 @@
                  INSERT INTO concept_set(concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@concept_id4,@concept_id,1,1,now(),uuid());
              </sql>
      </changeSet>
+     <changeSet id="IRAQ-201907101319" author="Pritam">
+       <preConditions onFail="MARK_RAN">
+           <sqlCheck expectedResult="0">
+             select
+                   count(*)
+                   From
+                   concept_reference_term
+                   where `code` in
+                                 ("1390","1552","159393","161931","54","5622","121387","118350","148284","123156","86","1107","130421","1915","1066","1065","1067")
+                   and retired = 0
+                   and concept_source_id = (
+                                             select concept_source_id from concept_reference_source where `name` = 'CEIL'  and retired =0
+                                          );
+               </sqlCheck>
+       </preConditions>
+       <comment>Adding set members to Requested care</comment>
+           <sql>
+             insert into concept_reference_term (creator,code,concept_source_id,uuid,date_created)
+             values
+                  (4,'1390',1,uuid(),now()),
+                  (4,'1552',1,uuid(),now()),
+                  (4,'159393',1,uuid(),now()),
+                  (4,'161931',1,uuid(),now()),
+                  (4,'54',1,uuid(),now()),
+                  (4,'5622',1,uuid(),now()),
+                  (4,'121387',1,uuid(),now()),
+                  (4,'118350',1,uuid(),now()),
+                  (4,'148284',1,uuid(),now()),
+                  (4,'123156',1,uuid(),now()),
+                  (4,'86',1,uuid(),now()),
+                  (4,'1107',1,uuid(),now()),
+                  (4,'130421',1,uuid(),now()),
+                  (4,'1915',1,uuid(),now()),
+                  (4,'1066',1,uuid(),now()),
+                  (4,'1065',1,uuid(),now()),
+                  (4,'1067',1,uuid(),now());
+           </sql>
+       </changeSet>
+       <changeSet id="IRAQ-201907101320" author="Pritam">
+         <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="0">
+               select count(*) from concept_reference_source where name = 'ICD-10'
+             </sqlCheck>
+         </preConditions>
+         <comment>Adding ICD-10 concept source</comment>
+             <sql>
+               insert into concept_reference_source(name,description,creator,date_created,uuid) VALUES("ICD-10","ICD 10 concept source",1,now(),uuid());
+             </sql>
+       </changeSet>
+       <changeSet id="IRAQ-201907101321" author="Pritam">
+         <preConditions onFail="MARK_RAN">
+             <sqlCheck expectedResult="1">
+               select count(*) from concept_reference_source where name = 'ICD-10';
+             </sqlCheck>
+         </preConditions>
+         <comment>Adding ICD-10 concept source codes</comment>
+             <sql>
+               select concept_source_id into @concept_source_id from concept_reference_source where name = 'ICD-10';
+               insert into concept_reference_term (creator,code,concept_source_id,uuid,date_created)
+               values
+                    (4,'T10.0',@concept_source_id,uuid(),now()),
+                    (4,'T10.1',@concept_source_id,uuid(),now()),
+                    (4,'S72.0',@concept_source_id,uuid(),now()),
+                    (4,'S72.1',@concept_source_id,uuid(),now()),
+                    (4,'S82.1',@concept_source_id,uuid(),now()),
+                    (4,'S82.0',@concept_source_id,uuid(),now()),
+                    (4,'S88.1',@concept_source_id,uuid(),now()),
+                    (4,'T13.6',@concept_source_id,uuid(),now()),
+                    (4,'S88.0',@concept_source_id,uuid(),now()),
+                    (4,'T05.5',@concept_source_id,uuid(),now()),
+                    (4,'S32.8',@concept_source_id,uuid(),now()),
+                    (4,'S82.0',@concept_source_id,uuid(),now()),
+                    (4,'T02.5',@concept_source_id,uuid(),now()),
+                    (4,'1915',@concept_source_id,uuid(),now()),
+                    (4,'1066',@concept_source_id,uuid(),now()),
+                    (4,'1065',@concept_source_id,uuid(),now()),
+                    (4,'1067',@concept_source_id,uuid(),now());
+             </sql>
+       </changeSet>
+       <changeSet id="IRAQ-CONFIG-201907101322" author="Pritam">
+           <comment>Adding codes to specific concepts</comment>
+           <sql>
+                  SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'ICD-10';
+
+                  INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+                  (4,'',@source_id,uuid(),now());
+                  call CREATE_REFERENCE_MAPPING_ICD('Upper Limb Fracture, initially closed', 'T10.0');
+
+                  INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+                  (4,'',@source_id,uuid(),now());
+                  call CREATE_REFERENCE_MAPPING_ICD('Upper Limb Fracture, initially open', 'T10.1');
+
+                  INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+                  (4,'',@source_id,uuid(),now());
+                  call CREATE_REFERENCE_MAPPING_ICD('Femoral Fracture, initially closed', 'S72.0');
+
+                  INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+                  (4,'',@source_id,uuid(),now());
+                  call CREATE_REFERENCE_MAPPING_ICD('Femoral Fracture, initially open', 'S72.1');
+
+                  INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+                  (4,'',@source_id,uuid(),now());
+                  call CREATE_REFERENCE_MAPPING_ICD('Lower Leg Fracture, initially open', 'S82.1');
+
+                  INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+                  (4,'',@source_id,uuid(),now());
+                  call CREATE_REFERENCE_MAPPING_ICD('Lower Leg Fracture, initially closed', 'S82.0');
+
+                  INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+                  (4,'',@source_id,uuid(),now());
+                  call CREATE_REFERENCE_MAPPING_ICD('Traumatic amputation, below knee', 'S88.1');
+
+                  INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+                  (4,'',@source_id,uuid(),now());
+                  call CREATE_REFERENCE_MAPPING_ICD('Traumatic amputation, above knee', 'T13.6');
+
+                  INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+                  (4,'',@source_id,uuid(),now());
+                  call CREATE_REFERENCE_MAPPING_ICD('Traumatic amputation at knee level', 'S88.0');
+
+                  INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+                  (4,'',@source_id,uuid(),now());
+                  call CREATE_REFERENCE_MAPPING_ICD('Traumatic bilateral lower limbs amputation', 'T05.5');
+
+                  INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+                  (4,'',@source_id,uuid(),now());
+                  call CREATE_REFERENCE_MAPPING_ICD('Pelvic fracture', 'S32.8');
+
+                  INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+                  (4,'',@source_id,uuid(),now());
+                  call CREATE_REFERENCE_MAPPING_ICD('Patella fracture', 'S82.0');
+
+                  INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+                  (4,'',@source_id,uuid(),now());
+                  call CREATE_REFERENCE_MAPPING_ICD('Multiple lower limb fractures', 'T02.5');
+
+           </sql>
+       </changeSet>
+       <changeSet id="IRAQ-CONFIG-201907101323" author="Pritam">
+           <comment>Adding codes to specific concepts</comment>
+           <sql>
+                  SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'CEIL';
+
+             			INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+             			(4,'',@source_id,uuid(),now());
+             			call CREATE_REFERENCE_MAPPING_CEIL('Date of Assessment', '1640');
+
+             			INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+             			(4,'',@source_id,uuid(),now());
+             			call CREATE_REFERENCE_MAPPING_CEIL('History of present illness (context)', '1390');
+
+             			INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+             			(4,'',@source_id,uuid(),now());
+             			call CREATE_REFERENCE_MAPPING_CEIL('Cause of injury', '1552');
+
+             			INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+             			(4,'',@source_id,uuid(),now());
+             			call CREATE_REFERENCE_MAPPING_CEIL('Presumed diagnosis', '159393');
+
+             			INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+             			(4,'',@source_id,uuid(),now());
+             			call CREATE_REFERENCE_MAPPING_CEIL('Prophylactic antibiotics', '161931');
+
+             			INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+             			(4,'',@source_id,uuid(),now());
+             			call CREATE_REFERENCE_MAPPING_CEIL('Anti-tetanus vaccination status', '54');
+
+             			INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+             			(4,'',@source_id,uuid(),now());
+             			call CREATE_REFERENCE_MAPPING_CEIL('Other', '5622');
+
+             			INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+             			(4,'',@source_id,uuid(),now());
+             			call CREATE_REFERENCE_MAPPING_CEIL('Assault', '121387');
+
+             			INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+             			(4,'',@source_id,uuid(),now());
+             			call CREATE_REFERENCE_MAPPING_CEIL('Fall', '118350');
+
+             			INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+             			(4,'',@source_id,uuid(),now());
+             			call CREATE_REFERENCE_MAPPING_CEIL('Gun Shot', '148284');
+
+             			INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+             			(4,'',@source_id,uuid(),now());
+             			call CREATE_REFERENCE_MAPPING_CEIL('Torture', '123156');
+
+             			INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+             			(4,'',@source_id,uuid(),now());
+             			call CREATE_REFERENCE_MAPPING_CEIL('Road Traffic Accident', '86');
+
+             			INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+             			(4,'',@source_id,uuid(),now());
+             			call CREATE_REFERENCE_MAPPING_CEIL('None', '1107');
+
+             			INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+             			(4,'',@source_id,uuid(),now());
+             			call CREATE_REFERENCE_MAPPING_CEIL('Associated peripheral nerve injury', '130421');
+
+             			INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+             			(4,'',@source_id,uuid(),now());
+             			call CREATE_REFERENCE_MAPPING_CEIL('Limb amputation', '1915');
+
+             			INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+             			(4,'',@source_id,uuid(),now());
+             			call CREATE_REFERENCE_MAPPING_CEIL('Unknown', '1067');
+
+             			INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+             			(4,'',@source_id,uuid(),now());
+             			call CREATE_REFERENCE_MAPPING_CEIL('Yes', '1065');
+
+             			INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+             			(4,'',@source_id,uuid(),now());
+             			call CREATE_REFERENCE_MAPPING_CEIL('No', '1066');
+           </sql>
+       </changeSet>
+       <changeSet id="IRAQ-201907130047" author="Pritam">
+           <preConditions onFail="MARK_RAN">
+               <sqlCheck expectedResult="0">
+                   select count(*) from concept_complex where concept_id = (select concept_id from concept_name where `name` = 'Patient video' and concept_name_type= 'FULLY_SPECIFIED' and voided = 0);
+               </sqlCheck>
+           </preConditions>
+           <comment>Adding mapping properties to patient video concept</comment>
+           <sql>
+                   insert into concept_complex values ((select concept_id from concept_name where `name` = 'Patient video' and concept_name_type= 'FULLY_SPECIFIED' and voided = 0),'VideoUrlHandler');
+           </sql>
+       </changeSet>
 </databaseChangeLog>

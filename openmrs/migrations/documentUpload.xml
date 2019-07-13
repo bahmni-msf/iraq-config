@@ -28,18 +28,21 @@
    </changeSet>
    <changeSet id="IRAQ-201907101506" author="Pritam">
       <preConditions onFail="MARK_RAN">
-         <sqlCheck expectedResult="0">select COUNT(*) from concept_set cs
-                               join concept_name cn
-                               on cs.concept_id = cn.concept_id
-                               where cs.concept_id IN (select concept_id from concept_name where name IN
-                               (
-                               "X-ray", "MRI", "CT scan", "Soft tissue photo", "Report", "Medical investigation"
-                               )
-                               AND concept_name_type = "FULLY_SPECIFIED")
-                               and cs.concept_set IN (select concept_id from concept_name where name = "Radiology");</sqlCheck>
+           <sqlCheck expectedResult="0">
+                  select COUNT(*) from concept_set cs
+                         join concept_name cn
+                         on cs.concept_id = cn.concept_id
+                         where cs.concept_id IN (select concept_id from concept_name where name IN
+                         (
+                         "X-ray", "MRI", "CT scan", "Soft tissue photo", "Report", "Medical investigation"
+                         )
+                         AND concept_name_type = "FULLY_SPECIFIED")
+                         and cs.concept_set IN (select concept_id from concept_name where name = "Radiology");
+         </sqlCheck>
       </preConditions>
       <comment>Adding set members to Radiology</comment>
-      <sql>call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Radiology','Radiology','N/A','ConvSet',true);
+      <sql>
+                        call add_concept(@concept_id,@concept_short_id,@concept_full_id,'Radiology','Radiology','N/A','ConvSet',true);
 
                         select concept_id into @concept_id from concept_name where name = "Radiology" and concept_name_type = 'FULLY_SPECIFIED' and voided = 0;
 

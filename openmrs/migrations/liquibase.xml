@@ -106,6 +106,13 @@
         </sql>
         <sqlFile path="utils/createProcedureForCEIL.sql" endDelimiter="#"/>
     </changeSet>
+    <changeSet id="IRAQ-201907130007" author="Pritam">
+        <comment>Stored Procedure to add reference term</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_ICD;
+        </sql>
+        <sqlFile path="utils/createProcedureForICD.sql" endDelimiter="#"/>
+    </changeSet>
     <include file ="admissionCommittee/admissionCommittee.xml"/>
     <include file ="mloForm/mloForm.xml"/>
     <include file ="documentUpload.xml"/>
