@@ -136,4 +136,20 @@
         <comment>Adding patient listing queues in clinical module for patients of MLO visit with date of presentation in Admission Committee form is filled and outcome of admission in Admission Committe form is Valid</comment>
         <sqlFile path="clinicalQueues/validPatientsQueue.sql"/>
     </changeSet>
+    <changeSet id="IRAQ-201907151657" author="Pritam">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="4">
+          SELECT count(*) FROM location_tag_map WHERE location_tag_id in (SELECT location_tag_id FROM location_tag WHERE name in ( 'Visit Location','Appointment Location'));
+      </sqlCheck>
+    </preConditions>
+    <comment>Mapping location_tag visit location to location</comment>
+    <sql>
+    SELECT location_tag_id INTO @location_tag_id1 FROM location_tag WHERE name = 'Visit Location';
+    SELECT location_tag_id INTO @location_tag_id2 FROM location_tag WHERE name = 'Appointment Location';
+
+    SELECT location_id INTO @location_id1 FROM location WHERE location.name='IPD';
+    INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_id1, @location_tag_id1);
+    INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_id1, @location_tag_id2);
+    </sql>
+  </changeSet>
 </databaseChangeLog>
