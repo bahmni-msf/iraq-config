@@ -163,4 +163,73 @@
             DELETE FROM scheduler_task_config WHERE name = 'OpenElis Patient Atom Feed Failed Event Task';
         </sql>
     </changeSet>
+    <changeSet id="IRAQ-201907161142" author="Pritam">
+        <preConditions onFail="MARK_RAN">
+          <sqlCheck expectedResult="2">
+              select
+              count(*)
+              from
+              location l
+              INNER JOIN location_tag_map ltm on l.location_id = ltm.location_id and l.retired = 0
+              INNER JOIN location_tag lt on ltm.location_tag_id = lt.location_tag_id
+              where lt.name = 'Visit Location'
+          </sqlCheck>
+        </preConditions>
+        <comment>Removing visit location mapping from IPD and OPD</comment>
+        <sql>
+              select location_id Into @location_id1 from location where name = 'IPD' and retired = 0;
+              select location_id Into @location_id2 from location where name = 'OPD' and retired = 0;
+              SELECT location_tag_id into @location_tag_id from location_tag where name = 'Visit Location';
+
+              delete from location_tag_map where location_id = @location_id1    and location_tag_id = @location_tag_id;
+              delete from location_tag_map where location_id = @location_id2    and location_tag_id = @location_tag_id;
+        </sql>
+    </changeSet>
+    <changeSet id="IRAQ-201907161143" author="Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+              SELECT count(*) from location where name  in ("MLO");
+            </sqlCheck>
+        </preConditions>
+        <comment>Add locations MLO </comment>
+        <sql>
+              INSERT INTO location (name, description, retired, uuid, date_created, creator) VALUES ('MLO', 'MLO Visit', FALSE, uuid(), NOW(), 1);
+
+              SELECT location_tag_id INTO @location_tag_id FROM location_tag WHERE name = 'Login Location';
+              SELECT location_id INTO @location_id1 FROM location WHERE location.name='MLO';
+
+              INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_id1, @location_tag_id);
+
+        </sql>
+    </changeSet>
+    <changeSet id="IRAQ-201907161144" author="Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from location where name = 'Hospital Visit' and  parent_location is null;
+            </sqlCheck>
+        </preConditions>
+        <comment>Create Hospital visit location  and map to visit location</comment>
+        <sql>
+            INSERT INTO location (name, description, retired, uuid, date_created, creator) VALUES ('Hospital Visit', 'Hospital Visit Parent location', FALSE, uuid(), NOW(), 1);
+
+            SELECT location_tag_id INTO @location_tag_id FROM location_tag WHERE name = 'Visit Location';
+            SELECT location_id INTO @location_id1 FROM location WHERE location.name='Hospital Visit';
+
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_id1, @location_tag_id);
+        </sql>
+    </changeSet>
+    <changeSet id="IRAQ-201907161146" author="Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="2">
+                select count(*) from location where name in('OPD','IPD') and  parent_location is null;
+            </sqlCheck>
+        </preConditions>
+        <comment>Mapping to parent location </comment>
+        <sql>
+            SELECT location_id INTO @location_id1 FROM location WHERE location.name='Hospital Visit';
+            update location set parent_location = @location_id1 where `name` = 'IPD';
+            update location set parent_location = @location_id1 where `name` = 'OPD';
+            update location set parent_location = @location_id1 where `name` = 'MLO';
+        </sql>
+    </changeSet>
 </databaseChangeLog>
