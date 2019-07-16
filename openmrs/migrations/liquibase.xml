@@ -232,4 +232,29 @@
             update location set parent_location = @location_id1 where `name` = 'MLO';
         </sql>
     </changeSet>
+
+    <changeSet id="IRAQ-1563255645" author="Siva R, Vineela">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(1) FROM global_property WHERE property='visits.closeOnAnOutcome.visitType(s)';
+            </sqlCheck>
+        </preConditions>
+        <comment>Add MLO visit type to be closed on an outcome</comment>
+        <sql>
+            UPDATE global_property SET property_value = 'MLO' WHERE property='visits.closeOnAnOutcome.visitType(s)';
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ-1563254940" author="Siva R, Vineela">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(1) FROM global_property WHERE property='visits.closeOnAnOutcome.conceptName(s)';
+            </sqlCheck>
+        </preConditions>
+        <comment>Add concept names whose outcome is used to close MLO visits</comment>
+        <sql>
+            UPDATE global_property SET property_value = 'Outcome of admission committee' WHERE
+            property='visits.closeOnAnOutcome.conceptName(s)';
+        </sql>
+    </changeSet>
 </databaseChangeLog>
