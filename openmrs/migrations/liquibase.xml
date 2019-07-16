@@ -152,4 +152,15 @@
     INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_id1, @location_tag_id2);
     </sql>
   </changeSet>
+    <changeSet id="IRAQ-201907161245" author="Sowmika, Vinay">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) FROM scheduler_task_config WHERE name = 'OpenElis Patient Atom Feed Failed Event Task';
+            </sqlCheck>
+        </preConditions>
+        <comment>Delete OpenElis Patient Atom Feed Failed Event Task from scheduler tasks</comment>
+        <sql>
+            DELETE FROM scheduler_task_config WHERE name = 'OpenElis Patient Atom Feed Failed Event Task';
+        </sql>
+    </changeSet>
 </databaseChangeLog>
