@@ -1,5 +1,5 @@
 SET FOREIGN_KEY_CHECKS=0;
--- these tables will not be used, so drop their contents 
+-- these tables will not be used, so drop their contents
 truncate table concept_proposal_tag_map;
 truncate table concept_proposal;
 truncate table hl7_in_archive;
@@ -27,11 +27,11 @@ update person set birthdate = date_add(birthdate, interval cast(rand()*30-30 as 
 update person set birthdate_estimated = cast(rand() as signed);
 
 -- randomize the death date +/- 3 months
-update 
+update
 	person
 set
 	death_date = date_add(death_date, interval cast(rand()*91-91 as signed) day)
-where 
+where
 	death_date is not null;
 
 UPDATE person
@@ -59,7 +59,7 @@ DELETE FROM user_property
 --
 -- Shift the person addresses around
 --
-update 
+update
 	person_address
 set
 	address1 = concat('address1-', person_id),
@@ -78,19 +78,19 @@ set
 -- identifiers (Assumes patient_identifier have been truncated)
 CREATE TABLE temp_patient_identifier_old(patient_id int, identifier  varchar(256), PRIMARY KEY(patient_id));
 
-INSERT INTO temp_patient_identifier_old 
+INSERT INTO temp_patient_identifier_old
 SELECT patient_id, identifier FROM patient_identifier;
 
 TRUNCATE patient_identifier;
 
-INSERT INTO 
+INSERT INTO
 	patient_identifier
 	(patient_id, identifier, identifier_type, location_id, preferred, creator, date_created, voided, uuid)
 SELECT
 	patient_id,
 	concat('IQ', patient_id),
 	(Select patient_identifier_type_id from patient_identifier_type where name = 'Patient Identifier'),
-	9,
+	7,
 	1,
 	1,
 	'20080101',
@@ -101,7 +101,7 @@ FROM
 
 CREATE table temp_person_uuid_old(person_id int, uuid varchar(256), PRIMARY KEY(person_id));
 
-INSERT INTO temp_person_uuid_old 
+INSERT INTO temp_person_uuid_old
 SELECT person_id, uuid FROM person;
 
 DROP TABLE temp_patient_identifier_old;
@@ -134,118 +134,27 @@ SET pa.value = floor(pow(10, 9) + rand() * (pow(10, 10) - pow(10, 9)));
 -- SET pa.value = now();
 
 
--- # Setting all countries to Iraq
-UPDATE person_attribute pa
-  INNER JOIN person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id
-    AND pat.format = 'org.openmrs.Concept' AND pat.name IN ('nationality1', 'legalRepNationality','nationality2','caretakerNationality')
-  SET pa.value = 220;
-
-
--- Setting camp address to Emirati Jordanian Camp (Murijep Al Fhoud)
-  UPDATE person_attribute pa
-  INNER JOIN person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id
-    AND pat.format = 'org.openmrs.Concept' AND pat.name = 'nameoftheCamp'
-  SET pa.value = 618;
-
-
--- Setting 'caretakerGender', 'legalRepGender' to Male
-  UPDATE person_attribute pa
-  INNER JOIN person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id
-    AND pat.format = 'org.openmrs.Concept' AND pat.name IN ('caretakerGender', 'legalRepGender')
-  SET pa.value = 231;
-
 --  as the following comments fiels having some sensitive info
 UPDATE obs
     SET value_text = 'annonimized comment'
 WHERE concept_id IN (SELECT DISTINCT concept_id
-                     FROM concept_name WHERE name IN ('Adt Notes',
-                            'Document(s) needed to be complete',
-                            'Comments:',
-                            'Comments about postpone reason',
-                            'Type of medical information needed for next submission',
-                            'Comments about refusal',
-                            'Comments about next follow-up',
-                            'PMIPA, Comments on FV',
-                            'Comments about Aneasthesia validation',
-                            'Comments about further stage admission',
-                            'VS, Comments about baseline vital signs',
-                            'SMH, Other medical problems',
-                            'ONN, Description',
-                            'SMH, Nursing notes',
-                            'HE, Education learning needs',
-                            'HE, Referral care Plan',
-                            'AIA, Comments about adverse reaction',
-                            'AIA, Describe',
-                            'Remarks-anaesthetist',
-                            'PHIA, Other type of assistive device',
-                            'PHIA, Comments about assistive device or orthosis',
-                            'PHIA, Comments about amputation',
-                            'PHIA, Comment about prostheses usage',
-                            'PHIA, Comment about new prosthesis or modification',
-                            'PHIA, Physiotherapy remarks initial assessment',
-                            'PIA, Comments about expectations',
-                            'PIA, Comments from counsellor',
-                            'PIA, By who (NGO / private) ccp',
-                            'PIA, By who (NGO / private) ccf',
-                            'PIA, By who (NGO / private) pcp',
-                            'PIA, By who (NGO / private) pcf',
-                            'PIA, Drug',
-                            'MD, Chief complaint',
-                            'MD, History of present illness',
-                            'MD, Comments (neural injury)',
-                            'MD, Comments (vascular injury)',
-                            'MD, Comment of procedure',
-                            'MD, Comments about previous infection',
-                            'MD, Other type of fixation',
-                            'MD, Description and duration of symptom (general)',
-                            'MD, Other ROS general symptoms',
-                            'MD, Description and duration of symptom (cardiopulmonary)',
-                            'MD, Other ROS cardiopulmonary symptoms',
-                            'MD, Description and duration of symptom (gastrointestinal)',
-                            'MD, Other ROS gastrointestinal symptoms',
-                            'MD, Description and duration of symptom (genitourinary)',
-                            'MD, Other ROS genitourinary symptoms',
-                            'MD, Description and duration of symptom (central nervous system)',
-                            'MD, Other ROS central nervous system symptoms',
-                            'MD, Description and duration of symptom (HEENT)',
-                            'MD, Other ROS HEENT symptoms',
-                            'MD, Description and duration of symptom (musculoskeletal)',
-                            'MD, Other ROS musculoskeletal symptoms',
-                            'SAP, Surgical summary',
-                            'SAP, Objectives of physiotherapy',
-                            'SAP, Comments of uncertainty',
-                            'SAP, Comments about sugical objectives',
-                            'SAP, Other consultation needed',
-                            'ANA, Reason for admission, other',
-                            'ANA, Patient mood, other',
-                            'ANA, Description',
-                            'ANA, Nutritional Assessment, other',
-                            'ANA, Admission Nursing Notes',
-                            'ONN, Description of wound, other',
-                            'ONN, Dressing, comments',
-                            'ONN, Condition of tissue expander',
-                            'ONN, Nursing consultation notes',
-                            'WWN, Change Position',
-                            'WWN, Description of wound, other',
-                            'WWN, Dressing, comments',
-                            'WWN, Comments, peripheral line',
-                            'WWN, Comments, dressing PICC line',
-                            'WWN, Condition of tissue expander',
-                            'WWN, Nursing consultation notes',
-                            'CC, Description of complication',
-                            'PPN, Patient complaints, other',
-                            'PPN, Description of wound, other',
-                            'PPN, Drainage, other',
-                            'PPN, Assessment of patient, other',
-                            'PPN, Surgical ward patient care plan, other',
-                            'PE, General examination',
-                            'PE, HEENT examination',
-                            'PE, Chest examination',
-                            'PE, Heart examination',
-                            'PE, Abdomen examination',
-                            'PE, Rectal and genitalia examination',
-                            'PE, Extremities examination',
-                            'PE, Neurologic examination'
+                     FROM concept_name WHERE name IN ('Treating Surgeon',
+'Other Hospital of Origin',
+'History of present illness (context)',
+'Other associated injury or condition, comments',
+'Specify prophylactic antibiotic',
+'Examination of injured area',
+'Current treatment in orthopedic ward',
+'Physiotherapy, comments',
+'Current treatment in orthopedic ward',
+'Joint authorized range of motion mobilization',
+'Any contraindications to care requested',
+'General notes and comments',
+'General comments from admission committee',
+'Reason case is pending',
+'Comments about refusal',
+'Reason for refusal, other',
+'Reason for Amman RSP referral'
                      ));
 
 --  Updating the documentUrls to 'document url'
@@ -256,11 +165,4 @@ WHERE concept_id IN (SELECT DISTINCT concept_id
                          'Document'
                      ));
 
--- defaulting the Referrer and MLO to concept 304
-UPDATE obs
-SET value_coded = 304
-WHERE concept_id IN (SELECT DISTINCT concept_id
-                     FROM concept_name WHERE name IN (
-                         'Referred by',
-                         'Name Of MLO'
-                     ));
+
