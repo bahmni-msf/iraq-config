@@ -134,6 +134,7 @@
     {
       "name": "Form2 Obs Data",
       "type": "form2obs",
+      "chunkSizeToRead": 1500,
       "incrementalUpdateConfig": {
         "updateOn": "encounter_id",
         "eventCategory": "Encounter",
