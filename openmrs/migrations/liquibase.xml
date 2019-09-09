@@ -257,4 +257,7 @@
             property='visits.closeOnAnOutcome.conceptName(s)';
         </sql>
     </changeSet>
+
+    <include file="PhysiotherapyPrescription/PhysiotherapyPrescription.xml"/>
+
 </databaseChangeLog>
