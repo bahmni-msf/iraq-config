@@ -91,5 +91,6 @@
 
 
   "MLO_MEDICAL_ASSESSMENT_KEY": "MLO Medical Assessment",
-  "ADMISSION_COMMITTEE_KEY": "Admission Committee"
+  "ADMISSION_COMMITTEE_KEY": "Admission Committee",
+  "PHYSIOTHERAPY_TREATMENT_KEY": "Physiotherapy Treatment"
 }

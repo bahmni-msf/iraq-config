@@ -19,18 +19,18 @@
         ]
       },
       "navigationLinksControl":{
-          "translationKey":"DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
-          "type":"navigationLinksControl",
-          "displayOrder":1,
-          "showLinks":[
-              "home",
-              "registration"
-          ],
-          "customLinks": [
-               {
-                   "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
-                   "url": "../document-upload/?encounterType=RADIOLOGY&topLevelConcept=Radiology#/patient/{{patientUuid}}/document"
-               }]
+        "translationKey":"DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
+        "type":"navigationLinksControl",
+        "displayOrder":1,
+        "showLinks":[
+          "home",
+          "registration"
+        ],
+        "customLinks": [
+          {
+            "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
+            "url": "../document-upload/?encounterType=RADIOLOGY&topLevelConcept=Radiology#/patient/{{patientUuid}}/document"
+          }]
       },
       "validationForms-2.0": {
         "type": "formsV2",
@@ -178,14 +178,100 @@
           "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY"
         }
       },
-      "visits":{
-        "translationKey":"DASHBOARD_TITLE_VISITS_KEY",
-        "type":"visits",
-        "displayOrder":5,
-        "dashboardConfig":{
-            "title":null,
-            "maximumNoOfVisits":5,
-            "groupByVisits":true
+      "visits": {
+        "translationKey": "DASHBOARD_TITLE_VISITS_KEY",
+        "type": "visits",
+        "displayOrder": 5,
+        "dashboardConfig": {
+          "title": null,
+          "maximumNoOfVisits": 5,
+          "groupByVisits": true
+        }
+      },
+      "Physiotherapy Treatment": {
+        "translationKey": "PHYSIOTHERAPY_TREATMENT_KEY",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 8,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "PP, Date of physiotherapy prescription",
+            "PP, Type of physiotherapy prescription",
+            "PP, Physiotherapy objective",
+            "PP, Treatment duration",
+            "PP, Passive mobilization, joint",
+            "PP, Passive mobilization, other joint",
+            "PP, Passive mobilization, degree or level",
+            "PP, Passive mobilization, other degree or level",
+            "PP, Assisted / Active mobilization, joint",
+            "PP, Assisted / Active mobilization, other joint",
+            "PP, Assisted / Active mobilization, degree or level",
+            "PP, Assisted / Active mobilization, other degree or level",
+            "PP, Muscle strengthening, exercise type",
+            "PP, Muscle strengthening, isometric",
+            "PP, Muscle strengthening, PRE",
+            "PP, Muscle strengthening, isotonic",
+            "PP, Muscle strengthening, other exercise",
+            "PP, Muscle strengthening, other muscle",
+            "PP, Muscle stretching",
+            "PP, Muscle stretching, other",
+            "PP, Gait training",
+            "PP, Type of gait training",
+            "PP, Wheelchair mobility training",
+            "PP, Partial weight bearing, degree and level",
+            "PP, Functional activities / ADL training",
+            "PP, Positioning",
+            "PP, Positioning, other",
+            "PP, Orthosis / Splint / Prosthesis",
+            "PP, Chest physiotherapy",
+            "PP, Balance and proprioceptive exercises",
+            "PP, Physiotherapy measure for neuropathic pain",
+            "PP, Other interventions"
+          ],
+          "scope":"latest"
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "PP, Date of physiotherapy prescription",
+            "PP, Type of physiotherapy prescription",
+            "PP, Physiotherapy objective",
+            "PP, Treatment duration",
+            "PP, Passive mobilization, joint",
+            "PP, Passive mobilization, other joint",
+            "PP, Passive mobilization, degree or level",
+            "PP, Passive mobilization, other degree or level",
+            "PP, Assisted / Active mobilization, joint",
+            "PP, Assisted / Active mobilization, other joint",
+            "PP, Assisted / Active mobilization, degree or level",
+            "PP, Assisted / Active mobilization, other degree or level",
+            "PP, Muscle strengthening, exercise type",
+            "PP, Muscle strengthening, isometric",
+            "PP, Muscle strengthening, PRE",
+            "PP, Muscle strengthening, isotonic",
+            "PP, Muscle strengthening, other exercise",
+            "PP, Muscle strengthening, other muscle",
+            "PP, Muscle stretching",
+            "PP, Muscle stretching, other",
+            "PP, Gait training",
+            "PP, Type of gait training",
+            "PP, Wheelchair mobility training",
+            "PP, Partial weight bearing, degree and level",
+            "PP, Functional activities / ADL training",
+            "PP, Positioning",
+            "PP, Positioning, other",
+            "PP, Orthosis / Splint / Prosthesis",
+            "PP, Chest physiotherapy",
+            "PP, Balance and proprioceptive exercises",
+            "PP, Physiotherapy measure for neuropathic pain",
+            "PP, Other interventions"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "scope":"latest",
+          "pivotTable": {
+          }
         }
       }
     }
