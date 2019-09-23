@@ -13,12 +13,12 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PP, Muscle stre
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PP, Muscle strengthening, isometric","Muscle strengthening, isometric",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PP, Muscle strengthening, PRE","Muscle strengthening, PRE",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PP, Muscle strengthening, isotonic","Muscle strengthening, isotonic",'Coded','Question',false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PP, Muscle stretching ","Muscle stretching ",'Coded','Question',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PP, Muscle stretching","Muscle stretching",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PP, Gait training","Gait training",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PP, Type of gait training","Type of gait training",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PP, Wheelchair mobility training","Wheelchair mobility training",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PP, Positioning","Positioning",'Coded','Question',false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PP, Balance and proprioceptive exercises ","Balance and proprioceptive exercises ",'Coded','Question',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PP, Balance and proprioceptive exercises","Balance and proprioceptive exercises",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PP, Physiotherapy measure for neuropathic pain","Physiotherapy measure for neuropathic pain",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PP, Date of physiotherapy prescription","Date of physiotherapy prescription",'Date','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PP, Physiotherapy objective","Physiotherapy objective",'Text','Misc',false);

@@ -7,12 +7,12 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="HAITI_CONFIG_201909041313" author="SreeKalyan">
+    <changeSet id="IRAQ_CONFIG_201909041313" author="SreeKalyan">
         <comment>Adding Concepts for Physiotherapy Prescription</comment>
         <sqlFile path="PhysiotherapyPrescription/addConceptForPhysiotherapyPrescription.sql"/>
     </changeSet>
 
-    <changeSet id="HAITI_CONFIG_201909041442" author="SreeKalyan">
+    <changeSet id="IRAQ_CONFIG_201909041442" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select
@@ -40,7 +40,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="HAITI_CONFIG_201909041515" author="SreeKalyan">
+    <changeSet id="IRAQ_CONFIG_201909041515" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -76,7 +76,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="HAITI_CONFIG_201909041723" author="SreeKalyan">
+    <changeSet id="IRAQ_CONFIG_201909041723" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -177,7 +177,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="HAITI_CONFIG_201909041755" author="SreeKalyan">
+    <changeSet id="IRAQ_CONFIG_201909041755" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -213,7 +213,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="HAITI_CONFIG_201909041807" author="SreeKalyan">
+    <changeSet id="IRAQ_CONFIG_201909041807" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -314,7 +314,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="HAITI_CONFIG_201909041820" author="SreeKalyan">
+    <changeSet id="IRAQ_CONFIG_201909041820" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -350,7 +350,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="HAITI_CONFIG_201909041822" author="SreeKalyan">
+    <changeSet id="IRAQ_CONFIG_201909041822" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -396,7 +396,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="HAITI_CONFIG_201909041825" author="SreeKalyan">
+    <changeSet id="IRAQ_CONFIG_201909041825" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -563,7 +563,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="HAITI_CONFIG_201909041856" author="SreeKalyan">
+    <changeSet id="IRAQ_CONFIG_201909041856" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -730,7 +730,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="HAITI_CONFIG_201909041905" author="SreeKalyan">
+    <changeSet id="IRAQ_CONFIG_201909041905" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -897,7 +897,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="HAITI_CONFIG_201909041930" author="SreeKalyan">
+    <changeSet id="IRAQ_CONFIG_201909041930" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -1136,7 +1136,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="HAITI_CONFIG_201909051135" author="SreeKalyan">
+    <changeSet id="IRAQ_CONFIG_201909051135" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -1172,7 +1172,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="HAITI_CONFIG_201909051148" author="SreeKalyan">
+    <changeSet id="IRAQ_CONFIG_201909051148" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -1219,7 +1219,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="HAITI_CONFIG_201909051155" author="SreeKalyan">
+    <changeSet id="IRAQ_CONFIG_201909051155" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -1255,7 +1255,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="HAITI_CONFIG_201909051158" author="SreeKalyan">
+    <changeSet id="IRAQ_CONFIG_201909051158" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -1297,7 +1297,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="HAITI_CONFIG_201909051201" author="SreeKalyan">
+    <changeSet id="IRAQ_CONFIG_201909051201" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -1339,7 +1339,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="HAITI_CONFIG_201909051205" author="SreeKalyan">
+    <changeSet id="IRAQ_CONFIG_201909051205" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
