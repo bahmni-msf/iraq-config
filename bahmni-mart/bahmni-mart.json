@@ -50,7 +50,12 @@
             "primaryRelative",
             "familyNameLocal",
             "givenNameLocal",
-            "middleNameLocal"
+            "middleNameLocal",
+            "iraqNationalIdentificationNumber",
+            "Patient Phone Number 1",
+            "Patient Phone Number 2",
+            "phoneNumber",
+            "previousBMRCIDNumber"
           ]
         },
         {
@@ -62,7 +67,8 @@
             "family_name_prefix",
             "family_name",
             "family_name2",
-            "family_name_suffix"
+            "family_name_suffix",
+            "birthdate"
           ]
         }
       ]
