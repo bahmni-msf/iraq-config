@@ -259,5 +259,7 @@
     </changeSet>
 
     <include file="PhysiotherapyPrescription/PhysiotherapyPrescription.xml"/>
+    <include file="OpdProgressNote/OpdProgressNote.xml"/>
+
 
 </databaseChangeLog>
