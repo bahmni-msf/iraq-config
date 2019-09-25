@@ -128,10 +128,10 @@ UPDATE person_attribute pa
 SET pa.value = floor(pow(10, 9) + rand() * (pow(10, 10) - pow(10, 9)));
 
 
--- UPDATE person_attribute pa
---   INNER JOIN person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id
---                                           AND pat.format = 'org.openmrs.util.AttributableDate'
--- SET pa.value = now();
+UPDATE person_attribute pa
+  INNER JOIN person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id
+                                          AND pat.format = 'org.openmrs.util.AttributableDate'
+SET pa.value = now();
 
 
 --  as the following comments fiels having some sensitive info
