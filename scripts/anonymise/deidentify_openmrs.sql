@@ -64,7 +64,7 @@ update
 set
 	address1 = concat('address1-', person_id),
 	address2 = concat('address2-', person_id),
-  address3 = 'Country',
+  city_village = 'Country',
   state_province = 'State',
 	latitude = null,
 	longitude = null,
@@ -164,5 +164,3 @@ WHERE concept_id IN (SELECT DISTINCT concept_id
                      FROM concept_name WHERE name IN (
                          'Document'
                      ));
-
-
