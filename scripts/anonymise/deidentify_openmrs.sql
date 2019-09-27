@@ -113,24 +113,33 @@ DROP TABLE temp_person_uuid_old;
 TRUNCATE failed_events;
 
 --
--- Amman specific
+-- IRAQ specific
 --
 
 UPDATE person_attribute pa
-  INNER JOIN person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id
-                                      AND pat.name NOT LIKE '%number%' AND pat.format = 'java.lang.String'
+INNER JOIN person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id
+AND pat.name NOT LIKE '%number%' AND pat.format = 'java.lang.String'
 SET pa.value = concat(pa.person_id, '-', pat.name);
 
 
 UPDATE person_attribute pa
-  INNER JOIN person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id
-                                          AND pat.name LIKE '%number%' AND pat.format = 'java.lang.String'
+INNER JOIN person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id
+AND pat.name LIKE '%number%' AND pat.format = 'java.lang.String'
 SET pa.value = floor(pow(10, 9) + rand() * (pow(10, 10) - pow(10, 9)));
 
+UPDATE person_attribute pa
+INNER JOIN person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id
+AND pat.name in  ("Patient Phone Number 1","Patient Phone Number 2","phoneNumber") AND pat.format = 'java.lang.String'
+SET pa.value = LPAD(FLOOR(RAND() * 999999999999.99), 12, '0');
 
 UPDATE person_attribute pa
-  INNER JOIN person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id
-                                          AND pat.format = 'org.openmrs.util.AttributableDate'
+INNER JOIN person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id
+AND pat.name in  ("previousBMRCIDNumber") AND pat.format = 'java.lang.String'
+SET pa.value = LPAD(FLOOR(RAND() * 999999.99), 3, '0');
+
+UPDATE person_attribute pa
+INNER JOIN person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id
+AND pat.format = 'org.openmrs.util.AttributableDate'
 SET pa.value = now();
 
 
@@ -157,10 +166,17 @@ WHERE concept_id IN (SELECT DISTINCT concept_id
 'Reason for Amman RSP referral'
                      ));
 
+-- updating notes for document obs if Any
+UPDATE obs
+SET comments = 'test notes'
+WHERE concept_id IN (SELECT DISTINCT concept_id
+                    FROM concept_name WHERE name IN (
+                        'Document'
+                    ));
 --  Updating the documentUrls to 'document url'
 UPDATE obs
 SET value_text = 'document url'
 WHERE concept_id IN (SELECT DISTINCT concept_id
                      FROM concept_name WHERE name IN (
-                         'Document'
+                         'Document','Impression'
                      ));

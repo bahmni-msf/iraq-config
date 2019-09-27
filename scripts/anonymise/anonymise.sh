@@ -1,5 +1,4 @@
 #!/bin/sh
 set -e -x
 
-export BACKUP_DB_NAME =
-mysql -uroot -ppassword $BACKUP_DB_NAME < deidentify_openmrs.sql
+mysql -uroot -ppassword openmrs < /var/www/bahmni_config/scripts/anonymise/deidentify_openmrs.sql
