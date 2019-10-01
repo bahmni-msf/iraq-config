@@ -113,6 +113,20 @@
         </sql>
         <sqlFile path="utils/createProcedureForICD.sql" endDelimiter="#"/>
     </changeSet>
+    <changeSet id="IRAQ-201909271850" author="Sreekalyan">
+        <comment>Stored Procedure to add reference term</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_SNOMED;
+        </sql>
+        <sqlFile path="utils/createReferenceMappingForSNOMED.sql" endDelimiter="#"/>
+    </changeSet>
+    <changeSet id="IRAQ-201909272223" author="Sreekalyan">
+        <comment>Stored Procedure to add reference term</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_ICHI;
+        </sql>
+        <sqlFile path="utils/createReferenceMappingForICHI.sql" endDelimiter="#"/>
+    </changeSet>
     <include file ="admissionCommittee/admissionCommittee.xml"/>
     <include file ="mloForm/mloForm.xml"/>
     <include file ="documentUpload.xml"/>
@@ -260,6 +274,7 @@
 
     <include file="PhysiotherapyPrescription/PhysiotherapyPrescription.xml"/>
     <include file="OpdProgressNote/OpdProgressNote.xml"/>
+    <include file="InitialMedicalExamination/InitialMedicalExamination.xml"/>
 
 
 </databaseChangeLog>
