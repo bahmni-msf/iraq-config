@@ -4,8 +4,9 @@ set @concept_full_id = 0;
 set @count = 0;
 set @uuid = NULL;
 
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Type of pain","Type of pain","Coded","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Assessment of vital signs","Assessment of vital signs","Coded","Question",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Assosiated feature","Assosiated feature","Coded","Question",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Associated feature","Associated feature","Coded","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Burning","Burning","Coded","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Cause of Injury","Cause of Injury","Coded","Question",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Currently taking medication","Currently taking medication","Coded","Question",false);
@@ -75,7 +76,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Sensory ex
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Significant findings, social history","Significant findings, social history","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Site of pain, other","Site of pain, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Type of medication","Type of medication","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Type of pain","Type of pain","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, When does the pain occur","When does the pain occur","Text","Misc",false);
 
 ### ADDING THE CHILD CONCEPTS
@@ -418,7 +418,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Insertion of  d
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "IME, Number of physiotherapy sessions" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en' and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "IME, Pain score" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,11,NULL,NULL,0,"",1,1);
+VALUES ((select concept_id from concept_name where name = "IME, Pain score" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,10,NULL,NULL,0,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "IME, Neuropathic pain score" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en' and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)

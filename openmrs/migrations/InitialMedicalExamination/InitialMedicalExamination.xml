@@ -947,7 +947,7 @@
             call CREATE_REFERENCE_MAPPING_SNOMED("Thinning of skin flap","SCTID: 302407000");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"408294007",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_SNOMED("Burn contracture of skin","SCTID: 408294007");
+            call CREATE_REFERENCE_MAPPING_SNOMED("Burn contracture of skin","408294007");
 
 
         </sql>
@@ -975,8 +975,10 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="IPD" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="OPD" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="OPD" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="IPD" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
@@ -1007,8 +1009,9 @@
             set @child4_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="New admission" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Re-assessment" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Transfer from IPD" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Transfer from OPD" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Transfer from OPD" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Transfer from IPD" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -1037,8 +1040,10 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
+
             select concept_id into @child1_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
@@ -1065,8 +1070,10 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Post-operative follow-up" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Pre-operative" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Pre-operative" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Post-operative follow-up" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
@@ -1100,14 +1107,15 @@
             set @child7_concept_id = 0;
             set @child8_concept_id = 0;
             set @child9_concept_id = 0;
+
             select concept_id into @child1_concept_id from concept_name where name ="Assault" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Bomb Blast" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Fall" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Gun Shot" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="Mine" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child6_concept_id from concept_name where name ="Other, violence related" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child7_concept_id from concept_name where name ="Road Traffic Accident" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child8_concept_id from concept_name where name ="Torture" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Mine" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Fall" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Gun Shot" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Torture" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Other, violence related" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Road Traffic Accident" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child9_concept_id from concept_name where name ="Other, non-violence related" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
 
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
@@ -1145,9 +1153,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Bilateral" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Right" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Left" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Right" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Bilateral" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child4_concept_id from concept_name where name ="Upper &amp; Lower" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
 
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
@@ -2033,9 +2042,11 @@
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
+
             select concept_id into @child1_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Unknown" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Unknown" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -2064,9 +2075,12 @@
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Bilateral" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+
+            select concept_id into @child1_concept_id from concept_name where name ="Right" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Left" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Right" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Bilateral" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -2714,10 +2728,12 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Drugs" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Food" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="None" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="None" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Drugs" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Food" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child4_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -2747,9 +2763,11 @@
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
+
             select concept_id into @child1_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Unknown" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Unknown" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -2777,8 +2795,8 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Abnormal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Normal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Abnormal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
@@ -2807,8 +2825,8 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Unknown" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Unknown" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -2837,9 +2855,11 @@
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
+
             select concept_id into @child1_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Unknown" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Unknown" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -2867,8 +2887,10 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
+
             select concept_id into @child1_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
@@ -2896,9 +2918,11 @@
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Full WB" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="No WB" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Partial WB" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="No WB" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Partial WB" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Full WB" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -2926,8 +2950,10 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
+
             select concept_id into @child1_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
@@ -2955,9 +2981,11 @@
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Bilateral" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Right" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Left" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Right" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Bilateral" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -3097,7 +3125,7 @@
         </sql>
     </changeSet>
 
-    <!---Addinng and mapping the "Assosiated feature parent to child -->
+    <!---Addinng and mapping the "Associated feature parent to child -->
     <changeSet id="IRAQ_CONFIG_2019092811097" author="Sreekalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -3109,21 +3137,23 @@
                 ("Numbness","Tingling","Pins and needles","Itching")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "IME, Assosiated feature");
+                cn.concept_id IN (select concept_id from concept_name where name = "IME, Associated feature");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to IME, Assosiated feature</comment>
+        <comment>Adding Answers to IME, Associated feature</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "IME, Assosiated feature" and
+            select concept_id into @concept_id from concept_name where name = "IME, Associated feature" and
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Itching" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Numbness" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Numbness" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Tingling" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Pins and needles" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Tingling" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Itching" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -3152,8 +3182,10 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
@@ -3180,8 +3212,10 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
@@ -3208,8 +3242,10 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
@@ -3236,8 +3272,10 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
@@ -3264,8 +3302,10 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
@@ -3292,8 +3332,10 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
@@ -3320,8 +3362,10 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
@@ -3348,8 +3392,10 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
@@ -3376,8 +3422,10 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
@@ -3404,8 +3452,10 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="1 = Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="0 = No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
@@ -3432,8 +3482,10 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Abnormal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Stable" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Stable" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Abnormal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
@@ -3465,13 +3517,15 @@
             set @child5_concept_id = 0;
             set @child6_concept_id = 0;
             set @child7_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Bedridden since surgery" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Walking alone" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Crutches" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Walking Frame" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child4_concept_id from concept_name where name ="Walking Cane" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="Walking Frame" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child6_concept_id from concept_name where name ="Walking alone" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child7_concept_id from concept_name where name ="Wheelchair" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Wheelchair" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Bedridden since surgery" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -3505,10 +3559,13 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Mental Health Support" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Nursing Care" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Pharmacology" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Physiotherapy" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+
+            select concept_id into @child1_concept_id from concept_name where name ="Pharmacology" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Physiotherapy" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Nursing Care" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Mental Health Support" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -3539,14 +3596,50 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
+
             select concept_id into @child1_concept_id from concept_name where name ="Analgesia" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Antibiotics" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="DVT prophylaxis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="DVT prophylaxis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Antibiotics" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child4_concept_id from concept_name where name ="Vitamins" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
             call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <!---Addinng and mapping the "Type of pain" parent to child -->
+    <changeSet id="IRAQ_CONFIG_2019092811172" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Nociceptive","Neuropathic","Mixed")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IME, Type of pain");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IME, Pharmacology treatment</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IME, Type of pain" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Nociceptive" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Neuropathic" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Mixed" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+
         </sql>
     </changeSet>
 
