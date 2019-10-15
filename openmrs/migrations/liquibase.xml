@@ -276,7 +276,7 @@
     <include file="OpdProgressNote/OpdProgressNote.xml"/>
     <include file="InitialMedicalExamination/InitialMedicalExamination.xml"/>
     <include file="PhysiotherapyAssessment/PhysiotherapyAssessment.xml"/>
-    
+    <include file="AmputeeAssessment/AmputeeAssessment.xml"/>
 
 
 
