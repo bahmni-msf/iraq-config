@@ -61,7 +61,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Big or bulbous"
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Follow-up (post-fitting)","Follow-up (post-fitting)","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Initial assessment (pre-fitting)","Initial assessment (pre-fitting)","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Long","Long","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"No hesitancy = 1","No hesitancy = 1","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Short","Short","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Small or conical","Small or conical","N/A","Misc",false);
 
