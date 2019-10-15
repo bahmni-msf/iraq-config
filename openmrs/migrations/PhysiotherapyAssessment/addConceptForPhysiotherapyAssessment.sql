@@ -101,7 +101,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Gait Score"
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Total Score Tinetti Balance Assessment Tool","Total Score",'Numeric','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Risk of falls","Risk of falls",'Text','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, How old is the patient","How old is the patient",'Coded','Question',false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Any of your usual work, housework or school activities upper","Any of your usual work, housework or school activities upper",'Coded','Question',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Any of your usual work, housework or school activities upper","Any of your usual work, housework or school activities",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Your usual hobbies, recreational or sporting activities","Your usual hobbies, recreational or sporting activities",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Getting into or out of the bath (into the bathtub)","Getting into or out of the bath (into the bathtub)",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Walking between rooms","Walking between rooms",'Coded','Question',false);
@@ -245,7 +245,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Tip pinch (
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Lateral or key pinch","Lateral or key pinch",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Basic grip test, total score","Basic grip test, total score",'Numeric','Misc',false);
 -- call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, How old is the patient","How old is the patient",'Coded','Question',false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Any of your usual work, housework or school activities lower","Any of your usual work, housework or school activities lower",'Coded','Question',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Any of your usual work, housework or school activities lower","Any of your usual work, housework or school activities",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Lifting a bag of groceries to waist level.","Lifting a bag of groceries to waist level.",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Placing an object onto or remove it from, an overhead shelf","Placing an object onto or remove it from, an overhead shelf",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Washing your hair or scalp","Washing your hair or scalp",'Coded','Question',false);
