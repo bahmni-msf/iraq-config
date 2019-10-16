@@ -106,7 +106,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Your usual 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Getting into or out of the bath (into the bathtub)","Getting into or out of the bath (into the bathtub)",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Walking between rooms","Walking between rooms",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Putting on your shoes and socks","Putting on your shoes and socks",'Coded','Question',false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Squatting (Standing – sitting)","Squatting (Standing – sitting)",'Coded','Question',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Squatting (Standing - sitting)","Squatting (Standing - sitting)",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Lifting an object (like a bag of groceries) from the floor","Lifting an object (like a bag of groceries) from the floor",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Performing light activities around your home (changing bulbs, decorating, cleaning)","Performing light activities around your home (changing bulbs, decorating, cleaning)",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Performing heavy activities around your home (gardening, maintenance etc.)","Performing heavy activities around your home (gardening, maintenance etc.)",'Coded','Question',false);
@@ -142,7 +142,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I could wal
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I could walk while wearing a backpack full of books","I could walk while wearing a backpack full of books",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I could bend over to pick something up","I could bend over to pick something up",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I could exercise that others my age can do","I could exercise that others my age can do",'Coded','Question',false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Total Score Pediatric Lower Extremity Function – Mobility","Total Score",'Numeric','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Total Score Pediatric Lower Extremity Function - Mobility","Total Score",'Numeric','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Left : Shoulder flexion","Left : Shoulder flexion",'Text','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Right : Shoulder flexion","Right : Shoulder flexion",'Text','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Left : Shoulder extension","Left : Shoulder extension",'Text','Misc',false);
@@ -282,7 +282,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I was able 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I was able to dry my back with a towel","I was able to dry my back with a towel",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I was able to put on my clothes by myself","I was able to put on my clothes by myself",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I was able to zip up my clothes","I was able to zip up my clothes",'Coded','Question',false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Total score Pediatric Upper Extremity Function – Fine Motor, ADL","Total score",'Numeric','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Total score Pediatric Upper Extremity Function - Fine Motor, ADL","Total score",'Numeric','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Problem List","Problem List",'Text','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Treatment goals","Treatment goals",'Text','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Treatment plan and exercises","Treatment plan and exercises",'Text','Misc',false);
@@ -318,6 +318,9 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Discontinuous s
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Continuous = 1","Continuous = 1",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"0 = Extreme Difficulty or unable to perform activity","0 = Extreme Difficulty or unable to perform activity",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"0 = Extremely difficult or unable to do","0 = Extremely difficult or unable to do",'N/A','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"1 = With moderate difficulty","1 = With moderate difficulty",'N/A','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"2 = With a little difficulty","2 = With a little difficulty",'N/A','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3 = No difficulty","3 = No difficulty",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Follow-up assessment, communication","Follow-up assessment, communication",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Foot drop = 0","Foot drop = 0",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"For security reasons or transportation constraints","For security reasons or transportation constraints",'N/A','Misc',false);
@@ -390,13 +393,13 @@ INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_ab
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision) VALUES ((select concept_id from concept_name where name = "PA, Gait Score" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision) VALUES ((select concept_id from concept_name where name = "PA, Total Score Tinetti Balance Assessment Tool" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision) VALUES ((select concept_id from concept_name where name = "PA, Total Score Lower Extremity Functional Index (LEFI)" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
-INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision) VALUES ((select concept_id from concept_name where name = "PA, Total Score Pediatric Lower Extremity Function – Mobility" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision) VALUES ((select concept_id from concept_name where name = "PA, Total Score Pediatric Lower Extremity Function - Mobility" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision) VALUES ((select concept_id from concept_name where name = "PA, Distance tip (2nd -5th)" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision) VALUES ((select concept_id from concept_name where name = "PA, Distance tip (Thumb - 2nd)" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision) VALUES ((select concept_id from concept_name where name = "PA, Basic grip test, total score" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision) VALUES ((select concept_id from concept_name where name = "PA, Total raw score" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision) VALUES ((select concept_id from concept_name where name = "PA, Final score" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
-INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision) VALUES ((select concept_id from concept_name where name = "PA, Total score Pediatric Upper Extremity Function – Fine Motor, ADL" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision) VALUES ((select concept_id from concept_name where name = "PA, Total score Pediatric Upper Extremity Function - Fine Motor, ADL" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 
 
 -- Adding Help text to Concepts

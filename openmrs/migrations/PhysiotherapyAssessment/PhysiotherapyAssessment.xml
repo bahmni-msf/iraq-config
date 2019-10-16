@@ -1221,12 +1221,12 @@
                 ("0 = Extreme Difficulty or unable to perform activity","1 = Quite a bit of difficulty","2= Moderate difficulty","3 = A little bit of difficulty","4 = No difficulty")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "PA, Squatting (Standing – sitting)");
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Squatting (Standing - sitting)");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to Squatting (Standing – sitting)</comment>
+        <comment>Adding Answers to Squatting (Standing - sitting)</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "PA, Squatting (Standing – sitting)" and
+            select concept_id into @concept_id from concept_name where name = "PA, Squatting (Standing - sitting)" and
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -3829,7 +3829,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("0 = Extremely difficult or unable to do","1 = With much difficulty","2 = With moderate difficulty","3 = With a little difficulty","4 = No difficulty")
+                ("0 = Extremely difficult or unable to do","1 = With much difficulty","1 = With moderate difficulty","2 = With a little difficulty","3 = No difficulty")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "PA, Doing up buttons (Note: Response numbering is correct!)");
@@ -3846,9 +3846,9 @@
             set @child5_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="0 = Extremely difficult or unable to do" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="1 = With much difficulty" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="2 = With moderate difficulty" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="3 = With a little difficulty" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="4 = No difficulty" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="1 = With moderate difficulty" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="2 = With a little difficulty" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="3 = No difficulty" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
