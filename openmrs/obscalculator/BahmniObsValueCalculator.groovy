@@ -54,25 +54,40 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
             findObsForConceptsOfForm(balanceSectionControlIDs, bahmniEncounterTransaction.getObservations(), balanceSectionObsConceptMap);
             int balanceTotal = 0;
             balanceTotal  = findSumOfObservations(bahmniEncounterTransaction, balanceSectionObsConceptMap, bahmniMultiSelectObsConceptMap, "PA, Balance Score", OBS_BALANCE_SECTION, 1, false);
+            if(balanceTotal == -1)
+                updateObservation(bahmniEncounterTransaction, "", "PA, Balance Score", OBS_BALANCE_SECTION);
 
             Map<String, BahmniObservation> gaitSectionObsConceptMap = new HashMap<>();
             findObsForConceptsOfForm(gaitSectionControlIDs, bahmniEncounterTransaction.getObservations(), gaitSectionObsConceptMap);
             findObsForMultiSelectConceptsOfForm(gaitSectionControlIDs, bahmniEncounterTransaction.getObservations(), bahmniMultiSelectObsConceptMap);
             int gaitTotal = 0;
             gaitTotal = findSumOfObservations(bahmniEncounterTransaction, gaitSectionObsConceptMap, bahmniMultiSelectObsConceptMap,"PA, Gait Score", OBS_GAIT_SECTION,1, false);
-
+            if(gaitTotal == -1)
+                updateObservation(bahmniEncounterTransaction, "", "PA, Gait Score", OBS_GAIT_SECTION);
             bahmniMultiSelectObsConceptMap.clear();
 
             int total = balanceTotal + gaitTotal;
-            updateObservation(bahmniEncounterTransaction, total+"", "PA, Total Score Tinetti Balance Assessment Tool", OBS_TINETTI_TOTAL);
+            String totalStr = "";
+            if( gaitTotal == -1 && balanceTotal == -1) {
+                totalStr = "";
+            } else if(gaitTotal == -1) {
+                totalStr = "" + balanceTotal;
+            } else if(balanceTotal == -1) {
+                totalStr = "" + gaitTotal;
+            } else {
+                totalStr = "" + total;
+            }
+            updateObservation(bahmniEncounterTransaction, totalStr, "PA, Total Score Tinetti Balance Assessment Tool", OBS_TINETTI_TOTAL);
 
             String risk = "";
-            if(total <= 18)
-                risk = "High";
-            else if(total < 24)
-                risk = "Moderate";
-            else if(total >= 24)
-                risk = "Low";
+            if(gaitTotal != -1 || balanceTotal != -1 ) {
+                if(total <= 18)
+                    risk = "High";
+                else if(total < 24)
+                    risk = "Moderate";
+                else if(total >= 24)
+                    risk = "Low";
+            }
             updateObservation(bahmniEncounterTransaction, risk, "PA, Risk of falls", OBS_RISK_OF_FALLS);
 
             Map<String, BahmniObservation> lefiSectionObsConceptMap = new HashMap<>();
@@ -92,7 +107,10 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
             findObsForConceptsOfForm(uefiControlIDs, bahmniEncounterTransaction.getObservations(), uefiObsConceptMap);
             int uefiTotal  = findSumOfObservations(bahmniEncounterTransaction, uefiObsConceptMap, bahmniMultiSelectObsConceptMap, "PA, Total raw score", OBS_UEFI_TOTAL, 0, false);
 
-            updateObservation(bahmniEncounterTransaction, finalScore[uefiTotal], "PA, Final score", OBS_FINAL_SCORE_TOTAL);
+            String finalScoreStr = "";
+            if(uefiTotal != -1)
+                finalScoreStr = finalScore[uefiTotal] + "";
+            updateObservation(bahmniEncounterTransaction, finalScoreStr, "PA, Final score", OBS_FINAL_SCORE_TOTAL);
 
             Map<String, BahmniObservation> pediatricUpperSectionObsConceptMap = new HashMap<>();
             findObsForConceptsOfForm(pediatricUpperSectionControlIDs, bahmniEncounterTransaction.getObservations(), pediatricUpperSectionObsConceptMap);
@@ -182,30 +200,42 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
             }
         }
         logger.append("total : " + total + "\n");
+        logger.append("numberOfQuestionsAnswered : " + numberOfQuestionsAnswered + "\n");
         if(isPercentageRequired) {
             String totalStr = "0.0";
-            if(total > 0) {
+            if(numberOfQuestionsAnswered > 0) {
                 DecimalFormat df = new DecimalFormat("0.00");
                 float percentage = total / (4 * numberOfQuestionsAnswered) * 100;
                 totalStr = df.format(percentage) ;
+                bmiObservation.setValue(totalStr);
+            } else {
+                voidObs(bmiObservation);
             }
-            bmiObservation.setValue(totalStr);
         } else {
-            bmiObservation.setValue(total);
+            if(numberOfQuestionsAnswered == 0)
+                voidObs(bmiObservation);
+            else
+                bmiObservation.setValue(total);
         }
+        if(numberOfQuestionsAnswered == 0)
+            return -1;
         return total;
     }
 
     static void updateObservation(BahmniEncounterTransaction bahmniEncounterTransaction, String value, String conceptName, String controlID) {
-        BahmniObservation bmiObservation = getObservation(bahmniEncounterTransaction.getObservations(), FIELD_PATH +  controlID);
+        BahmniObservation observation = getObservation(bahmniEncounterTransaction.getObservations(), FIELD_PATH +  controlID);
         logger.append("updateObservation -> [" + value + "] " + conceptName +  controlID + "\n")
         def nowAsOfEncounter = bahmniEncounterTransaction.getEncounterDateTime() != null ? bahmniEncounterTransaction.getEncounterDateTime() : new Date();
-        Date obsDatetime = bmiObservation != null ? bmiObservation.getEncounterDateTime() : nowAsOfEncounter;
-        bmiObservation = bmiObservation != null ? bmiObservation : createObs(conceptName, bahmniEncounterTransaction, obsDatetime) as BahmniObservation;
+        Date obsDatetime = observation != null ? observation.getEncounterDateTime() : nowAsOfEncounter;
+        observation = observation != null ? observation : createObs(conceptName, bahmniEncounterTransaction, obsDatetime) as BahmniObservation;
         //logger.append("Value [" + bmiObservation.getValue() + "]\n");
-        bmiObservation.setValue(value);
-        bmiObservation.setFormFieldPath(FIELD_PATH + controlID)
-        bmiObservation.setFormNamespace(NAMESPACE)
+        observation.setFormFieldPath(FIELD_PATH + controlID)
+        observation.setFormNamespace(NAMESPACE)
+        if("".equals(value))
+            voidObs(observation);
+        else
+            observation.setValue(value);
+
     }
 
     private static boolean hasValue(BahmniObservation observation) {
@@ -214,6 +244,13 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
 
     private static Date getDate(BahmniObservation observation) {
         return hasValue(observation) && !observation.voided ? observation.getObservationDateTime() : null;
+    }
+
+    private static void voidObs(BahmniObservation bahmniObservation) {
+        logger.append("Voiding\n")
+        if (bahmniObservation != null) {
+            bahmniObservation.voided = true
+        }
     }
 
     static BahmniObservation createObs(String conceptName, BahmniEncounterTransaction encounterTransaction, Date obsDatetime) {
