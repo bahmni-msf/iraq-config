@@ -170,13 +170,13 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
 
     static int findSumOfObservations(BahmniEncounterTransaction bahmniEncounterTransaction, Map<String, BahmniObservation> bahmniObsConceptMap, Map<String, List<BahmniObservation>> bahmniMultiSelectObsConceptMap, String conceptName, String controlID, int valueIndex, boolean isPercentageRequired) {
         logger.append("Final -> " + FIELD_PATH + controlID + "\n")
-        BahmniObservation bmiObservation = getObservation(bahmniEncounterTransaction.getObservations(), FIELD_PATH + controlID);
+        BahmniObservation observation = null; //getObservation(bahmniEncounterTransaction.getObservations(), FIELD_PATH + controlID);
         def nowAsOfEncounter = bahmniEncounterTransaction.getEncounterDateTime() != null ? bahmniEncounterTransaction.getEncounterDateTime() : new Date();
         Date obsDatetime = bahmniObsConceptMap.size() > 0 ? getDate(bahmniObsConceptMap.values().iterator().next()) : nowAsOfEncounter;
-        bmiObservation = bmiObservation != null ? bmiObservation : createObs(conceptName, bahmniEncounterTransaction, obsDatetime) as BahmniObservation;
-        bmiObservation.setValue("");
-        bmiObservation.setFormFieldPath(FIELD_PATH + controlID)
-        bmiObservation.setFormNamespace(NAMESPACE)
+        observation = observation != null ? observation : createObs(conceptName, bahmniEncounterTransaction, obsDatetime) as BahmniObservation;
+        observation.setValue("");
+        observation.setFormFieldPath(FIELD_PATH + controlID)
+        observation.setFormNamespace(NAMESPACE)
         int total = 0;
         int numberOfQuestionsAnswered = 0;
         for (entry in bahmniObsConceptMap) {
@@ -207,15 +207,16 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 DecimalFormat df = new DecimalFormat("0.00");
                 float percentage = total / (4 * numberOfQuestionsAnswered) * 100;
                 totalStr = df.format(percentage) ;
-                bmiObservation.setValue(totalStr);
+                observation.setValue(totalStr);
             } else {
-                voidObs(bmiObservation);
+                voidObs(observation);
             }
         } else {
             if(numberOfQuestionsAnswered == 0)
-                voidObs(bmiObservation);
-            else
-                bmiObservation.setValue(total);
+                voidObs(observation);
+            else {
+                observation.setValue(total);
+            }
         }
         if(numberOfQuestionsAnswered == 0)
             return -1;
@@ -228,7 +229,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         def nowAsOfEncounter = bahmniEncounterTransaction.getEncounterDateTime() != null ? bahmniEncounterTransaction.getEncounterDateTime() : new Date();
         Date obsDatetime = observation != null ? observation.getEncounterDateTime() : nowAsOfEncounter;
         observation = observation != null ? observation : createObs(conceptName, bahmniEncounterTransaction, obsDatetime) as BahmniObservation;
-        //logger.append("Value [" + bmiObservation.getValue() + "]\n");
+        //logger.append("Value [" + observation.getValue() + "]\n");
         observation.setFormFieldPath(FIELD_PATH + controlID)
         observation.setFormNamespace(NAMESPACE)
         if("".equals(value))
@@ -247,7 +248,6 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     }
 
     private static void voidObs(BahmniObservation bahmniObservation) {
-        logger.append("Voiding\n")
         if (bahmniObservation != null) {
             bahmniObservation.voided = true
         }
