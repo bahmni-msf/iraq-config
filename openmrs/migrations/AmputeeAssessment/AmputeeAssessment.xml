@@ -28,6 +28,10 @@
     </preConditions>
     <sql>
     <comment>Adding codes to ICD-10 </comment>
+
+
+    SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'ICD-10';
+
     INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
     (4,"ICD-10 S48.0",@source_id,uuid(),now());
     call CREATE_REFERENCE_MAPPING_ICD("Amputation at shoulder joint","ICD-10 S48.0");
