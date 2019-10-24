@@ -21,13 +21,15 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static String AA_FIELD_PATH = "Amputee Assessment.1";
     static String OPD_FIELD_PATH_PREFIX = "OPD Progress Note MD";
     static String OPD_FIELD_PATH = "OPD Progress Note MD.1";
+    static String IME_FIELD_PATH_PREFIX = "Initial Medical Examination";
+    static String IME_FIELD_PATH = "Initial Medical Examination.1";
 
     static boolean isLower = false;
     static boolean isUpper = false;
     static boolean isPhysiotherapy = false;
     static boolean isAmputee = false;
     static boolean isOPD = false;
-
+    static boolean isIME = false;
 
     static final String PA_OBS_BALANCE_SECTION = "/148-0";
     static final String PA_OBS_GAIT_SECTION = "/155-0";
@@ -46,6 +48,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static final String AA_OBS_RISK_OF_FALLS = "/298-0";
 
     static final String OPD_OBS_DN4_SUM = "/19-0";
+    static final String IME_OBS_DN4_SUM = "/49-0/61-0/73-0";
 
     static List<String> paBalanceSectionControlIDs = Arrays.asList("/35-0", "/36-0", "/139-0", "/140-0", "/141-0", "/325-0", "/144-0", "/145-0", "/146-0", "/147-0");
     static List<String> paGaitSectionControlIDs = Arrays.asList("/38-0", "/39-0", "/149-0", "/150-0", "/151-0", "/152-0", "/153-0", "/154-0");
@@ -59,7 +62,8 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static List<String> amputeeBalanceSectionControlIDs = Arrays.asList("/272-0", "/273-0", "/274-0", "/275-0", "/277-0", "/279-0", "/280-0","/281-0", "/282-0", "/283-0");
     static List<String> amputeeGaitSectionControlIDs = Arrays.asList("/324-0", "/289-0", "/290-0", "/291-0", "/292-0", "/293-0", "/294-0","/295-0");
 
-    static List<String> opdDN4SectionControlIDs = Arrays.asList("/9-0", "/10-0", "/11-0", "/12-0", "/13-0", "/14-0", "/15-0","/16-0" , "/17-0","/18-0");
+    static List<String> opdDN4SectionControlIDs = Arrays.asList("/9-0", "/10-0", "/11-0", "/12-0", "/13-0", "/14-0", "/15-0","/16-0", "/17-0", "/18-0");
+    static List<String> imeDN4SectionControlIDs = Arrays.asList("/49-0/61-0/62-0", "/49-0/61-0/63-0", "/49-0/61-0/64-0", "/49-0/61-0/65-0", "/49-0/61-0/67-0", "/49-0/61-0/68-0","/49-0/61-0/69-0", "/49-0/61-0/70-0", "/49-0/61-0/71-0", "/49-0/61-0/72-0");
 
     def static finalScore = ["0.0", "8.5", "14.4", "18.6", "21.7", "24.3", "26.5", "28.4", "30.1", "31.7",
                       "33.1", "34.4", "35.6", "36.7", "37.8", "38.9", "39.9", "40.8", "41.8", "42.7",
@@ -90,6 +94,12 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
             logger.append("isOPD FIELD_PATH " + FIELD_PATH + "\n");
             processOPD(bahmniEncounterTransaction);
         }
+        if(isIME) {
+            FIELD_PATH_PREFIX = IME_FIELD_PATH_PREFIX;
+            FIELD_PATH = IME_FIELD_PATH;
+            logger.append("isIME FIELD_PATH " + FIELD_PATH + "\n");
+            processIME(bahmniEncounterTransaction);
+        }
     }
 
     static void verifySections(Collection<BahmniObservation> observations) {
@@ -116,11 +126,16 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                     isOPD = true;
                     OPD_FIELD_PATH = observation.getFormFieldPath().substring(0, observation.getFormFieldPath().indexOf("/"));
                 }
+                if(observation.getFormFieldPath().startsWith(IME_FIELD_PATH_PREFIX)) {
+                    isIME = true;
+                    IME_FIELD_PATH = observation.getFormFieldPath().substring(0, observation.getFormFieldPath().indexOf("/"));
+                }
             }
         }
         logger.append("isPhysiotherapy " + isPhysiotherapy + "\n");
         logger.append("isAmputee " + isAmputee + "\n");
         logger.append("isOPD " + isOPD + "\n");
+        logger.append("isIME " + isIME + "\n");
         logger.append("isLower " + isLower + "\n");
         logger.append("isUpper " + isUpper + "\n");
     }
@@ -196,6 +211,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         }
 
     }
+
     static void processAmputeeAssessment(BahmniEncounterTransaction bahmniEncounterTransaction) {
         Map<String, List<BahmniObservation>> bahmniMultiSelectObsConceptMap = new HashMap<>();
 
@@ -249,12 +265,23 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
         int balanceTotal = 0;
         balanceTotal  = findSumOfObservations(bahmniEncounterTransaction, opdDN4SectionObsConceptMap, bahmniMultiSelectObsConceptMap, "OPN, Neuropathic pain score", OPD_OBS_DN4_SUM, 0, false);
         if(balanceTotal == -1)
-            updateObservation(bahmniEncounterTransaction, "", "OPN, Neuropathic pain score", OPD_OBS_DN4_SUM);
+            updateObservation(bahmniEncounterTransaction, "", "OPD, Neuropathic pain score", OPD_OBS_DN4_SUM);
     }
+
+    static void processIME(BahmniEncounterTransaction bahmniEncounterTransaction) {
+        Map<String, List<BahmniObservation>> bahmniMultiSelectObsConceptMap = new HashMap<>();
+        Map<String, BahmniObservation> imeDN4SectionObsConceptMap = new HashMap<>();
+        findObsForConceptsOfForm(imeDN4SectionControlIDs, bahmniEncounterTransaction.getObservations(), imeDN4SectionObsConceptMap);
+        int balanceTotal = 0;
+        balanceTotal  = findSumOfObservations(bahmniEncounterTransaction, imeDN4SectionObsConceptMap, bahmniMultiSelectObsConceptMap, "IME, Neuropathic pain score", IME_OBS_DN4_SUM, 0, false);
+        if(balanceTotal == -1)
+            updateObservation(bahmniEncounterTransaction, "", "IME, Neuropathic pain score", IME_OBS_DN4_SUM);
+    }
+
     static void findObsForConceptsOfForm(List<String> ControlIDsList, Collection<BahmniObservation> observations, Map<String, BahmniObservation> bahmniObsConceptMap) {
         for (BahmniObservation observation : observations) {
             if(observation.getFormFieldPath() != null) {
-                logger.append("")
+                logger.append(observation.getConcept().getName() + "  " + observation.getFormFieldPath() + " \n")
                 if (ControlIDsList.contains(observation.getFormFieldPath().substring(observation.getFormFieldPath().indexOf("/"))) &&
                         !observation.getVoided() &&
                         FIELD_PATH_PREFIX.equals(observation.getFormFieldPath().substring(0, observation.getFormFieldPath().indexOf(".")))) {
