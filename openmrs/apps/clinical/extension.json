@@ -143,5 +143,15 @@
     },
     "order": 6,
     "requiredPrivilege": "Discharge Summary"
+  },
+  "bahmniClinicalConsultationBacteriology": {
+    "id": "bahmni.clinical.consultation.bacteriology",
+    "extensionPointId": "org.bahmni.clinical.consultation.board",
+    "type": "link",
+    "label": "Bacteriology",
+    "translationKey":"BACTERIOLOGY_BOARD_LABEL_KEY",
+    "url": "bacteriology",
+    "icon": "icon-user-md",
+    "order": 7
   }
 }

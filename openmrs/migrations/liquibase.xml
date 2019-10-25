@@ -277,7 +277,7 @@
     <include file="InitialMedicalExamination/InitialMedicalExamination.xml"/>
     <include file="PhysiotherapyAssessment/PhysiotherapyAssessment.xml"/>
     <include file="AmputeeAssessment/AmputeeAssessment.xml"/>
-
+    <include file="MicrobiologyLab/MicrobiologyLab.xml" />
 
 
 </databaseChangeLog>
