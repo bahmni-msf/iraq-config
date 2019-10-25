@@ -381,6 +381,43 @@
           "pivotTable": {
           }
         }
+      },
+      "Patient Information": {
+        "translationKey": "PATIENTINFORMATION_TREATMENT_KEY",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 9,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "IME, Date of admission",
+            "OPN, Date of discharge",
+            "Hospital of origin",
+            "Treating Surgeon"
+          ],
+          "scope":"latest"
+        }
+      },
+      "Initial Clinical Examination": {
+        "translationKey": "INITIALCLINICALEXAMINATION_TREATMENT_KEY",
+        "type": "vitals",
+        "isObservation": true,
+        "displayOrder": 12,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "IME, General examination",
+            "IME, HEENT examination",
+            "IME, Chest examination",
+            "IME, Heart examination",
+            "IME, Neurologic examination",
+            "IME, Locomotor / extremities examination",
+            "IME, Functional status on arrival"
+          ],
+          "scope":"latest"
+        }
       }
     }
   }

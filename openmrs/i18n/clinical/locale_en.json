@@ -93,5 +93,7 @@
   "MLO_MEDICAL_ASSESSMENT_KEY": "MLO Medical Assessment",
   "ADMISSION_COMMITTEE_KEY": "Admission Committee",
   "PHYSIOTHERAPY_TREATMENT_KEY": "Physiotherapy Treatment",
-  "CLINICALSUMMARY_TREATMENT_KEY": "Clinical Summary"
+  "CLINICALSUMMARY_TREATMENT_KEY": "Clinical Summary",
+  "PATIENTINFORMATION_TREATMENT_KEY":"Patient Information",
+  "INITIALCLINICALEXAMINATION_TREATMENT_KEY":"Initial Clinical Examination"
 }
