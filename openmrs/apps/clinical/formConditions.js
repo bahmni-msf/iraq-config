@@ -50,7 +50,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
             {
                 conditions.show.push("ACINETOBACTER SP")
                 conditions.hide.push("ENTEROBACTERIA","PSEUDOMONAS SPP.","STAPHYLOCOCCUS AUREUS","COAGULASE NEGATIVE STAPHYLOCOCCI","STREPTOCOCCUS VIRIDANS","ENTEROCOCCUS SPP","HAEMOPHILUS INFLUENZAE Section","NEISSERIA MENINGITIDIS Section","NEISSERIA GONORRHOEAE Section","Comments","STREPTOCOCCUS SPP (Group A, B, C, G)","STREPTOCOCCUS PNEUMONIAE Section")
-            } else if (conditionConcept == "Staphylococcus aureus ss. Aureus")
+            }else if (conditionConcept == "Staphylococcus aureus ss. Aureus")
             {
                 conditions.show.push("STAPHYLOCOCCUS AUREUS")
                 conditions.hide.push("ENTEROBACTERIA","PSEUDOMONAS SPP.","ACINETOBACTER SP","COAGULASE NEGATIVE STAPHYLOCOCCI","STREPTOCOCCUS VIRIDANS","ENTEROCOCCUS SPP","HAEMOPHILUS INFLUENZAE Section","NEISSERIA MENINGITIDIS Section","NEISSERIA GONORRHOEAE Section","Comments","STREPTOCOCCUS SPP (Group A, B, C, G)","STREPTOCOCCUS PNEUMONIAE Section")

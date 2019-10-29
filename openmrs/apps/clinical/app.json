@@ -88,6 +88,16 @@
                 "durationRequired": false,
                 "allowAddMore": true
             },
+            "FI, Final identification": {
+                "autocomplete" : true
+            },
+            "Final Identification Section": {
+                "allowAddMore": true
+            },
+            "Alerts":
+            {
+                "autocomplete" : true
+            },
             "Tuberculosis, Adverse Effects" :{
                 "multiSelect" : true,
                 "autocomplete" : true
