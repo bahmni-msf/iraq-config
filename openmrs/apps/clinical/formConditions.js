@@ -31,10 +31,13 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['Results, Growth'];
-        console.log("Results, Growth  :" + conditionConcept)
+
         if (conditionConcept == "Growth" )
         {
             conditions.show.push("Final Identification Section");
+
+            var conditionConcept = formFieldValues['Final Identification Section'];
+
 
             if  (conditionConcept == "Citrobacter freundii" || conditionConcept == "Enterobacter aerogenes" || conditionConcept == "Enterobacter cloacae" || conditionConcept == "Escherichia coli" || conditionConcept == "Escherichia coli O157:H7" || conditionConcept == "Klebsiella oxytoca" || conditionConcept == "Klebsiella pneumoniae ss. pneumoniae" || conditionConcept == "Morganella morganii ss. morganii" || conditionConcept == "Proteus mirabilis" || conditionConcept == "Raoultella spp" || conditionConcept == "Salmonella enteritidis" || conditionConcept == "Salmonella sp." || conditionConcept == "Salmonella typhi" || conditionConcept == "Salmonella typhimurium" || conditionConcept == "Serratia marcescens" || conditionConcept == "Shigella boydii" || conditionConcept == "Shigella boydii serotype 1")
             {
@@ -50,11 +53,12 @@ Bahmni.ConceptSet.FormConditions.rules = {
             {
                 conditions.show.push("ACINETOBACTER SP")
                 conditions.hide.push("ENTEROBACTERIA","PSEUDOMONAS SPP.","STAPHYLOCOCCUS AUREUS","COAGULASE NEGATIVE STAPHYLOCOCCI","STREPTOCOCCUS VIRIDANS","ENTEROCOCCUS SPP","HAEMOPHILUS INFLUENZAE Section","NEISSERIA MENINGITIDIS Section","NEISSERIA GONORRHOEAE Section","Comments","STREPTOCOCCUS SPP (Group A, B, C, G)","STREPTOCOCCUS PNEUMONIAE Section")
-            }else if (conditionConcept == "Staphylococcus aureus ss. Aureus")
+            }else if (conditionConcept == "Staphylococcus aureus ss. aureus")
             {
+
                 conditions.show.push("STAPHYLOCOCCUS AUREUS")
                 conditions.hide.push("ENTEROBACTERIA","PSEUDOMONAS SPP.","ACINETOBACTER SP","COAGULASE NEGATIVE STAPHYLOCOCCI","STREPTOCOCCUS VIRIDANS","ENTEROCOCCUS SPP","HAEMOPHILUS INFLUENZAE Section","NEISSERIA MENINGITIDIS Section","NEISSERIA GONORRHOEAE Section","Comments","STREPTOCOCCUS SPP (Group A, B, C, G)","STREPTOCOCCUS PNEUMONIAE Section")
-            }else if (conditionConcept == "Staphylococcus, coagulase negative" || conditionConcept == "Staphylococcus haemolyticus" || conditionConcept == "Staphylococcus lugdunensis" || conditionConcept == "Staphylococcus pseudintermedius" || conditionConcept == "Staphylococcus schleiferi" || conditionConcept == "Staphylococcus capitis" || conditionConcept == "Staphylococcus cohnii" || conditionConcept == "Staphylococcus hominis" || conditionConcept == "Staphylococcus hyicus" || conditionConcept == "Staphylococcus saprophyticus ss. saprophyticus" || conditionConcept == "Staphylococcus epidermidis")
+            } else if (conditionConcept == "Staphylococcus, coagulase negative" || conditionConcept == "Staphylococcus haemolyticus" || conditionConcept == "Staphylococcus lugdunensis" || conditionConcept == "Staphylococcus pseudintermedius" || conditionConcept == "Staphylococcus schleiferi" || conditionConcept == "Staphylococcus capitis" || conditionConcept == "Staphylococcus cohnii" || conditionConcept == "Staphylococcus hominis" || conditionConcept == "Staphylococcus hyicus" || conditionConcept == "Staphylococcus saprophyticus ss. saprophyticus" || conditionConcept == "Staphylococcus epidermidis")
             {
                 conditions.show.push("COAGULASE NEGATIVE STAPHYLOCOCCI")
                 conditions.hide.push("ENTEROBACTERIA","PSEUDOMONAS SPP.","ACINETOBACTER SP","STAPHYLOCOCCUS AUREUS","STREPTOCOCCUS VIRIDANS","ENTEROCOCCUS SPP","HAEMOPHILUS INFLUENZAE Section","NEISSERIA MENINGITIDIS Section","NEISSERIA GONORRHOEAE Section","Comments","STREPTOCOCCUS SPP (Group A, B, C, G)","STREPTOCOCCUS PNEUMONIAE Section")
@@ -104,7 +108,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
         }
         else
         {
-            console.log("Undefined  :" + conditionConcept)
+
             conditions.hide.push("Final Identification Section","Results, Comments, no growth")
         }
         return conditions;
@@ -116,7 +120,8 @@ Bahmni.ConceptSet.FormConditions.rules = {
             hide: []
         };
         var conditionConcept = formFieldValues['FI, Final identification'];
-        console.log("conditionConcept :" + conditionConcept);
+
+
         if  (conditionConcept == "Citrobacter freundii" || conditionConcept == "Enterobacter aerogenes" || conditionConcept == "Enterobacter cloacae" || conditionConcept == "Escherichia coli" || conditionConcept == "Escherichia coli O157:H7" || conditionConcept == "Klebsiella oxytoca" || conditionConcept == "Klebsiella pneumoniae ss. pneumoniae" || conditionConcept == "Morganella morganii ss. morganii" || conditionConcept == "Proteus mirabilis" || conditionConcept == "Raoultella spp" || conditionConcept == "Salmonella enteritidis" || conditionConcept == "Salmonella sp." || conditionConcept == "Salmonella typhi" || conditionConcept == "Salmonella typhimurium" || conditionConcept == "Serratia marcescens" || conditionConcept == "Shigella boydii" || conditionConcept == "Shigella boydii serotype 1")
         {
             conditions.show.push("ENTEROBACTERIA")
@@ -126,12 +131,11 @@ Bahmni.ConceptSet.FormConditions.rules = {
         {
             conditions.show.push("PSEUDOMONAS SPP.")
             conditions.hide.push("ENTEROBACTERIA","ACINETOBACTER SP","STAPHYLOCOCCUS AUREUS","COAGULASE NEGATIVE STAPHYLOCOCCI","STREPTOCOCCUS VIRIDANS","ENTEROCOCCUS SPP","HAEMOPHILUS INFLUENZAE Section","NEISSERIA MENINGITIDIS Section","NEISSERIA GONORRHOEAE Section","Comments","STREPTOCOCCUS SPP (Group A, B, C, G)","STREPTOCOCCUS PNEUMONIAE Section")
-        }
-        else if (conditionConcept == "Acinetobacter baumannii" || conditionConcept == "Acinetobacter nosocomialis" || conditionConcept == "Acinetobacter pittii" || conditionConcept == "Acinetobacter dijkshoorniae" || conditionConcept == "Acinetobacter seifertii" || conditionConcept == "Acinetobacter haemolyticus" || conditionConcept == "Acinetobacter junii" || conditionConcept == "Acinetobacter lwoffii" || conditionConcept == "Acinetobacter ursingii" || conditionConcept == "Acinetobacter variabilis")
+        }else if (conditionConcept == "Acinetobacter baumannii" || conditionConcept == "Acinetobacter nosocomialis" || conditionConcept == "Acinetobacter pittii" || conditionConcept == "Acinetobacter dijkshoorniae" || conditionConcept == "Acinetobacter seifertii" || conditionConcept == "Acinetobacter haemolyticus" || conditionConcept == "Acinetobacter junii" || conditionConcept == "Acinetobacter lwoffii" || conditionConcept == "Acinetobacter ursingii" || conditionConcept == "Acinetobacter variabilis")
         {
             conditions.show.push("ACINETOBACTER SP")
             conditions.hide.push("ENTEROBACTERIA","PSEUDOMONAS SPP.","STAPHYLOCOCCUS AUREUS","COAGULASE NEGATIVE STAPHYLOCOCCI","STREPTOCOCCUS VIRIDANS","ENTEROCOCCUS SPP","HAEMOPHILUS INFLUENZAE Section","NEISSERIA MENINGITIDIS Section","NEISSERIA GONORRHOEAE Section","Comments","STREPTOCOCCUS SPP (Group A, B, C, G)","STREPTOCOCCUS PNEUMONIAE Section")
-        } else if (conditionConcept == "Staphylococcus aureus ss. Aureus")
+        }else if (conditionConcept == "Staphylococcus aureus ss. aureus")
         {
             conditions.show.push("STAPHYLOCOCCUS AUREUS")
             conditions.hide.push("ENTEROBACTERIA","PSEUDOMONAS SPP.","ACINETOBACTER SP","COAGULASE NEGATIVE STAPHYLOCOCCI","STREPTOCOCCUS VIRIDANS","ENTEROCOCCUS SPP","HAEMOPHILUS INFLUENZAE Section","NEISSERIA MENINGITIDIS Section","NEISSERIA GONORRHOEAE Section","Comments","STREPTOCOCCUS SPP (Group A, B, C, G)","STREPTOCOCCUS PNEUMONIAE Section")
