@@ -31,24 +31,24 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static boolean isOPD = false;
     static boolean isIME = false;
 
-    static final String PA_OBS_BALANCE_SECTION = "/148-0";
-    static final String PA_OBS_GAIT_SECTION = "/155-0";
-    static final String PA_OBS_TINETTI_TOTAL = "/40-0";
-    static final String PA_OBS_RISK_OF_FALLS = "/41-0";
-    static final String PA_OBS_LEFI_TOTAL = "/175-0";
-    static final String PA_OBS_PEDIATRIC_LOWER_TOTAL = "/195-0";
-    static final String PA_OBS_BASIC_GRIP_TOTAL = "/288-0";
-    static final String PA_OBS_UEFI_TOTAL = "/303-0";
-    static final String PA_OBS_FINAL_SCORE_TOTAL = "/304-0";
-    static final String PA_OBS_PEDIATRIC_UPPER_TOTAL = "/323-0";
+    static final String PA_OBS_BALANCE_SECTION = "/492-0";
+    static final String PA_OBS_GAIT_SECTION = "/493-0";
+    static final String PA_OBS_TINETTI_TOTAL = "/494-0";
+    static final String PA_OBS_RISK_OF_FALLS = "/495-0";
+    static final String PA_OBS_LEFI_TOTAL = "/496-0";
+    static final String PA_OBS_PEDIATRIC_LOWER_TOTAL = "/497-0";
+    static final String PA_OBS_BASIC_GRIP_TOTAL = "/498-0";
+    static final String PA_OBS_UEFI_TOTAL = "/499-0";
+    static final String PA_OBS_FINAL_SCORE_TOTAL = "/500-0";
+    static final String PA_OBS_PEDIATRIC_UPPER_TOTAL = "/501-0";
 
-    static final String AA_OBS_BALANCE_SECTION = "/284-0";
-    static final String AA_OBS_GAIT_SECTION = "/296-0";
-    static final String AA_OBS_TINETTI_TOTAL = "/297-0";
-    static final String AA_OBS_RISK_OF_FALLS = "/298-0";
+    static final String AA_OBS_BALANCE_SECTION = "/328-0";
+    static final String AA_OBS_GAIT_SECTION = "/329-0";
+    static final String AA_OBS_TINETTI_TOTAL = "/330-0";
+    static final String AA_OBS_RISK_OF_FALLS = "/331-0";
 
     static final String OPD_OBS_DN4_SUM = "/19-0";
-    static final String IME_OBS_DN4_SUM = "/49-0/61-0/73-0";
+    static final String IME_OBS_DN4_SUM = "/49-0/61-0/136-0";
 
     static List<String> paBalanceSectionControlIDs = Arrays.asList("/35-0", "/36-0", "/139-0", "/140-0", "/141-0", "/325-0", "/144-0", "/145-0", "/146-0", "/147-0");
     static List<String> paGaitSectionControlIDs = Arrays.asList("/38-0", "/39-0", "/149-0", "/150-0", "/151-0", "/152-0", "/153-0", "/154-0");
@@ -66,11 +66,11 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static List<String> imeDN4SectionControlIDs = Arrays.asList("/49-0/61-0/62-0", "/49-0/61-0/63-0", "/49-0/61-0/64-0", "/49-0/61-0/65-0", "/49-0/61-0/67-0", "/49-0/61-0/68-0","/49-0/61-0/69-0", "/49-0/61-0/70-0", "/49-0/61-0/71-0", "/49-0/61-0/72-0");
 
     def static finalScore = ["0.0", "8.5", "14.4", "18.6", "21.7", "24.3", "26.5", "28.4", "30.1", "31.7",
-                      "33.1", "34.4", "35.6", "36.7", "37.8", "38.9", "39.9", "40.8", "41.8", "42.7",
-                      "43.5", "44.4", "45.2", "46.0", "46.9", "47.6", "48.4", "49.2", "50.0", "50.7",
-                      "51.5", "52.3", "53.0", "53.8", "54.6", "55.3", "56.1", "56.9", "57.7", "58.5",
-                      "59.4", "60.2", "61.1", "62.0", "63.0", "64.0", "65.0", "66.1", "67.3", "68.5",
-                      "69.9", "71.3", "72.9", "74.8", "76.8", "79.3", "82.3", "86.2", "91.8", "100.0"] as String[]
+                             "33.1", "34.4", "35.6", "36.7", "37.8", "38.9", "39.9", "40.8", "41.8", "42.7",
+                             "43.5", "44.4", "45.2", "46.0", "46.9", "47.6", "48.4", "49.2", "50.0", "50.7",
+                             "51.5", "52.3", "53.0", "53.8", "54.6", "55.3", "56.1", "56.9", "57.7", "58.5",
+                             "59.4", "60.2", "61.1", "62.0", "63.0", "64.0", "65.0", "66.1", "67.3", "68.5",
+                             "69.9", "71.3", "72.9", "74.8", "76.8", "79.3", "82.3", "86.2", "91.8", "100.0"] as String[]
 
     public void run(BahmniEncounterTransaction bahmniEncounterTransaction) {
         logger.append( "*********************************************** "+ new Date() + "*********************************\n");

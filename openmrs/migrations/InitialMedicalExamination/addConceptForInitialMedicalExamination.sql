@@ -50,7 +50,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Date of la
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Date of next DN4 assessment","Date of next DN4 assessment","Date","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Date of procedure","Date of procedure","Date","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Lower limb length","Lower limb length","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Neuropathic pain score","Neuropathic pain score","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Neuropathic pain score","Neuropathic pain score","Numeric","Computed",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Number of physiotherapy sessions","Number of physiotherapy sessions","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Pain score","Pain score","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Thigh circumference","Thigh circumference","Numeric","Misc",false);
