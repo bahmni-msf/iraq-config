@@ -330,8 +330,10 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 else {
                     if("No".equals(entry.getValue().getValue().name.name))
                         currentValue = 0;
-                    else
+                    else if("Yes".equals(entry.getValue().getValue().name.name))
                         currentValue = 1;
+                    else
+                        currentValue = Integer.parseInt(entry.getValue().getValue().name.name);
                 }
                 total += currentValue;
                 numberOfQuestionsAnswered++;
