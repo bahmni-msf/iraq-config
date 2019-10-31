@@ -1475,7 +1475,7 @@
     </changeSet>
 
     <!---Addinng and mapping the "Main Diagnosis (surgical)" parent to child -->
-    <changeSet id="IRAQ_CONFIG_2019092810406" author="Sreekalyan">
+    <changeSet id="IRAQ_CONFIG_2019103114064" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -1483,16 +1483,16 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Burn contracture of skin","Peripheral vascular disease","Arteriovenous aneurysm","Pyogenic (septic) arthritis","Valgus deformity","Varus deformity","Flexion deformity (or contracture)","Acquired wrist or foot drop","Acquired flat foot (pes planus)","Acquired clawhand, clubhand, clawfoot, and clubfoot","Acquired unequal limb length","Other acquired deformities of limb","Chronic instability of knee","Disorder of ligament","Recurrent dislocation of joint","Contracture of joint","Ankylosis of joint","Joint derangement","Fistula of joint","Flail joint","Instability of joint","Stiffness of joint","Osteophyte","Joint disorder","Foreign body granuloma of soft tissue","Calcification and ossification of muscle","Disorder of muscle","Contracture of muscle","Spontaneous rupture of extensor tendons","Spontaneous rupture of flexor tendons","Spontaneous rupture of other tendons","Short Achilles tendon (acquired)","Contracture of tendon","Soft tissue disorder related to use, overuse, and pressure","Bursopathy","Malunion of fracture","Nonunion of fracture","Delayed union of fracture","Disorder of continuity of bone (bone gap)","Acute osteomyelitis","Chronic osteomyelitis","Osteonecrosis due to previous trauma","Other disorders of bone","Fracture of bone following insertion of orthopaedic implant, joint prosthesis, or bone plate","Congenital malformation of spinal cord","Congenital malformation of musculoskeletal system","Injuries of nerves involving multiple body regions","Multiple fractures","Multiple dislocations, sprains and strains","Multiple crushing injuries","Traumatic ischaemia of muscle","Post-traumatic wound infection","Traumatic compartment syndrome","Late Effect of Tendon Injury","Disruption of wound","Disruption of traumatic injury wound repair","Complications of internal orthopaedic prosthetic devices, implants and grafts","Infection and inflammatory reaction due to internal fixation device","Bone graft failure","Bone graft infection","Neuroma of amputation stump","Infection of amputation stump","Necrosis of amputation stump","Other complications of amputation stump","Superficial injury","Open wound of upper limb","Open wound of lower limb","Closed fracture","Open fracture","Dislocation, sprain and strain","Injury of nerve(s)","Injury of blood vessel(s)","Injury of muscle and tendons","Crushing injury","Traumatic amputation at shoulder joint","Traumatic amputation at level between shoulder and elbow","Traumatic amputation at elbow level","Traumatic amputation at level between elbow and wrist","Traumatic amputation of hand at wrist level","Traumatic amputation of two or more fingers alone (complete) (partial)","Traumatic amputation at hip joint","Traumatic amputation between hip and knee","Traumatic amputation at knee level","Traumatic amputatin at level between knee and ankle","Traumatic amputation of foot at ankle level","Traumatic amputatin at other parts of foot","Traumatic amputation involving multiple body region","Type 1 diabetes mellitus","Type 2 diabetes mellitus","Acute and subacute endocarditis","Acute Ischaemic Heart Disease","Acute myocarditis","Acute pericarditis","Angina Pectoris","Arterial embolism and thrombosis","Atherosclerosis","Cardiac Arrest","Cardiac Tamponade","Cardiogenic Shock","Cardiomyopathy","Chronic ischaemic heart disease","Heart Disease","Heart Failure","Hypertension","Hypertensive Heart Disease","Hypertensive Renal Disease","Hypotension","Myocardial infarction","Phlebitis and Thrombophlebitis","Postprocedural disorders of circulatory system","Pulmonary Embolism","Pulmonary valve disorders","Secondary Hypertension","Stroke","Other Pathologies")
+                ("Burn contracture of skin","Other Pathologies","Peripheral vascular disease","Arteriovenous aneurysm","Pyogenic","Valgus deformity","Varus deformity","Flexion deformity","Acquired wrist or foot drop","Acquired flat foot","Acquired clawhand, clubhand, clawfoot, and clubfoot","Acquired unequal limb length","Other acquired deformities of limb","Chronic instability of knee","Disorder of ligament","Recurrent dislocation of joint","Contracture of joint","Ankylosis of joint","Joint derangement","Fistula of joint","Flail joint","Instability of joint","Stiffness of joint","Osteophyte","Joint disorder","Foreign body granuloma of soft tissue","Calcification and ossification of muscle","Disorder of muscle","Contracture of muscle","Spontaneous rupture of extensor tendons","Spontaneous rupture of flexor tendons","Spontaneous rupture of other tendons","Short Achilles tendon","Contracture of tendon","Soft tissue disorder related to use, overuse, and pressure","Bursopathy","Malunion of fracture","Nonunion of fracture","Delayed union of fracture","Disorder of continuity of bone","Acute osteomyelitis","Chronic osteomyelitis","Osteonecrosis due to previous trauma","Other disorders of bone","Fracture of bone following insertion of orthopaedic implant, joint prosthesis, or bone plate","Congenital malformation of spinal cord","Congenital malformation of musculoskeletal system","Injuries of nerves involving multiple body regions","Multiple fractures","Multiple dislocations, sprains and strains","Multiple crushing injuries","Traumatic ischaemia of muscle","Post-traumatic wound infection","Traumatic compartment syndrome","Late Effect of Tendon Injury","Disruption of wound","Disruption of traumatic injury wound repair","Complications of internal orthopaedic prosthetic devices, implants and grafts","Infection and inflammatory reaction due to internal fixation device","Bone graft failure","Bone graft infection","Neuroma of amputation stump","Infection of amputation stump","Necrosis of amputation stump","Other complications of amputation stump","Superficial injury","Open wound of upper limb","Open wound of lower limb","Closed fracture","Open fracture","Dislocation, sprain and strain","Injury of nerve","Injury of blood vessel","Injury of muscle and tendons","Crushing injury","Traumatic amputation at shoulder joint","Traumatic amputation at level between shoulder and elbow","Traumatic amputation at elbow level","Traumatic amputation at level between elbow and wrist","Traumatic amputation of hand at wrist level","Traumatic amputation of two or more fingers alone","Traumatic amputation at hip joint","Traumatic amputation between hip and knee","Traumatic amputation at knee level","Traumatic amputatin at level between knee and ankle","Traumatic amputation of foot at ankle level","Traumatic amputatin at other parts of foot","Traumatic amputation involving multiple body region")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "IME, Main Diagnosis (surgical)");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to IME, Main Diagnosis (surgical)</comment>
+        <comment>Adding Answers to Main Diagnosis (surgical)</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "IME, Main Diagnosis (surgical)" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @concept_id = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
@@ -1581,148 +1581,98 @@
             set @child86_concept_id = 0;
             set @child87_concept_id = 0;
             set @child88_concept_id = 0;
-            set @child89_concept_id = 0;
-            set @child90_concept_id = 0;
-            set @child91_concept_id = 0;
-            set @child92_concept_id = 0;
-            set @child93_concept_id = 0;
-            set @child94_concept_id = 0;
-            set @child95_concept_id = 0;
-            set @child96_concept_id = 0;
-            set @child97_concept_id = 0;
-            set @child98_concept_id = 0;
-            set @child99_concept_id = 0;
-            set @child100_concept_id = 0;
-            set @child101_concept_id = 0;
-            set @child102_concept_id = 0;
-            set @child103_concept_id = 0;
-            set @child104_concept_id = 0;
-            set @child105_concept_id = 0;
-            set @child106_concept_id = 0;
-            set @child107_concept_id = 0;
-            set @child108_concept_id = 0;
-            set @child109_concept_id = 0;
-            set @child110_concept_id = 0;
-            set @child111_concept_id = 0;
-            set @child112_concept_id = 0;
-            set @child113_concept_id = 0;
-            set @child114_concept_id = 0;
-            set @child115_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Acquired clawhand, clubhand, clawfoot, and clubfoot" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Acquired flat foot (pes planus)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Acquired unequal limb length" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Acquired wrist or foot drop" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="Acute Ischaemic Heart Disease" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child6_concept_id from concept_name where name ="Acute and subacute endocarditis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child7_concept_id from concept_name where name ="Acute myocarditis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child8_concept_id from concept_name where name ="Acute osteomyelitis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child9_concept_id from concept_name where name ="Acute pericarditis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child10_concept_id from concept_name where name ="Angina Pectoris" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child11_concept_id from concept_name where name ="Ankylosis of joint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child12_concept_id from concept_name where name ="Arterial embolism and thrombosis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child13_concept_id from concept_name where name ="Arteriovenous aneurysm" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child14_concept_id from concept_name where name ="Atherosclerosis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child15_concept_id from concept_name where name ="Bone graft failure" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child16_concept_id from concept_name where name ="Bone graft infection" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child17_concept_id from concept_name where name ="Burn contracture of skin" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child18_concept_id from concept_name where name ="Bursopathy" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child19_concept_id from concept_name where name ="Calcification and ossification of muscle" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child20_concept_id from concept_name where name ="Cardiac Arrest" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child21_concept_id from concept_name where name ="Cardiac Tamponade" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child22_concept_id from concept_name where name ="Cardiogenic Shock" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child23_concept_id from concept_name where name ="Cardiomyopathy" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child24_concept_id from concept_name where name ="Chronic instability of knee" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child25_concept_id from concept_name where name ="Chronic ischaemic heart disease" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child26_concept_id from concept_name where name ="Chronic osteomyelitis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child27_concept_id from concept_name where name ="Closed fracture" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child28_concept_id from concept_name where name ="Complications of internal orthopaedic prosthetic devices, implants and grafts" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child29_concept_id from concept_name where name ="Congenital malformation of musculoskeletal system" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child30_concept_id from concept_name where name ="Congenital malformation of spinal cord" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child31_concept_id from concept_name where name ="Contracture of joint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child32_concept_id from concept_name where name ="Contracture of muscle" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @concept_id from concept_name where name = "IME, Main Diagnosis (surgical)" and concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Burn contracture of skin" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Peripheral vascular disease" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Arteriovenous aneurysm" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Pyogenic (septic) arthritis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Valgus deformity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Varus deformity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Flexion deformity (or contracture)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Acquired wrist or foot drop" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Acquired flat foot (pes planus)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="Acquired clawhand, clubhand, clawfoot, and clubfoot" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child11_concept_id from concept_name where name ="Acquired unequal limb length" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child12_concept_id from concept_name where name ="Other acquired deformities of limb" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child13_concept_id from concept_name where name ="Chronic instability of knee" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child14_concept_id from concept_name where name ="Disorder of ligament" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child15_concept_id from concept_name where name ="Recurrent dislocation of joint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child16_concept_id from concept_name where name ="Contracture of joint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child17_concept_id from concept_name where name ="Ankylosis of joint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child18_concept_id from concept_name where name ="Joint derangement" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child19_concept_id from concept_name where name ="Fistula of joint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child20_concept_id from concept_name where name ="Flail joint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child21_concept_id from concept_name where name ="Instability of joint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child22_concept_id from concept_name where name ="Stiffness of joint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child23_concept_id from concept_name where name ="Osteophyte" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child24_concept_id from concept_name where name ="Joint disorder" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child25_concept_id from concept_name where name ="Foreign body granuloma of soft tissue" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child26_concept_id from concept_name where name ="Calcification and ossification of muscle" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child27_concept_id from concept_name where name ="Disorder of muscle" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child28_concept_id from concept_name where name ="Contracture of muscle" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child29_concept_id from concept_name where name ="Spontaneous rupture of extensor tendons" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child30_concept_id from concept_name where name ="Spontaneous rupture of flexor tendons" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child31_concept_id from concept_name where name ="Spontaneous rupture of other tendons" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child32_concept_id from concept_name where name ="Short Achilles tendon (acquired)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child33_concept_id from concept_name where name ="Contracture of tendon" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child34_concept_id from concept_name where name ="Crushing injury" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child35_concept_id from concept_name where name ="Delayed union of fracture" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child36_concept_id from concept_name where name ="Dislocation, sprain and strain" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child37_concept_id from concept_name where name ="Disorder of continuity of bone (bone gap)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child38_concept_id from concept_name where name ="Disorder of ligament" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child39_concept_id from concept_name where name ="Disorder of muscle" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child40_concept_id from concept_name where name ="Disruption of traumatic injury wound repair" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child41_concept_id from concept_name where name ="Disruption of wound" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child42_concept_id from concept_name where name ="Fistula of joint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child43_concept_id from concept_name where name ="Flail joint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child44_concept_id from concept_name where name ="Flexion deformity (or contracture)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child45_concept_id from concept_name where name ="Foreign body granuloma of soft tissue" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child46_concept_id from concept_name where name ="Fracture of bone following insertion of orthopaedic implant, joint prosthesis, or bone plate" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child47_concept_id from concept_name where name ="Heart Disease" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child48_concept_id from concept_name where name ="Heart Failure" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child49_concept_id from concept_name where name ="Hypertension" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child50_concept_id from concept_name where name ="Hypertensive Heart Disease" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child51_concept_id from concept_name where name ="Hypertensive Renal Disease" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child52_concept_id from concept_name where name ="Hypotension" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child53_concept_id from concept_name where name ="Infection and inflammatory reaction due to internal fixation device" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child54_concept_id from concept_name where name ="Infection of amputation stump" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child55_concept_id from concept_name where name ="Injuries of nerves involving multiple body regions" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child56_concept_id from concept_name where name ="Injury of blood vessel(s)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child57_concept_id from concept_name where name ="Injury of muscle and tendons" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child58_concept_id from concept_name where name ="Injury of nerve(s)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child59_concept_id from concept_name where name ="Instability of joint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child60_concept_id from concept_name where name ="Joint derangement" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child61_concept_id from concept_name where name ="Joint disorder" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child62_concept_id from concept_name where name ="Late Effect of Tendon Injury" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child63_concept_id from concept_name where name ="Malunion of fracture" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child64_concept_id from concept_name where name ="Multiple crushing injuries" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child65_concept_id from concept_name where name ="Multiple dislocations, sprains and strains" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child66_concept_id from concept_name where name ="Multiple fractures" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child67_concept_id from concept_name where name ="Myocardial infarction" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child68_concept_id from concept_name where name ="Necrosis of amputation stump" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child69_concept_id from concept_name where name ="Neuroma of amputation stump" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child70_concept_id from concept_name where name ="Nonunion of fracture" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child71_concept_id from concept_name where name ="Open fracture" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child72_concept_id from concept_name where name ="Open wound of lower limb" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child73_concept_id from concept_name where name ="Open wound of upper limb" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child74_concept_id from concept_name where name ="Osteonecrosis due to previous trauma" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child75_concept_id from concept_name where name ="Osteophyte" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child76_concept_id from concept_name where name ="Other Pathologies" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child77_concept_id from concept_name where name ="Other acquired deformities of limb" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child78_concept_id from concept_name where name ="Other complications of amputation stump" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child79_concept_id from concept_name where name ="Other disorders of bone" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child80_concept_id from concept_name where name ="Peripheral vascular disease" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child81_concept_id from concept_name where name ="Phlebitis and Thrombophlebitis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child82_concept_id from concept_name where name ="Post-traumatic wound infection" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child83_concept_id from concept_name where name ="Postprocedural disorders of circulatory system" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child84_concept_id from concept_name where name ="Pulmonary Embolism" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child85_concept_id from concept_name where name ="Pulmonary valve disorders" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child86_concept_id from concept_name where name ="Pyogenic (septic) arthritis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child87_concept_id from concept_name where name ="Recurrent dislocation of joint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child88_concept_id from concept_name where name ="Secondary Hypertension" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child89_concept_id from concept_name where name ="Short Achilles tendon (acquired)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child90_concept_id from concept_name where name ="Soft tissue disorder related to use, overuse, and pressure" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child91_concept_id from concept_name where name ="Spontaneous rupture of extensor tendons" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child92_concept_id from concept_name where name ="Spontaneous rupture of flexor tendons" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child93_concept_id from concept_name where name ="Spontaneous rupture of other tendons" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child94_concept_id from concept_name where name ="Stiffness of joint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child95_concept_id from concept_name where name ="Stroke" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child96_concept_id from concept_name where name ="Superficial injury" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child97_concept_id from concept_name where name ="Traumatic amputatin at level between knee and ankle" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child98_concept_id from concept_name where name ="Traumatic amputatin at other parts of foot" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child99_concept_id from concept_name where name ="Traumatic amputation at elbow level" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child100_concept_id from concept_name where name ="Traumatic amputation at hip joint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child101_concept_id from concept_name where name ="Traumatic amputation at knee level" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child102_concept_id from concept_name where name ="Traumatic amputation at level between elbow and wrist" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child103_concept_id from concept_name where name ="Traumatic amputation at level between shoulder and elbow" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child104_concept_id from concept_name where name ="Traumatic amputation at shoulder joint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child105_concept_id from concept_name where name ="Traumatic amputation between hip and knee" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child106_concept_id from concept_name where name ="Traumatic amputation involving multiple body region" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child107_concept_id from concept_name where name ="Traumatic amputation of foot at ankle level" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child108_concept_id from concept_name where name ="Traumatic amputation of hand at wrist level" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child109_concept_id from concept_name where name ="Traumatic amputation of two or more fingers alone (complete) (partial)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child110_concept_id from concept_name where name ="Traumatic compartment syndrome" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child111_concept_id from concept_name where name ="Traumatic ischaemia of muscle" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child112_concept_id from concept_name where name ="Type 1 diabetes mellitus" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child113_concept_id from concept_name where name ="Type 2 diabetes mellitus" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child114_concept_id from concept_name where name ="Valgus deformity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child115_concept_id from concept_name where name ="Varus deformity" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child34_concept_id from concept_name where name ="Soft tissue disorder related to use, overuse, and pressure" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child35_concept_id from concept_name where name ="Bursopathy" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child36_concept_id from concept_name where name ="Malunion of fracture" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child37_concept_id from concept_name where name ="Nonunion of fracture" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child38_concept_id from concept_name where name ="Delayed union of fracture" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child39_concept_id from concept_name where name ="Disorder of continuity of bone (bone gap)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child40_concept_id from concept_name where name ="Acute osteomyelitis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child41_concept_id from concept_name where name ="Chronic osteomyelitis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child42_concept_id from concept_name where name ="Osteonecrosis due to previous trauma" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child43_concept_id from concept_name where name ="Other disorders of bone" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child44_concept_id from concept_name where name ="Fracture of bone following insertion of orthopaedic implant, joint prosthesis, or bone plate" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child45_concept_id from concept_name where name ="Congenital malformation of spinal cord" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child46_concept_id from concept_name where name ="Congenital malformation of musculoskeletal system" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child47_concept_id from concept_name where name ="Injuries of nerves involving multiple body regions" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child48_concept_id from concept_name where name ="Multiple fractures" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child49_concept_id from concept_name where name ="Multiple dislocations, sprains and strains" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child50_concept_id from concept_name where name ="Multiple crushing injuries" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child51_concept_id from concept_name where name ="Traumatic ischaemia of muscle" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child52_concept_id from concept_name where name ="Post-traumatic wound infection" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child53_concept_id from concept_name where name ="Traumatic compartment syndrome" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child54_concept_id from concept_name where name ="Late Effect of Tendon Injury" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child55_concept_id from concept_name where name ="Disruption of wound" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child56_concept_id from concept_name where name ="Disruption of traumatic injury wound repair" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child57_concept_id from concept_name where name ="Complications of internal orthopaedic prosthetic devices, implants and grafts" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child58_concept_id from concept_name where name ="Infection and inflammatory reaction due to internal fixation device" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child59_concept_id from concept_name where name ="Bone graft failure" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child60_concept_id from concept_name where name ="Bone graft infection" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child61_concept_id from concept_name where name ="Neuroma of amputation stump" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child62_concept_id from concept_name where name ="Infection of amputation stump" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child63_concept_id from concept_name where name ="Necrosis of amputation stump" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child64_concept_id from concept_name where name ="Other complications of amputation stump" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child65_concept_id from concept_name where name ="Superficial injury" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child66_concept_id from concept_name where name ="Open wound of upper limb" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child67_concept_id from concept_name where name ="Open wound of lower limb" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child68_concept_id from concept_name where name ="Closed fracture" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child69_concept_id from concept_name where name ="Open fracture" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child70_concept_id from concept_name where name ="Dislocation, sprain and strain" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child71_concept_id from concept_name where name ="Injury of nerve(s)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child72_concept_id from concept_name where name ="Injury of blood vessel(s)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child73_concept_id from concept_name where name ="Injury of muscle and tendons" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child74_concept_id from concept_name where name ="Crushing injury" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child75_concept_id from concept_name where name ="Traumatic amputation at shoulder joint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child76_concept_id from concept_name where name ="Traumatic amputation at level between shoulder and elbow" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child77_concept_id from concept_name where name ="Traumatic amputation at elbow level" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child78_concept_id from concept_name where name ="Traumatic amputation at level between elbow and wrist" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child79_concept_id from concept_name where name ="Traumatic amputation of hand at wrist level" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child80_concept_id from concept_name where name ="Traumatic amputation of two or more fingers alone (complete) (partial)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child81_concept_id from concept_name where name ="Traumatic amputation at hip joint" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child82_concept_id from concept_name where name ="Traumatic amputation between hip and knee" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child83_concept_id from concept_name where name ="Traumatic amputation at knee level" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child84_concept_id from concept_name where name ="Traumatic amputatin at level between knee and ankle" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child85_concept_id from concept_name where name ="Traumatic amputation of foot at ankle level" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child86_concept_id from concept_name where name ="Traumatic amputatin at other parts of foot" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child87_concept_id from concept_name where name ="Traumatic amputation involving multiple body region" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child88_concept_id from concept_name where name ="Other Pathologies" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -1811,35 +1761,10 @@
             call add_concept_answer(@concept_id, @child86_concept_id, 86);
             call add_concept_answer(@concept_id, @child87_concept_id, 87);
             call add_concept_answer(@concept_id, @child88_concept_id, 88);
-            call add_concept_answer(@concept_id, @child89_concept_id, 89);
-            call add_concept_answer(@concept_id, @child90_concept_id, 90);
-            call add_concept_answer(@concept_id, @child91_concept_id, 91);
-            call add_concept_answer(@concept_id, @child92_concept_id, 92);
-            call add_concept_answer(@concept_id, @child93_concept_id, 93);
-            call add_concept_answer(@concept_id, @child94_concept_id, 94);
-            call add_concept_answer(@concept_id, @child95_concept_id, 95);
-            call add_concept_answer(@concept_id, @child96_concept_id, 96);
-            call add_concept_answer(@concept_id, @child97_concept_id, 97);
-            call add_concept_answer(@concept_id, @child98_concept_id, 98);
-            call add_concept_answer(@concept_id, @child99_concept_id, 99);
-            call add_concept_answer(@concept_id, @child100_concept_id, 100);
-            call add_concept_answer(@concept_id, @child101_concept_id, 101);
-            call add_concept_answer(@concept_id, @child102_concept_id, 102);
-            call add_concept_answer(@concept_id, @child103_concept_id, 103);
-            call add_concept_answer(@concept_id, @child104_concept_id, 104);
-            call add_concept_answer(@concept_id, @child105_concept_id, 105);
-            call add_concept_answer(@concept_id, @child106_concept_id, 106);
-            call add_concept_answer(@concept_id, @child107_concept_id, 107);
-            call add_concept_answer(@concept_id, @child108_concept_id, 108);
-            call add_concept_answer(@concept_id, @child109_concept_id, 109);
-            call add_concept_answer(@concept_id, @child110_concept_id, 110);
-            call add_concept_answer(@concept_id, @child111_concept_id, 111);
-            call add_concept_answer(@concept_id, @child112_concept_id, 112);
-            call add_concept_answer(@concept_id, @child113_concept_id, 113);
-            call add_concept_answer(@concept_id, @child114_concept_id, 114);
-            call add_concept_answer(@concept_id, @child115_concept_id, 115);
+
         </sql>
     </changeSet>
+
 
     <!---Addinng and mapping the "Medical Diagnoses (if any)" parent to child -->
     <changeSet id="IRAQ_CONFIG_2019092810529" author="Sreekalyan" >
@@ -2510,6 +2435,8 @@
             set @child94_concept_id = 0;
             set @child95_concept_id = 0;
             set @child96_concept_id = 0;
+            set @child97_concept_id = 0;
+
             select concept_id into @child1_concept_id from concept_name where name ="Advancement of flap" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Amputation" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Anastomosis, graft, suture of Peripheral Nerve" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
@@ -2606,6 +2533,8 @@
             select concept_id into @child94_concept_id from concept_name where name ="Tracheostomy" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child95_concept_id from concept_name where name ="Trimming of stump" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child96_concept_id from concept_name where name ="Wound drainage" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child97_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -2702,6 +2631,8 @@
             call add_concept_answer(@concept_id, @child94_concept_id, 94);
             call add_concept_answer(@concept_id, @child95_concept_id, 95);
             call add_concept_answer(@concept_id, @child96_concept_id, 96);
+            call add_concept_answer(@concept_id, @child97_concept_id, 97);
+
         </sql>
     </changeSet>
 
