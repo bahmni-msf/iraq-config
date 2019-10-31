@@ -52,7 +52,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Reason for
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Follow-up","Follow-up",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pain Visit","Pain Visit",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mutual session","Mutual session",'N/A','Misc',false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"wound follow up","wound follow up",'N/A','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Wound follow-up","Wound follow-up",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Communication with surgeon","Communication with surgeon",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Transfer to IPD","Transfer to IPD",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Discharge","Discharge",'N/A','Misc',false);

@@ -23,7 +23,7 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
 
             Update concept_name set name= "Discharge_old" where concept_id = @concept_id and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;;
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
 
         </sql>
     </changeSet>
@@ -137,7 +137,7 @@
                 ("Follow-up",
                 "Pain Visit",
                 "Mutual session",
-                "wound follow up",
+                "Wound follow-up",
                 "Communication with surgeon",
                 "Transfer to IPD",
                 "Discharge",
@@ -170,7 +170,7 @@
             select concept_id into @child1_concept_id from concept_name where name = "Follow-up" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name = "Pain Visit" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name = "Mutual session" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name = "wound follow up" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name = "Wound follow-up" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child5_concept_id from concept_name where name = "Communication with surgeon" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child6_concept_id from concept_name where name = "Transfer to IPD" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child7_concept_id from concept_name where name = "Discharge" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
