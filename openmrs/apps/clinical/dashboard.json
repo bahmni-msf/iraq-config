@@ -381,42 +381,28 @@
           "pivotTable": {
           }
         }
-      },
-      "Patient Information": {
-        "translationKey": "PATIENTINFORMATION_TREATMENT_KEY",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 9,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "conceptNames": [
-            "IME, Date of admission",
-            "OPN, Date of discharge",
-            "Hospital of origin",
-            "Treating Surgeon"
-          ],
-          "scope":"latest"
+      }
+    }
+  },
+  "patientSummary": {
+    "translationKey": "DASHBOARD_TAB_PATIENT_SUMMARY_KEY",
+    "displayByDefault": true,
+    "maxRecentlyViewedPatients": 10,
+    "sections": {
+      "patient Information": {
+        "type": "custom",
+        "displayOrder": 0,
+        "config": {
+          "title": "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
+          "template": "<patient-information section='config' patient='patient' enrollment='enrollment'></patient-information>"
         }
       },
-      "Initial Clinical Examination": {
-        "translationKey": "INITIALCLINICALEXAMINATION_TREATMENT_KEY",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 12,
-        "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "conceptNames": [
-            "IME, General examination",
-            "IME, HEENT examination",
-            "IME, Chest examination",
-            "IME, Heart examination",
-            "IME, Neurologic examination",
-            "IME, Locomotor / extremities examination",
-            "IME, Functional status on arrival"
-          ],
-          "scope":"latest"
+      "physical Examination": {
+        "type": "custom",
+        "displayOrder": 5,
+        "config": {
+          "title": "DASHBOARD_TITLE_PHYSICAL_EXAMINATION_KEY",
+          "template": "<physical-examination section='config' patient='patient' enrollment='enrollment'></physical-examination>"
         }
       }
     }

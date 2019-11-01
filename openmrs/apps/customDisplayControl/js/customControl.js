@@ -3,7 +3,6 @@
 angular.module('bahmni.common.displaycontrol.custom')
     .directive('birthCertificate', ['observationsService', 'appService', 'spinner', function (observationsService, appService, spinner) {
             var link = function ($scope) {
-                console.log("inside birth certificate");
                 var conceptNames = ["HEIGHT"];
                 $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/birthCertificate.html";
                 spinner.forPromise(observationsService.fetch($scope.patient.uuid, conceptNames, "latest", undefined, $scope.visitUuid, undefined).then(function (response) {
@@ -196,4 +195,147 @@ angular.module('bahmni.common.displaycontrol.custom')
         },
         template: '<ng-include src="contentUrl"/>'
     };
+}]).directive('patientInformation', ['appService', 'conceptSetService', '$http', function (appService, conceptSetService, $http) {
+
+    const filterValueByConcept = function (records, conceptName) {
+        return _.filter(records, function (eachObs) {
+            return eachObs.concept.name === conceptName;
+        })
+    };
+
+    const fetchObservationsData = function (conceptNames, scope, angularScope) {
+        var params = {
+            concept: conceptNames,
+            patientUuid: angularScope.patient.uuid,
+            scope: scope,
+            loadComplexData: false
+        };
+        return $http.get('/openmrs/ws/rest/v1/bahmnicore/observations', {
+            params: params,
+            withCredentials: true
+        });
+    };
+
+    const getValidInformation = function (patientInformation) {
+        return _.filter(patientInformation, function (eachConcept) {
+            return !_.isEmpty(eachConcept.answer) || eachConcept.answer > 0;
+        });
+    };
+
+    var link = function ($scope) {
+
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/patientSummary.html";
+        var conceptNames = ["IME, Date of admission","OPN, Date of discharge","Hospital of Origin","Treating Surgeon","Other Hospital of Origin"];
+
+        fetchObservationsData(conceptNames,"latest", $scope).then(function (response) {
+
+            const dateofAdmissionConcept = filterValueByConcept(response.data, "IME, Date of admission");
+            const dateOfDischargeConcept = filterValueByConcept(response.data, "OPN, Date of discharge");
+            const hospitalOfOriginConcept = filterValueByConcept(response.data, "Hospital of Origin");
+            const treatingSurgeonConcept = filterValueByConcept(response.data, "Treating Surgeon");
+
+            if (!_.isEmpty(dateOfDischargeConcept)) {
+                var dateOfDischargeConcepts = dateOfDischargeConcept[0].value;
+            }
+
+            if (!_.isEmpty(dateofAdmissionConcept)) {
+                var dateofAdmissionConcepts = dateofAdmissionConcept[0].value;
+            }
+
+            var hospitalOfOriginConcepts = undefined;
+
+            if (!_.isEmpty(hospitalOfOriginConcept)) {
+                hospitalOfOriginConcepts = hospitalOfOriginConcept[0].value.name;
+            }
+
+            if (hospitalOfOriginConcepts === 'Other') {
+                const otherHospitalOfOriginConcept = filterValueByConcept(response.data, "Other Hospital of Origin");
+                hospitalOfOriginConcepts = otherHospitalOfOriginConcept[0].value;
+            }
+
+            if (!_.isEmpty(treatingSurgeonConcept)) {
+                var treatingSurgeonConcepts = treatingSurgeonConcept[0].value;
+            }
+
+            var patientInformation = [
+                {name: "Date of admission", answer: dateofAdmissionConcepts},
+                {name: "Date of discharge", answer: dateOfDischargeConcepts},
+                {name: "Hospital of Origin", answer: hospitalOfOriginConcepts},
+                {name: "Treating Surgeon", answer: treatingSurgeonConcepts}
+            ];
+            $scope.concepts = getValidInformation(patientInformation);
+
+            $scope.isDataPresent = function () {
+                return _.isEmpty($scope.concepts);
+            };
+        });
+    };
+
+    return {
+        link: link,
+        scope: {
+            patient: "=",
+            section: "=",
+            enrollment: "="
+        },
+        template: '<ng-include src="contentUrl"/>'
+    }
+}]).directive('physicalExamination', ['appService', 'conceptSetService', '$http', function (appService, conceptSetService, $http) {
+    var link = function ($scope) {
+
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/physicalExamination.html";
+        var conceptNames = [
+            "IME, General examination",
+            "IME, HEENT examination",
+            "IME, Chest examination",
+            "IME, Heart examination",
+            "IME, Neurologic examination",
+            "IME, Locomotor / extremities examination",
+            "IME, Functional status on arrival"
+        ];
+
+        const fetchObservationsData = function (conceptNames, scope, angularScope) {
+            var params = {
+                concept: conceptNames,
+                patientUuid: angularScope.patient.uuid,
+                loadComplexData: false,
+                scope: scope
+            };
+            return $http.get('/openmrs/ws/rest/v1/bahmnicore/observations', {
+                params: params,
+                withCredentials: true
+            });
+        };
+
+        const getPhysicalExaminationData = function (encounterData) {
+            var concepts = [];
+            _.each(encounterData, function (observation) {
+                var observationData = {name: observation.conceptNameToDisplay, answer: observation.valueAsString};
+                concepts.push(observationData)
+            });
+            return concepts;
+        };
+
+        fetchObservationsData(conceptNames, "latest", $scope).then(function (response) {
+            if (response.data.length > 0) {
+                $scope.allEncounter = [{date: response.data[0].encounterDateTime, value: getPhysicalExaminationData(response.data)}];
+            } else {
+                $scope.allEncounter = []
+            }
+
+            $scope.isDataPresent = function () {
+                return _.isEmpty($scope.allEncounter);
+            }
+        });
+    };
+
+    return {
+        link: link,
+        scope: {
+            patient: "=",
+            section: "=",
+            enrollment: "="
+        },
+        template: '<ng-include src="contentUrl"/>'
+    }
 }]);

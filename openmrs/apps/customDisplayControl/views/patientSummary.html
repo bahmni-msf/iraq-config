@@ -1,0 +1,29 @@
+<style>
+    .background-color {
+        background: white !important;
+    }
+</style>
+
+<section class="tree-list-item clearfix">
+    <h2 class="section-title">{{section.title | titleTranslate}}</h2>
+
+    <section class="block hierarchy">
+        <ul ng-repeat="concept in concepts">
+
+            <li>
+                <div class="tree-list-item clearfix background-color">
+                    <span class="testUnderPanel left ng-scope">{{concept.name}}</span>
+                    <span class="value-text-only">{{concept.answer}}</span>
+                </div>
+            </li>
+
+        </ul>
+    </section>
+    <ul>
+        <li ng-show=" isDataPresent()">
+            <div class="placeholder-text"><p translate="NO_PATIENT_INFORMATION_FOUND"></p></div>
+        </li>
+    </ul>
+</section>
+
+
