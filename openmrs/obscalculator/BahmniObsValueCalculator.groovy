@@ -34,7 +34,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static final String PA_OBS_BALANCE_SECTION = "/492-0";
     static final String PA_OBS_GAIT_SECTION = "/493-0";
     static final String PA_OBS_TINETTI_TOTAL = "/494-0";
-    static final String PA_OBS_RISK_OF_FALLS = "/495-0";
+    static final String PA_OBS_RISK_OF_FALLS = "/510-0";
     static final String PA_OBS_LEFI_TOTAL = "/496-0";
     static final String PA_OBS_PEDIATRIC_LOWER_TOTAL = "/497-0";
     static final String PA_OBS_BASIC_GRIP_TOTAL = "/498-0";
@@ -45,9 +45,9 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static final String AA_OBS_BALANCE_SECTION = "/328-0";
     static final String AA_OBS_GAIT_SECTION = "/329-0";
     static final String AA_OBS_TINETTI_TOTAL = "/330-0";
-    static final String AA_OBS_RISK_OF_FALLS = "/331-0";
+    static final String AA_OBS_RISK_OF_FALLS = "/298-0";
 
-    static final String OPD_OBS_DN4_SUM = "/19-0";
+    static final String OPD_OBS_DN4_SUM = "/76-0";
     static final String IME_OBS_DN4_SUM = "/49-0/61-0/136-0";
 
     static List<String> paBalanceSectionControlIDs = Arrays.asList("/35-0", "/36-0", "/139-0", "/140-0", "/141-0", "/325-0", "/144-0", "/145-0", "/146-0", "/147-0");
@@ -62,7 +62,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static List<String> amputeeBalanceSectionControlIDs = Arrays.asList("/272-0", "/273-0", "/274-0", "/275-0", "/277-0", "/279-0", "/280-0","/281-0", "/282-0", "/283-0");
     static List<String> amputeeGaitSectionControlIDs = Arrays.asList("/324-0", "/289-0", "/290-0", "/291-0", "/292-0", "/293-0", "/294-0","/295-0");
 
-    static List<String> opdDN4SectionControlIDs = Arrays.asList("/9-0", "/10-0", "/11-0", "/12-0", "/13-0", "/14-0", "/15-0","/16-0", "/17-0", "/18-0");
+    static List<String> opdDN4SectionControlIDs = Arrays.asList("/65-0", "/66-0", "/67-0", "/68-0", "/69-0", "/70-0", "/71-0","/72-0", "/73-0", "/74-0");
     static List<String> imeDN4SectionControlIDs = Arrays.asList("/49-0/61-0/62-0", "/49-0/61-0/63-0", "/49-0/61-0/64-0", "/49-0/61-0/65-0", "/49-0/61-0/67-0", "/49-0/61-0/68-0","/49-0/61-0/69-0", "/49-0/61-0/70-0", "/49-0/61-0/71-0", "/49-0/61-0/72-0");
 
     def static finalScore = ["0.0", "8.5", "14.4", "18.6", "21.7", "24.3", "26.5", "28.4", "30.1", "31.7",

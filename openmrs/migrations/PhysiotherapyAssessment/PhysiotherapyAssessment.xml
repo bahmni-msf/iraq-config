@@ -2526,7 +2526,7 @@
         </sql>
     </changeSet>
 
-    <!--
+
         <changeSet id="IRAQ_CONFIG_201910031305" author="SivaKrishna">
             <preConditions onFail="MARK_RAN">
                 <sqlCheck expectedResult="0">
@@ -2562,7 +2562,7 @@
 
             </sql>
         </changeSet>
-    -->
+
 
     <changeSet id="IRAQ_CONFIG_201910031306" author="SivaKrishna">
         <preConditions onFail="MARK_RAN">

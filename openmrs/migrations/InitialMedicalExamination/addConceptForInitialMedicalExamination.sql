@@ -77,11 +77,10 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Significan
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Site of pain, other","Site of pain, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Type of medication","Type of medication","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, When does the pain occur","When does the pain occur","Text","Misc",false);
-
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Other procedure performed","Other procedure performed","Text","Misc",false);
 ### ADDING THE CHILD CONCEPTS
 
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"0 = No","0 = No","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"1 = Yes","1 = Yes","N/A","Misc",false);
+
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Abnormal","Abnormal","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Acetabulum","Acetabulum","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Achilles tendon","Achilles tendon","N/A","Misc",false);

@@ -385,6 +385,12 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"1 = With much d
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"4 = With no trouble","4 = With no trouble",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"2 = With some trouble","2 = With some trouble",'N/A','Misc',false);
 
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Right : Big toe flexion","Right : Big toe flexion","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Left : Big toe extension","Left : Big toe extension","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Right : Big toe flexors","Right : Big toe flexors","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Left : Big toe extensors","Left : Big toe extensors","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Left : Fingers flexion","Left : Fingers flexion","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Right : Fingers extension","Right : Fingers extension","Text","Misc",false);
 
 -- Adding Numeric Concepts
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision) VALUES ((select concept_id from concept_name where name = "PA, Pain Score" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);

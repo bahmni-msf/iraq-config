@@ -8,7 +8,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Date recor
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Reason for visit","Reason for visit",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Summary of follow-up consultation","Summary of follow-up consultation",'Text','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Type of pain experienced by the patient","Type of pain experienced by the patient",'Coded','Question',false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Pain score","Pain score",'Numeric','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Pain score","Pain score",'Numeric','Computed',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Burning","Burning",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Painful cold","Painful cold",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Electrical Shocks","Electrical Shocks",'Coded','Question',false);
@@ -19,7 +19,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Itching","
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Hypoaesthesia to touch","Hypoaesthesia to touch",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Hypoaesthesia to pinprick","Hypoaesthesia to pinprick",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Light brushing","Light brushing",'Coded','Question',false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Neuropathic pain score","Neuropathic pain score",'Numeric','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Neuropathic pain score","Neuropathic pain score",'Numeric','Computed',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Date of next DN4 assessment","Date of next DN4 assessment",'Date','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Side of pain","Side of pain",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPN, Site of pain","Site of pain",'Coded','Question',false);
@@ -123,6 +123,8 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Deceased","Dece
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Referred to other facility for specialized care","Referred to other facility for specialized care",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Therapeutic break","Therapeutic break",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Geographic relocation","Geographic relocation",'N/A','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"0 = No","0 = No","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"1 = Yes","1 = Yes","N/A","Misc",false);
 
 -- Adding Numeric concepts
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
