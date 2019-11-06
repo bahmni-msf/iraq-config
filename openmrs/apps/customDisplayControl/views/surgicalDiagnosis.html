@@ -1,0 +1,48 @@
+<style>
+    .diagnosis-style {
+        margin-top: 12px !important;
+    }
+
+</style>
+<div id="customControl">
+    <h2 class="section-title">{{title | titleTranslate}} </h2>
+    <section class="block hierarchy">
+        <table ng-show="surgicalDiagnosis.length>0" class="physical-examination-table diagnosis-style">
+            <thead>
+            <tr>
+                <th ng-repeat="heading in headings track by $index">
+                    {{heading}}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="diagnosis in surgicalDiagnosis">
+                <td class="table-key-column">{{diagnosis.surgical_diagnosis}}</td>
+                <td class="table-key-column">{{diagnosis.side_site}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div>
+            <table  ng-show="medicalDiagnosis.length > 0" class="physical-examination-table diagnosis-style">
+                <thead>
+                <tr>
+                    <th ng-repeat="heading in medicalDiagnosisHeadings track by $index">
+                        {{heading}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="diagnosis in medicalDiagnosis">
+                    <td>{{diagnosis.medical_diagnosis}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div ng-if="surgicalDiagnosis.length == 0 && medicalDiagnosis.length == 0">
+            <div class="placeholder-text"><p translate="DISPLAY_CONTROL_ERROR_MESSAGE_KEY"
+                                             translate-values="::{displayControl : '{{'Diagnoses found' | translate}}'}"></p>
+            </div>
+        </div>
+    </section>
+</div>

@@ -98,5 +98,8 @@
   "INITIALCLINICALEXAMINATION_TREATMENT_KEY":"Initial Clinical Examination",
   "NO_PATIENT_INFORMATION_FOUND": "No information found for this patient",
   "DASHBOARD_TITLE_PHYSICAL_EXAMINATION_KEY": "Initial Clinical Examination",
-  "NO_PHYSICAL_EXAMINATION_FOUND": "No initial clinical examination found for this patient"
+  "NO_PHYSICAL_EXAMINATION_FOUND": "No initial clinical examination found for this patient",
+  "DASHBOARD_TITLE_PAST_MEDICAL_HISTORY": "Past Medical History",
+  "DASHBOARD_TITLE_PAST_SURGICAL_HISTORY": "Past Surgical History",
+  "DASHBOARD_TITLE_SURGICAL_DIAGNOSES":"Diagnoses"
 }

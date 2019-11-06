@@ -404,6 +404,66 @@
           "title": "DASHBOARD_TITLE_PHYSICAL_EXAMINATION_KEY",
           "template": "<physical-examination section='config' patient='patient' enrollment='enrollment'></physical-examination>"
         }
+      },
+      "Past Surgical history": {
+        "translationKey": "DASHBOARD_TITLE_PAST_SURGICAL_HISTORY",
+        "type": "obsToObsFlowSheet",
+        "headingConceptSource": "Abbreviation",
+        "dataConceptSource": "Abbreviation",
+        "displayOrder": 5,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "persistOrderOfConcepts": true,
+          "isEditable": true,
+          "groupByConcept": "IME, Date of procedure",
+          "formNames": ["Initial Medical Examination"],
+          "conceptNames": [
+            "IME, Procedure performed ",
+            "IME, Side of procedure",
+            "IME, Site of procedure",
+            "IME, Comment of procedure"
+          ],
+          "showGroupDateTime": false
+        },
+        "expandedViewConfig": {
+          "groupByConcept": "IME, Date of procedure",
+          "formNames": ["Initial Medical Examination"],
+          "conceptNames": [
+            "IME, Procedure performed ",
+            "IME, Side of procedure",
+            "IME, Site of procedure",
+            "IME, Comment of procedure"
+          ],
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
+      },
+      "Past Medical History": {
+        "type": "custom",
+        "displayOrder": 2,
+        "config": {
+          "title": "Past Medical History",
+          "template": "<past-medical-history section='config' patient='patient'></past-medical-history>"
+        }
+      },
+      "Diagnoses": {
+        "translationKey": "DASHBOARD_TITLE_SURGICAL_DIAGNOSES",
+        "type": "custom",
+        "displayOrder": 1,
+        "config": {
+          "title": "DASHBOARD_TITLE_SURGICAL_DIAGNOSES",
+          "template": "<surgical-diagnosis section='config' patient='patient' enrollment='enrollment'></surgical-diagnosis>"
+        },
+        "expandedViewConfig": {
+          "conceptNames": [
+            "OBS, Surgical Diagnoses",
+            "OBS, Medical Diagnoses"
+          ],
+          "isEditable": true,
+          "numberOfVisits": 3,
+          "showDetailsButton": true,
+          "pivotTable": {}
+        }
       }
     }
   }
