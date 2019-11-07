@@ -6,6 +6,9 @@ import org.openmrs.module.bahmniemrapi.obscalculator.ObsValueCalculator
 import org.openmrs.module.emrapi.encounter.domain.EncounterTransaction
 import org.bahmni.module.bahmnicore.service.impl.BahmniBridge
 import java.text.DecimalFormat
+import java.util.Set;
+import java.util.HashSet;
+
 
 public class BahmniObsValueCalculator implements ObsValueCalculator {
     static BahmniBridge bahmniBridge = BahmniBridge.create();
@@ -48,7 +51,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static final String AA_OBS_RISK_OF_FALLS = "/298-0";
 
     static final String OPD_OBS_DN4_SUM = "/76-0";
-    static final String IME_OBS_DN4_SUM = "/49-0/61-0/136-0";
+    static final String IME_OBS_DN4_SUM = "/61-0/136-0";
 
     static List<String> paBalanceSectionControlIDs = Arrays.asList("/35-0", "/36-0", "/139-0", "/140-0", "/141-0", "/325-0", "/144-0", "/145-0", "/146-0", "/147-0");
     static List<String> paGaitSectionControlIDs = Arrays.asList("/38-0", "/39-0", "/149-0", "/150-0", "/151-0", "/152-0", "/153-0", "/154-0");
@@ -63,7 +66,8 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static List<String> amputeeGaitSectionControlIDs = Arrays.asList("/324-0", "/289-0", "/290-0", "/291-0", "/292-0", "/293-0", "/294-0","/295-0");
 
     static List<String> opdDN4SectionControlIDs = Arrays.asList("/65-0", "/66-0", "/67-0", "/68-0", "/69-0", "/70-0", "/71-0","/72-0", "/73-0", "/74-0");
-    static List<String> imeDN4SectionControlIDs = Arrays.asList("/49-0/61-0/62-0", "/49-0/61-0/63-0", "/49-0/61-0/64-0", "/49-0/61-0/65-0", "/49-0/61-0/67-0", "/49-0/61-0/68-0","/49-0/61-0/69-0", "/49-0/61-0/70-0", "/49-0/61-0/71-0", "/49-0/61-0/72-0");
+    static List<String> imeDN4SectionControlIDs = Arrays.asList("/61-0/62-0", "/61-0/63-0", "/61-0/64-0", "/61-0/65-0", "/61-0/67-0", "/61-0/68-0","/61-0/69-0", "/61-0/70-0", "/61-0/71-0", "/61-0/72-0");
+    static String imePrefix = "/49-";
 
     def static finalScore = ["0.0", "8.5", "14.4", "18.6", "21.7", "24.3", "26.5", "28.4", "30.1", "31.7",
                              "33.1", "34.4", "35.6", "36.7", "37.8", "38.9", "39.9", "40.8", "41.8", "42.7",
@@ -73,31 +77,31 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                              "69.9", "71.3", "72.9", "74.8", "76.8", "79.3", "82.3", "86.2", "91.8", "100.0"] as String[]
 
     public void run(BahmniEncounterTransaction bahmniEncounterTransaction) {
-        logger.append( "*********************************************** "+ new Date() + "*********************************\n");
+//        logger.append( "*********************************************** "+ new Date() + "*********************************\n");
         verifySections(bahmniEncounterTransaction.getObservations());
 
         if(isPhysiotherapy) {
             FIELD_PATH_PREFIX = PA_FIELD_PATH_PREFIX;
             FIELD_PATH = PA_FIELD_PATH;
-            logger.append("isPhysiotherapy FIELD_PATH " + FIELD_PATH + "\n");
+//            logger.append("isPhysiotherapy FIELD_PATH " + FIELD_PATH + "\n");
             processPhysiotherapyAssessment(bahmniEncounterTransaction);
         }
         if(isAmputee && isLower) {
             FIELD_PATH_PREFIX = AA_FIELD_PATH_PREFIX;
             FIELD_PATH = AA_FIELD_PATH;
-            logger.append("isAmputee FIELD_PATH " + FIELD_PATH + "\n");
+//            logger.append("isAmputee FIELD_PATH " + FIELD_PATH + "\n");
             processAmputeeAssessment(bahmniEncounterTransaction);
         }
         if(isOPD) {
             FIELD_PATH_PREFIX = OPD_FIELD_PATH_PREFIX;
             FIELD_PATH = OPD_FIELD_PATH;
-            logger.append("isOPD FIELD_PATH " + FIELD_PATH + "\n");
+//            logger.append("isOPD FIELD_PATH " + FIELD_PATH + "\n");
             processOPD(bahmniEncounterTransaction);
         }
         if(isIME) {
             FIELD_PATH_PREFIX = IME_FIELD_PATH_PREFIX;
             FIELD_PATH = IME_FIELD_PATH;
-            logger.append("isIME FIELD_PATH " + FIELD_PATH + "\n");
+//            logger.append("isIME FIELD_PATH " + FIELD_PATH + "\n");
             processIME(bahmniEncounterTransaction);
         }
     }
@@ -132,12 +136,12 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 }
             }
         }
-        logger.append("isPhysiotherapy " + isPhysiotherapy + "\n");
-        logger.append("isAmputee " + isAmputee + "\n");
-        logger.append("isOPD " + isOPD + "\n");
-        logger.append("isIME " + isIME + "\n");
-        logger.append("isLower " + isLower + "\n");
-        logger.append("isUpper " + isUpper + "\n");
+//        logger.append("isPhysiotherapy " + isPhysiotherapy + "\n");
+//        logger.append("isAmputee " + isAmputee + "\n");
+//        logger.append("isOPD " + isOPD + "\n");
+//        logger.append("isIME " + isIME + "\n");
+//        logger.append("isLower " + isLower + "\n");
+//        logger.append("isUpper " + isUpper + "\n");
     }
 
     static void processPhysiotherapyAssessment(BahmniEncounterTransaction bahmniEncounterTransaction) {
@@ -271,17 +275,65 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static void processIME(BahmniEncounterTransaction bahmniEncounterTransaction) {
         Map<String, List<BahmniObservation>> bahmniMultiSelectObsConceptMap = new HashMap<>();
         Map<String, BahmniObservation> imeDN4SectionObsConceptMap = new HashMap<>();
-        findObsForConceptsOfForm(imeDN4SectionControlIDs, bahmniEncounterTransaction.getObservations(), imeDN4SectionObsConceptMap);
-        int balanceTotal = 0;
-        balanceTotal  = findSumOfObservations(bahmniEncounterTransaction, imeDN4SectionObsConceptMap, bahmniMultiSelectObsConceptMap, "IME, Neuropathic pain score", IME_OBS_DN4_SUM, 0, false);
-        if(balanceTotal == -1)
-            updateObservation(bahmniEncounterTransaction, "", "IME, Neuropathic pain score", IME_OBS_DN4_SUM);
+        Set<String> addMorePrefixes = getNumberOfAddMoreSections(imePrefix, imeDN4SectionControlIDs, bahmniEncounterTransaction.getObservations(), imeDN4SectionObsConceptMap);
+        Iterator<String> it = addMorePrefixes.iterator();
+        while(it.hasNext()) {
+            String addMoreID = it.next();
+//            logger.append("Processing " +  addMoreID + "\n");
+            int balanceTotal = 0;
+            findObsForAddMoreConceptsOfForm(addMoreID, imeDN4SectionControlIDs, bahmniEncounterTransaction.getObservations(), imeDN4SectionObsConceptMap);
+            balanceTotal  = findSumOfObservations(bahmniEncounterTransaction, imeDN4SectionObsConceptMap, bahmniMultiSelectObsConceptMap, "IME, Neuropathic pain score", "/" + addMoreID + IME_OBS_DN4_SUM, 0, false);
+            if(balanceTotal == -1)
+                updateObservation(bahmniEncounterTransaction, "", "IME, Neuropathic pain score", "/" + addMoreID + IME_OBS_DN4_SUM);
+            imeDN4SectionObsConceptMap.clear();
+        }
+    }
+
+    static Set<String> getNumberOfAddMoreSections(String prefix, List<String> ControlIDsList, Collection<BahmniObservation> observations, Map<String, BahmniObservation> bahmniObsConceptMap) {
+        int addMoreCount = 0;
+        Set<String> allObs = new HashSet<>();
+        for (BahmniObservation observation : observations) {
+            if(observation.getFormFieldPath() != null) {
+//                logger.append(observation.getConcept().getName() + " *** " + observation.getFormFieldPath() + " \n")
+//                logger.append( " observation.getFormFieldPath().starsWith(prefix) " + observation.getFormFieldPath().startsWith(IME_FIELD_PATH + prefix) + " \n")
+                if (observation.getFormFieldPath().startsWith(IME_FIELD_PATH + prefix) && !observation.getVoided()) {
+                    String controlID = observation.getFormFieldPath().substring(IME_FIELD_PATH.length() + 1);
+                    allObs.add(controlID.substring(0,controlID.indexOf("/")));
+                }
+            }
+        }
+//        logger.append("allObs " + allObs + "\n");
+//        logger.append("addMoreCount " + allObs.size() + "\n");
+        return allObs;
+    }
+
+    static void findObsForAddMoreConceptsOfForm(String prefix, List<String> ControlIDsList, Collection<BahmniObservation> observations, Map<String, BahmniObservation> bahmniObsConceptMap) {
+        for (BahmniObservation observation : observations) {
+            if(observation.getFormFieldPath() != null) {
+//                logger.append(observation.getConcept().getName() + "  " + observation.getFormFieldPath() + " \n")
+                if (observation.getFormFieldPath().startsWith(IME_FIELD_PATH + "/" + prefix) &&
+                        !observation.getVoided() &&
+                        !observation.getFormFieldPath().contains(IME_OBS_DN4_SUM) &&
+                        !observation.getFormFieldPath().contains("/112") &&
+                        !observation.getFormFieldPath().contains("/135") &&
+                        !observation.getFormFieldPath().contains("/127") &&
+                        !observation.getFormFieldPath().contains("/55") &&
+                        !observation.getFormFieldPath().contains("/57") &&
+                        !observation.getFormFieldPath().contains("/59") &&
+                        !observation.getFormFieldPath().contains("/132") &&
+                        !observation.getFormFieldPath().contains("/74")) {
+                    //logger.append("Adding " + observation.getFormFieldPath() + "\n");
+                    bahmniObsConceptMap.put(observation.getConcept().getName(), observation);
+                }
+            }
+        }
+//        logger.append("Map Size " + bahmniObsConceptMap.size() + "\n");
     }
 
     static void findObsForConceptsOfForm(List<String> ControlIDsList, Collection<BahmniObservation> observations, Map<String, BahmniObservation> bahmniObsConceptMap) {
         for (BahmniObservation observation : observations) {
             if(observation.getFormFieldPath() != null) {
-                logger.append(observation.getConcept().getName() + "  " + observation.getFormFieldPath() + " \n")
+//                logger.append(observation.getConcept().getName() + "  " + observation.getFormFieldPath() + " \n")
                 if (ControlIDsList.contains(observation.getFormFieldPath().substring(observation.getFormFieldPath().indexOf("/"))) &&
                         !observation.getVoided() &&
                         FIELD_PATH_PREFIX.equals(observation.getFormFieldPath().substring(0, observation.getFormFieldPath().indexOf(".")))) {
@@ -291,7 +343,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 }
             }
         }
-        logger.append("Map Size " + bahmniObsConceptMap.size() + "\n");
+//        logger.append("Map Size " + bahmniObsConceptMap.size() + "\n");
     }
 
     static void findObsForMultiSelectConceptsOfForm(List<String> ControlIDsList, Collection<BahmniObservation> observations, Map<String, List<BahmniObservation>> bahmniMultiSelectObsConceptMap) {
@@ -309,11 +361,11 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 }
             }
         }
-        logger.append("Multi Select Map Size " + bahmniMultiSelectObsConceptMap.size() + "\n");
+//        logger.append("Multi Select Map Size " + bahmniMultiSelectObsConceptMap.size() + "\n");
     }
 
     static int findSumOfObservations(BahmniEncounterTransaction bahmniEncounterTransaction, Map<String, BahmniObservation> bahmniObsConceptMap, Map<String, List<BahmniObservation>> bahmniMultiSelectObsConceptMap, String conceptName, String controlID, int valueIndex, boolean isPercentageRequired) {
-        logger.append("Final -> " + FIELD_PATH + controlID + "\n")
+//        logger.append("Final -> " + FIELD_PATH + controlID + "\n")
         BahmniObservation observation = getObservation(bahmniEncounterTransaction.getObservations(), FIELD_PATH + controlID);
         Date obsDatetime = new Date();
         observation = observation != null ? observation : createObs(conceptName, bahmniEncounterTransaction, obsDatetime) as BahmniObservation;
@@ -352,8 +404,8 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 }
             }
         }
-        logger.append("total : " + total + "\n");
-        logger.append("numberOfQuestionsAnswered : " + numberOfQuestionsAnswered + "\n");
+//        logger.append("total : " + total + "\n");
+//        logger.append("numberOfQuestionsAnswered : " + numberOfQuestionsAnswered + "\n");
         if(isPercentageRequired) {
             String totalStr = "0.0";
             if(numberOfQuestionsAnswered > 0) {
@@ -378,7 +430,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
 
     static void updateObservation(BahmniEncounterTransaction bahmniEncounterTransaction, String value, String conceptName, String controlID) {
         BahmniObservation observation = getObservation(bahmniEncounterTransaction.getObservations(), FIELD_PATH +  controlID);
-        logger.append("updateObservation -> [" + value + "] " + conceptName +  controlID + "\n")
+//        logger.append("updateObservation -> [" + value + "] " + conceptName +  controlID + "\n")
         def nowAsOfEncounter = bahmniEncounterTransaction.getEncounterDateTime() != null ? bahmniEncounterTransaction.getEncounterDateTime() : new Date();
         Date obsDatetime = observation != null ? observation.getEncounterDateTime() : nowAsOfEncounter;
         observation = observation != null ? observation : createObs(conceptName, bahmniEncounterTransaction, obsDatetime) as BahmniObservation;

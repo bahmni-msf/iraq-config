@@ -229,10 +229,10 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Left : Wris
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Right : Wrist flexors","Right : Wrist flexors",'Text','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Left : Wrist extensors","Left : Wrist extensors",'Text','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Right : Wrist extensors","Right : Wrist extensors",'Text','Misc',false);
--- call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Left : Ulnar Dev.","Left : Ulnar Dev.",'Text','Misc',false);
--- call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Right : Ulnar Dev.","Right : Ulnar Dev.",'Text','Misc',false);
--- call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Left : Radial Dev.","Left : Radial Dev.",'Text','Misc',false);
--- call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Right : Radial Dev.","Right : Radial Dev.",'Text','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA,MTUL Left : Ulnar Dev.","Left : Ulnar Dev.",'Text','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA,MTUL Right : Ulnar Dev.","Right : Ulnar Dev.",'Text','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA,MTUL Left : Radial Dev.","Left : Radial Dev.",'Text','Misc',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA,MTUL Right : Radial Dev.","Right : Radial Dev.",'Text','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Left : Fingers flexors","Left : Fingers flexors",'Text','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Right : Fingers flexors","Right : Fingers flexors",'Text','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Left : Fingers extensors","Left : Fingers extensors",'Text','Misc',false);
@@ -505,3 +505,7 @@ INSERT INTO concept_description (concept_id,description,locale,creator,date_crea
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid) VALUES ((select concept_id from concept_name where name = "PA, Left : Big toe extension" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),'units:  degrees','en',1,now(),NULL,NULL,uuid());
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid) VALUES ((select concept_id from concept_name where name = "PA, Left : Big toe flexion" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),'units:  degrees','en',1,now(),NULL,NULL,uuid());
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid) VALUES ((select concept_id from concept_name where name = "PA, Right : Big toe extension" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),'units:  degrees','en',1,now(),NULL,NULL,uuid());
+INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid) VALUES ((select concept_id from concept_name where name = "PA, Left : Fingers flexion" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),'units:  degrees','en',1,now(),NULL,NULL,uuid());
+INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid) VALUES ((select concept_id from concept_name where name = "PA, Right : Fingers flexion" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),'units:  degrees','en',1,now(),NULL,NULL,uuid());
+INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid) VALUES ((select concept_id from concept_name where name = "PA, Left : Fingers extension" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),'units:  degrees','en',1,now(),NULL,NULL,uuid());
+INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid) VALUES ((select concept_id from concept_name where name = "PA, Right : Fingers extension" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),'units:  degrees','en',1,now(),NULL,NULL,uuid());
