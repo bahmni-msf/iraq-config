@@ -41,7 +41,12 @@
         },
         "formGroup": [
           "MLO Medical Assessment",
-          "Admission Committee"
+          "Admission Committee",
+          "Initial Medical Examination",
+          "Physiotherapy Prescription",
+          "Amputee Assessment",
+          "OPD Progress Note MD",
+          "Physiotherapy Assessment"
         ],
         "translationKey": "Edit Forms (2.0)"
       },
