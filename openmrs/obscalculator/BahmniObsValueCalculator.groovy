@@ -353,7 +353,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 if (ControlIDsList.contains(observation.getFormFieldPath().substring(observation.getFormFieldPath().indexOf("/"))) &&
                         !observation.getVoided() &&
                         FIELD_PATH_PREFIX.equals(observation.getFormFieldPath().substring(0, observation.getFormFieldPath().indexOf(".")))) {
-                    if(isPhysiotherapy && ("PA, Step length and height".equals(observation.getConcept().getName()) || "PA, Foot clearance".equals(observation.getConcept().getName()))) {
+                    if((isPhysiotherapy || isAmputee) && ("PA, Step length and height".equals(observation.getConcept().getName()) || "PA, Foot clearance".equals(observation.getConcept().getName()))) {
                         //logger.append("Multi Select Concept Name - " + observation.getConcept().getName() + "\n");
                         List<BahmniObservation> obsList =  ObjectUtils.defaultIfNull(bahmniMultiSelectObsConceptMap.get(observation.getConcept().getName()),new ArrayList<BahmniObservation>())
                         obsList.add(observation);
