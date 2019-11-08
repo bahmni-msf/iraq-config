@@ -229,6 +229,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
 
             Map<String, BahmniObservation> gaitSectionObsConceptMap = new HashMap<>();
             findObsForConceptsOfForm(amputeeGaitSectionControlIDs, bahmniEncounterTransaction.getObservations(), gaitSectionObsConceptMap);
+            findObsForMultiSelectConceptsOfForm(amputeeGaitSectionControlIDs, bahmniEncounterTransaction.getObservations(), bahmniMultiSelectObsConceptMap);
             int gaitTotal = 0;
             gaitTotal = findSumOfObservations(bahmniEncounterTransaction, gaitSectionObsConceptMap, bahmniMultiSelectObsConceptMap,"PA, Gait Score", AA_OBS_GAIT_SECTION,1, false);
             if(gaitTotal == -1)
@@ -337,7 +338,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 if (ControlIDsList.contains(observation.getFormFieldPath().substring(observation.getFormFieldPath().indexOf("/"))) &&
                         !observation.getVoided() &&
                         FIELD_PATH_PREFIX.equals(observation.getFormFieldPath().substring(0, observation.getFormFieldPath().indexOf(".")))) {
-                    if(isAmputee || (!"PA, Step length and height".equals(observation.getConcept().getName()) && !"PA, Foot clearance".equals(observation.getConcept().getName()))) {
+                    if(!"PA, Step length and height".equals(observation.getConcept().getName()) && !"PA, Foot clearance".equals(observation.getConcept().getName())) {
                         bahmniObsConceptMap.put(observation.getConcept().getName(), observation);
                     }
                 }
