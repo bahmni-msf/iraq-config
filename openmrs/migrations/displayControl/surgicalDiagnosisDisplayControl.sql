@@ -12,8 +12,8 @@ FROM
 INNER JOIN (
   SELECT
     e.patient_id,
-    surgical_diagnosis,
-    CONCAT(side, ' ', site) AS `side_site`
+    GROUP_CONCAT(DISTINCT surgical_diagnosis SEPARATOR ', ') AS `surgical_diagnosis`,
+    CONCAT(side, ' ', GROUP_CONCAT(DISTINCT site SEPARATOR ', ')) AS `side_site`
   FROM
     encounter e
   INNER JOIN (
@@ -30,6 +30,7 @@ INNER JOIN (
         visit v
       INNER JOIN visit_type vt ON
         v.visit_type_id = vt.visit_type_id
+AND vt.name in ('OPD','IPD')
         AND v.voided IS FALSE
         AND vt.retired IS FALSE
       GROUP BY
@@ -97,7 +98,8 @@ INNER JOIN (
         'IME, Site of diagnosis',
         'IME, Side of diagnosis')
         and diagnosis_cn.concept_name_type = 'FULLY_SPECIFIED')) diagnosis ON
-    diagnosis.encounter_id = e.encounter_id) diagnosisData ON
+    diagnosis.encounter_id = e.encounter_id
+     group by e.patient_id,e.encounter_id ) diagnosisData ON
   diagnosisData.patient_id = p.person_id
 WHERE p.uuid = ${patientUuid};"
 , 'surgical diagnosis data for patient', @uuid);
