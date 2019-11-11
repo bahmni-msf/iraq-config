@@ -10,7 +10,7 @@ VALUES ('emrapi.sqlSearch.validPatients',
                 final.`Requested Admission`,
                 p.uuid                                     AS uuid,
                 final.`comments`                           AS Comments,
-                final.`MLO`                                AS MLO
+                final.`MLO`                                AS `Treating Surgeon`
 FROM patient_identifier pi
       JOIN person p ON p.person_id = pi.patient_id AND p.voided IS FALSE AND pi.voided IS FALSE
       JOIN person_name pn ON pn.person_id = pi.patient_id AND pn.voided IS FALSE
