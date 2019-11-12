@@ -192,6 +192,21 @@
           "maximumNoOfVisits": 5,
           "groupByVisits": true
         }
+      }
+    }
+  },
+  "patientSummary": {
+    "translationKey": "DASHBOARD_TAB_PATIENT_SUMMARY_KEY",
+    "displayByDefault": true,
+    "maxRecentlyViewedPatients": 10,
+    "sections": {
+      "patient Information": {
+        "type": "custom",
+        "displayOrder": 0,
+        "config": {
+          "title": "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
+          "template": "<patient-information section='config' patient='patient' enrollment='enrollment'></patient-information>"
+        }
       },
       "Physiotherapy Treatment": {
         "translationKey": "PHYSIOTHERAPY_TREATMENT_KEY",
@@ -385,21 +400,6 @@
           "scope":"latest",
           "pivotTable": {
           }
-        }
-      }
-    }
-  },
-  "patientSummary": {
-    "translationKey": "DASHBOARD_TAB_PATIENT_SUMMARY_KEY",
-    "displayByDefault": true,
-    "maxRecentlyViewedPatients": 10,
-    "sections": {
-      "patient Information": {
-        "type": "custom",
-        "displayOrder": 0,
-        "config": {
-          "title": "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
-          "template": "<patient-information section='config' patient='patient' enrollment='enrollment'></patient-information>"
         }
       },
       "physical Examination": {
