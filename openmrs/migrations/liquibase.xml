@@ -150,6 +150,10 @@
         <comment>Adding patient listing queues in clinical module for patients of MLO visit with date of presentation in Admission Committee form is filled and outcome of admission in Admission Committe form is Valid</comment>
         <sqlFile path="clinicalQueues/validPatientsQueue.sql"/>
     </changeSet>
+    <changeSet id="IRAQ-141120191039" author="Sreekalyan" runOnChange="true">
+        <comment>Adding Active listing queues in clinical module for patients who are having IPD/OPD visits </comment>
+        <sqlFile path="clinicalQueues/ActivePatientQueue.sql"/>
+    </changeSet>
     <changeSet id="IRAQ-201907151657" author="Pritam">
     <preConditions onFail="MARK_RAN">
       <sqlCheck expectedResult="4">
