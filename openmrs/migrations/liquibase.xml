@@ -280,13 +280,18 @@
         <comment>Adding function to get parent form field path for medical diagnosis display control</comment>
         <sqlFile path="displayControl/get_parent_form_field_path.sql"/>
     </changeSet>
-    <changeSet id="IRAQ-15632549402" author="Sivakrishna" context="rel3.5" runOnChange="true">
+    <changeSet id="IRAQ-15632549402" author="Sivakrishna" context="rel3.5" >
         <comment>Adding global property for patient surgical diagnosis display control</comment>
         <sqlFile path="displayControl/surgicalDiagnosisDisplayControl.sql"/>
     </changeSet>
-    <changeSet id="IRAQ-15632549403" author="Sivakrishna" context="rel3.5" runOnChange="true">
+    <changeSet id="IRAQ-15632549403" author="Sivakrishna" context="rel3.5" >
         <comment>Adding global property for patient medical diagnosis display control</comment>
         <sqlFile path="displayControl/medicalDiagnosisDisplayControl.sql"/>
+    </changeSet>
+
+    <changeSet id="IRAQ-15632549404" author="Sivakrishna" context="rel3.5" >
+        <comment>Adding global property for initial clinical examination display control</comment>
+        <sqlFile path="displayControl/initialClinicalExaminationDisplayControl.sql"/>
     </changeSet>
 
     <include file="PhysiotherapyPrescription/PhysiotherapyPrescription.xml"/>
