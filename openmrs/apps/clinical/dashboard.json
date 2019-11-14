@@ -212,7 +212,7 @@
         "translationKey": "PHYSIOTHERAPY_TREATMENT_KEY",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 8,
+        "displayOrder": 3,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -298,7 +298,7 @@
         "translationKey": "CLINICALSUMMARY_TREATMENT_KEY",
         "type": "vitals",
         "isObservation": true,
-        "displayOrder": 7,
+        "displayOrder": 3,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -416,7 +416,7 @@
         "type": "obsToObsFlowSheet",
         "headingConceptSource": "Abbreviation",
         "dataConceptSource": "Abbreviation",
-        "displayOrder": 5,
+        "displayOrder": 2,
         "dashboardConfig": {
           "showDetailsButton": true,
           "persistOrderOfConcepts": true,
@@ -459,6 +459,24 @@
         "config": {
           "title": "DASHBOARD_TITLE_SURGICAL_DIAGNOSES",
           "template": "<surgical-diagnosis section='config' patient='patient' enrollment='enrollment'></surgical-diagnosis>"
+        }
+      },
+      "lowerLimbPhysioSummary": {
+        "type": "custom",
+        "displayOrder": 5,
+        "displayType": "Full-Page",
+        "config": {
+          "title": "DASHBOARD_TITLE_LOWER_LIMB_PHYSIO_SUMMARY_LAB_RESULTS_KEY",
+          "template": "<lower-limb-physio-summary section='config' patient='patient'></lower-limb-physio-summary>"
+        }
+      },
+      "upperLimbPhysioSummary": {
+        "type": "custom",
+        "displayOrder": 6,
+        "displayType": "Full-Page",
+        "config": {
+          "title": "DASHBOARD_TITLE_UPPER_LIMB_PHYSIO_SUMMARY_LAB_RESULTS_KEY",
+          "template": "<upper-limb-physio-summary section='config' patient='patient'></upper-limb-physio-summary>"
         }
       }
     }

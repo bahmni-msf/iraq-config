@@ -1,0 +1,91 @@
+<style>
+    .limb-physio-summary-dashboard {
+        background: white;
+    }
+
+    .limb-physio-summary-table {
+        width: 98%;
+        margin-left: 1% !important;
+        margin-right: 1% !important;
+        margin-bottom: .5% !important;
+    }
+
+    .limb-physio-summary-table th, .limb-physio-summary-table td {
+        width: 1% !important;
+        text-align: center !important;
+    }
+
+    .limb-physio-summary-block-title {
+        font-weight: bold;
+        font-size: 14px;
+        text-decoration: underline;
+        margin-bottom: .5% !important;
+    }
+
+    .limb-physio-summary-table-sub-header {
+        vertical-align: middle !important;
+    }
+
+    .sub-header {
+        background-color: #eeeeee !important;
+        font-weight: bolder;
+    }
+
+</style>
+
+<section class="limb-physio-summary-dashboard">
+    <h2 class="section-title">{{section.title | titleTranslate}}</h2>
+    <div ng-show="isEmptySummary" class="placeholder-text">
+        <p>{{"NO_SUMMARY_FOUND_MESSAGE"|translate}}</p>
+    </div>
+    <div ng-show="!isEmptySummary">
+        <section class="block hierarchy" ng-repeat="(key, records) in groupRecords track by key"
+                 ng-show="!isEmptyRecord(records, 'data')">
+
+            <p class="limb-physio-summary-block-title placeholder-text">{{records.title}}</p>
+            <table class="limb-physio-summary-table">
+                <tr>
+                    <th ng-repeat="$index in records.leftHeaders track by $index">{{$index+1}}</th>
+                    <th></th>
+                    <th ng-repeat="header in records.rightHeaders track by $index">{{header+1}}</th>
+                </tr>
+
+                <tr ng-repeat="(key, record) in records.data |orderBy: 'sort' track by key" ng-hide="isEmptyRow(record)">
+                    <td ng-if="!!!record.isSubHeader" ng-repeat="$index in records.leftHeaders track by $index">
+                        {{record.left[$index]}}
+                    </td>
+                    <th ng-if="!!record.isSubHeader" colspan={{records.leftHeaders.length}}>{{record.left}}</th>
+                    <td ng-if="!!record.isSubHeader" class="sub-header">{{record.display}}</td>
+                    <td ng-if="!record.isSubHeader" style="font-weight: bold;">{{record.display}}</td>
+                    <td ng-if="!!!record.isSubHeader" ng-repeat="header in records.rightHeaders track by $index">
+                        {{record.right[header]}}
+                    </td>
+                    <th ng-if="!!record.isSubHeader" colspan="{{records.rightHeaders.length}}">{{record.right}}</th>
+                </tr>
+
+            </table>
+        </section>
+
+
+        <section class="block hierarchy" ng-show="!isEmptyStumpCircumference">
+            <p class="limb-physio-summary-block-title placeholder-text">{{stumpCircumferences.title}}</p>
+            <table class="limb-physio-summary-table">
+                <tr>
+                    <th>Type Of Amputation</th>
+                    <th>From</th>
+                    <th>To</th>
+                </tr>
+                <tbody ng-repeat="stumpCircumference in stumpCircumferences.data">
+                <tr ng-repeat="value in stumpCircumference.values track by $index">
+                    <td rowspan="{{stumpCircumference.values.length}}" ng-hide="$index>0" class="limb-physio-summary-table-sub-header">
+                        {{stumpCircumference.type}}
+                    </td>
+                    <td>{{value.From}}</td>
+                    <td>{{value.cm}}</td>
+                </tr>
+                </tbody>
+
+            </table>
+        </section>
+    </div>
+</section>
