@@ -280,62 +280,34 @@ angular.module('bahmni.common.displaycontrol.custom')
         },
         template: '<ng-include src="contentUrl"/>'
     }
-}]).directive('physicalExamination', ['appService', 'conceptSetService', '$http', function (appService, conceptSetService, $http) {
-    var link = function ($scope) {
-
-        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/physicalExamination.html";
-        var conceptNames = [
-            "IME, General examination",
-            "IME, HEENT examination",
-            "IME, Chest examination",
-            "IME, Heart examination",
-            "IME, Neurologic examination",
-            "IME, Locomotor / extremities examination",
-            "IME, Functional status on arrival"
-        ];
-
-        const fetchObservationsData = function (conceptNames, scope, angularScope) {
+}]).directive('initialClinicalExamination', ['$http', '$stateParams', '$q', 'appService', 'spinner', function ($http, $stateParams, $q, appService, spinner) {
+    var controller = function ($scope) {
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/initialClinicalExamination.html";
+        $scope.title = $scope.config.title;
+        console.log($scope.title);
+        var getResponseFromQuery = function (queryParameter) {
             var params = {
-                concept: conceptNames,
-                patientUuid: angularScope.patient.uuid,
-                loadComplexData: false,
-                scope: scope
+                patientUuid: $scope.patient.uuid,
+                q: queryParameter,
+                v: "full"
             };
-            return $http.get('/openmrs/ws/rest/v1/bahmnicore/observations', {
+            return $http.get('/openmrs/ws/rest/v1/bahmnicore/sql', {
+                method: "GET",
                 params: params,
                 withCredentials: true
             });
         };
 
-        const getPhysicalExaminationData = function (encounterData) {
-            var concepts = [];
-            _.each(encounterData, function (observation) {
-                var observationData = {name: observation.conceptNameToDisplay, answer: observation.valueAsString};
-                concepts.push(observationData)
-            });
-            return concepts;
-        };
-
-        fetchObservationsData(conceptNames, "latest", $scope).then(function (response) {
-            if (response.data.length > 0) {
-                $scope.allEncounter = [{date: response.data[0].encounterDateTime, value: getPhysicalExaminationData(response.data)}];
-            } else {
-                $scope.allEncounter = []
-            }
-
-            $scope.isDataPresent = function () {
-                return _.isEmpty($scope.allEncounter);
-            }
-        });
+        spinner.forPromise($q.all([getResponseFromQuery("bahmni.sqlGet.initialClinicalExaminationData")]).then(function (response) {
+            $scope.initialClinicalExamination = response[0].data;
+            console.log($scope.initialClinicalExamination);
+            $scope.diagnosis_date = $scope.initialClinicalExamination[0] && $scope.initialClinicalExamination[0].enc_date;
+        }));
     };
 
     return {
-        link: link,
-        scope: {
-            patient: "=",
-            section: "=",
-            enrollment: "="
-        },
+        restrict: 'E',
+        controller: controller,
         template: '<ng-include src="contentUrl"/>'
     }
 }]).directive('surgicalDiagnosis', ['$http', '$stateParams', '$q', 'appService', 'spinner', function ($http, $stateParams, $q, appService, spinner) {

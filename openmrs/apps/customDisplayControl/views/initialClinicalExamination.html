@@ -1,0 +1,44 @@
+<style>
+    .diagnosis-style {
+        margin-top: 12px !important;
+    }
+
+    .initial-clinical-examination-block-title {
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: .5% !important;
+    }
+
+    .initial-clinical-examination-table {
+        text-align: left;
+        width: 98%;
+        margin-left: 1% !important;
+        margin-right: 1% !important;
+        margin-bottom: .5% !important;
+    }
+
+</style>
+<div id="customControl">
+    <h2 class="section-title">{{title | titleTranslate}} </h2>
+    <section class="block hierarchy">
+        <div ng-show="initialClinicalExamination.length>0">
+            <p class="initial-clinical-examination-block-title placeholder-text">{{diagnosis_date | bahmniDateTime}}</p>
+            <table class="initial-clinical-examination-table">
+                <tbody>
+                <tr ng-repeat="examinationResults in initialClinicalExamination">
+                    <td class="table-key-column">{{examinationResults.concept_names}}</td>
+                    <td class="table-key-column">{{examinationResults.concept_ans}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div ng-if="initialClinicalExamination.length == 0">
+            <div class="placeholder-text">
+                <p translate="DISPLAY_CONTROL_ERROR_MESSAGE_KEY"
+                   translate-values="::{displayControl : '{{'Initial Clinical Examination' | translate}}'}"></p>
+            </div>
+        </div>
+    </section>
+</div>

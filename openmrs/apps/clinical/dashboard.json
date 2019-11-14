@@ -402,12 +402,13 @@
           }
         }
       },
-      "physical Examination": {
+      "Initial Clinical Examination": {
+        "translationKey": "DASHBOARD_TITLE_INITIAL_CLINICAL_EXAMINATION_KEY",
         "type": "custom",
-        "displayOrder": 5,
+        "displayOrder": 4,
         "config": {
-          "title": "DASHBOARD_TITLE_PHYSICAL_EXAMINATION_KEY",
-          "template": "<physical-examination section='config' patient='patient' enrollment='enrollment'></physical-examination>"
+          "title": "DASHBOARD_TITLE_INITIAL_CLINICAL_EXAMINATION",
+          "template": "<initial-clinical-examination section='config' patient='patient' enrollment='enrollment'></initial-clinical-examination>"
         }
       },
       "Past Surgical history": {
@@ -458,16 +459,6 @@
         "config": {
           "title": "DASHBOARD_TITLE_SURGICAL_DIAGNOSES",
           "template": "<surgical-diagnosis section='config' patient='patient' enrollment='enrollment'></surgical-diagnosis>"
-        },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "OBS, Surgical Diagnoses",
-            "OBS, Medical Diagnoses"
-          ],
-          "isEditable": true,
-          "numberOfVisits": 3,
-          "showDetailsButton": true,
-          "pivotTable": {}
         }
       }
     }
