@@ -5,10 +5,10 @@ VALUES ('emrapi.sqlSearch.validPatients',
         "SELECT SQL_CACHE final.`Date Of Presentation`,
                     pi.identifier                              AS identifier,
                     concat(pn.given_name, ' ', pn.family_name) AS PATIENT_LISTING_QUEUES_HEADER_NAME,
-                    final.`Requested Admission`,
+                    final.`Requested Admission`                AS PATIENT_LISTING_QUEUES_REQUESTED_ADMISSION,
                     p.uuid                                     AS uuid,
-                    final.`comments`                           AS Comments,
-                    final.`MLO`                                AS `Treating Surgeon`
+                    final.`comments`                           AS PATIENT_LISTING_QUEUES_COMMENTS,
+                    final.`MLO`                                AS PATIENT_LISTING_QUEUES_TREATING_SURGEON
     FROM patient_identifier pi
           JOIN person p ON p.person_id = pi.patient_id AND p.voided IS FALSE AND pi.voided IS FALSE
           JOIN person_name pn ON pn.person_id = pi.patient_id AND pn.voided IS FALSE
@@ -79,6 +79,6 @@ VALUES ('emrapi.sqlSearch.validPatients',
                      GROUP BY o.person_id) final ON final.person_id = pi.patient_id
     where final.`Date Of presentation` is not null
      and final.`Outcome of admission committee` = 'Valid'
-    GROUP BY pi.patient_id",
+    GROUP BY pi.patient_id ORDER BY final.`Date Of presentation`",
         'valid Patients',
         @uuid);

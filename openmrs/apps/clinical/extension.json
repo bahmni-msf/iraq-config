@@ -29,7 +29,8 @@
       "searchHandler": "emrapi.sqlSearch.activePatients",
       "translationKey": "MODULE_LABEL_ACTIVE_KEY",
       "view": "tabular",
-      "forwardUrl": "#/default/patient/{{patientUuid}}/dashboard"
+      "forwardUrl": "#/default/patient/{{patientUuid}}/dashboard",
+      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_DATE","PATIENT_LISTING_QUEUES_HEADER_NAME","PATIENT_LISTING_QUEUES_TYPE_OF_ADMISSION","PATIENT_LISTING_QUEUES_ADMISSION_IN","PATIENT_LISTING_QUEUES_DATE_OF_NEXT_COMMUNICATION","PATIENT_LISTING_QUEUES_SERVICE_APPOINTMENT_TYPE","PATIENT_LISTING_QUEUES_DATE_OF_APPOINTMENT"]
     },
     "label": "Active",
     "order": 1,
@@ -44,7 +45,7 @@
       "translationKey": "MODULE_LABEL_AWAITING_VALIDATION",
       "forwardUrl": "#/default/patient/{{patientUuid}}/dashboard",
       "view": "tabular",
-      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME"]
+      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME","PATIENT_LISTING_QUEUES_DATE_OF_ASSESSMENT","PATIENT_LISITIN_QUEUES_HOSPITAL_OF_ORIGIN"]
     },
     "label": "Awaiting Patients",
     "order": 5,
@@ -59,7 +60,7 @@
       "translationKey": "MODULE_LABEL_VALID_PATIENTS",
       "forwardUrl": "#/default/patient/{{patientUuid}}/dashboard",
       "view": "tabular",
-      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME"]
+      "searchColumns": ["identifier", "PATIENT_LISTING_QUEUES_HEADER_NAME","PATIENT_LISTING_QUEUES_REQUESTED_ADMISSION","PATIENT_LISTING_QUEUES_COMMENTS","PATIENT_LISTING_QUEUES_TREATING_SURGEON"]
     },
     "label": "Valid Patients",
     "order": 6,

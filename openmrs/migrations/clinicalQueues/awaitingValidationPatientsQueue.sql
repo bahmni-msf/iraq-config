@@ -5,10 +5,10 @@ DELETE FROM global_property where property = 'emrapi.sqlSearch.awaitingValidatio
  INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
  VALUES ('emrapi.sqlSearch.awaitingValidation',
 "SELECT SQL_CACHE
-                 final.`Date Of Assessment`,
+                 final.`Date Of Assessment`                 AS PATIENT_LISTING_QUEUES_DATE_OF_ASSESSMENT,
                  pi.identifier                              AS identifier,
                  concat(pn.given_name, ' ', pn.family_name) AS PATIENT_LISTING_QUEUES_HEADER_NAME,
-                 final.`Hospital of Origin`,
+                 final.`Hospital of Origin`                 AS PATIENT_LISITIN_QUEUES_HOSPITAL_OF_ORIGIN,
                  p.uuid                                     AS uuid
 FROM patient_identifier pi
          JOIN person p ON p.person_id = pi.patient_id AND p.voided IS FALSE AND pi.voided IS FALSE
@@ -89,4 +89,4 @@ FROM patient_identifier pi
 
 where final.`Date Of Assessment` is not null
   and final.`Date Of presentation` is null
-GROUP BY pi.patient_id", 'awaiting Validation',@uuid);
+GROUP BY pi.patient_id ORDER BY final.`Date Of Assessment`", 'awaiting Validation',@uuid);
