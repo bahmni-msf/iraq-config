@@ -300,6 +300,29 @@
     <include file="PhysiotherapyAssessment/PhysiotherapyAssessment.xml"/>
     <include file="AmputeeAssessment/AmputeeAssessment.xml"/>
     <include file="MicrobiologyLab/MicrobiologyLab.xml" />
+    <changeSet id="IRAQ-201120191806" author="Sreekalyan,Pritam">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(1) FROM global_property WHERE property='visits.closeOnAnOutcome.visitType(s)';
+            </sqlCheck>
+        </preConditions>
+        <comment>Add OPD visit type to be closed on an outcome</comment>
+        <sql>
+            UPDATE global_property SET property_value = 'MLO,OPD' WHERE property='visits.closeOnAnOutcome.visitType(s)';
+        </sql>
+    </changeSet>
 
+    <changeSet id="IRAQ-201120191807" author="Sreekalyan,Pritam">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(1) FROM global_property WHERE property='visits.closeOnAnOutcome.conceptName(s)';
+            </sqlCheck>
+        </preConditions>
+        <comment>Add concept names whose outcome is used to close OPD visits</comment>
+        <sql>
+            UPDATE global_property SET property_value = 'Outcome of admission committee|OPN, Discharge status' WHERE
+            property='visits.closeOnAnOutcome.conceptName(s)';
+        </sql>
+    </changeSet>
 
 </databaseChangeLog>
