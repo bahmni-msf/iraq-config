@@ -85,8 +85,6 @@ FROM patient_identifier pi
                                                e.encounter_datetime
                     GROUP BY o.person_id
 ) final ON final.person_id = pi.patient_id
-
-
 where final.`Date Of Assessment` is not null
   and final.`Date Of presentation` is null
-GROUP BY pi.patient_id ORDER BY final.`Date Of Assessment`", 'awaiting Validation',@uuid);
+GROUP BY pi.patient_id ORDER BY STR_TO_DATE(final.`Date Of Assessment`,'%d/%m/%Y') ASC", 'awaiting Validation',@uuid);
