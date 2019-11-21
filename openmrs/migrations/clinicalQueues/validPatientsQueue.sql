@@ -17,7 +17,7 @@ VALUES ('emrapi.sqlSearch.validPatients',
 from (
          SELECT mlo_visit.`Date Of Presentation`           as date,
                 pi.identifier                              as identifier,
-                concat(pn.given_name, '' '', pn.family_name) AS name,
+                concat(pn.given_name, ' ', pn.family_name) AS name,
                 mlo_visit.`Requested Admission`            as requested_adminssion,
                 p.uuid                                     as uuid,
                 mlo_visit.`comments`                       as comments,
@@ -33,53 +33,53 @@ from (
                  AND pn.voided IS FALSE
                   LEFT JOIN (
              SELECT o.person_id                       AS person_id,
-                    GROUP_CONCAT(DISTINCT (IF(obs_fscn.name IN (''Date Of presentation'')
+                    GROUP_CONCAT(DISTINCT (IF(obs_fscn.name IN ('Date Of presentation')
                                                   AND latest_encounter.person_id IS NOT NULL,
-                                              DATE_FORMAT(o.value_datetime, ''%d/%m/%Y''),
-                                              NULL))) AS ''Date Of presentation'',
-                    GROUP_CONCAT(DISTINCT (IF(obs_fscn.name IN (''Outcome of admission committee'')
-                                                  AND latest_encounter.person_id IS NOT NULL,
-                                              COALESCE(coded_fscn.name,
-                                                       coded_scn.name),
-                                              NULL))) AS ''Outcome of admission committee'',
-                    GROUP_CONCAT(DISTINCT (IF(obs_fscn.name IN (''Requested Admission'')
+                                              DATE_FORMAT(o.value_datetime, '%d/%m/%Y'),
+                                              NULL))) AS 'Date Of presentation',
+                    GROUP_CONCAT(DISTINCT (IF(obs_fscn.name IN ('Outcome of admission committee')
                                                   AND latest_encounter.person_id IS NOT NULL,
                                               COALESCE(coded_fscn.name,
                                                        coded_scn.name),
-                                              NULL))) AS ''Requested Admission'',
-                    GROUP_CONCAT(DISTINCT (IF(obs_fscn.name IN (''General comments from admission committee'')
+                                              NULL))) AS 'Outcome of admission committee',
+                    GROUP_CONCAT(DISTINCT (IF(obs_fscn.name IN ('Requested Admission')
+                                                  AND latest_encounter.person_id IS NOT NULL,
+                                              COALESCE(coded_fscn.name,
+                                                       coded_scn.name),
+                                              NULL))) AS 'Requested Admission',
+                    GROUP_CONCAT(DISTINCT (IF(obs_fscn.name IN ('General comments from admission committee')
                                                   AND latest_encounter.person_id IS NOT NULL,
                                               o.value_text,
-                                              NULL))) AS ''comments'',
-                    GROUP_CONCAT(DISTINCT (IF(obs_fscn.name IN (''Treating Surgeon'')
+                                              NULL))) AS 'comments',
+                    GROUP_CONCAT(DISTINCT (IF(obs_fscn.name IN ('Treating Surgeon')
                                                   AND latest_encounter.person_id IS NOT NULL,
                                               o.value_text,
-                                              NULL))) AS ''MLO'',
-                    e.encounter_datetime              AS ''Encounter time''
+                                              NULL))) AS 'MLO',
+                    e.encounter_datetime              AS 'Encounter time'
              FROM encounter e
                       INNER JOIN obs o ON
                      o.encounter_id = e.encounter_id
                      AND o.voided IS FALSE
                      AND e.voided IS FALSE
-                     AND (o.form_namespace_and_path like ''%Admission Committee%''
-                     or o.form_namespace_and_path like ''%MLO Medical Assessment%''
-                     or o.form_namespace_and_path like ''%Initial Medical Examination%'')
+                     AND (o.form_namespace_and_path like '%Admission Committee%'
+                     or o.form_namespace_and_path like '%MLO Medical Assessment%'
+                     or o.form_namespace_and_path like '%Initial Medical Examination%')
                       INNER JOIN concept_name obs_fscn ON
                      o.concept_id = obs_fscn.concept_id
-                     AND obs_fscn.name IN (''Date Of presentation'',
-                                           ''Outcome of admission committee'',
-                                           ''Requested Admission'',
-                                           ''General comments from admission committee'',
-                                           ''Treating Surgeon'')
+                     AND obs_fscn.name IN ('Date Of presentation',
+                                           'Outcome of admission committee',
+                                           'Requested Admission',
+                                           'General comments from admission committee',
+                                           'Treating Surgeon')
                      AND obs_fscn.voided IS FALSE
-                     AND obs_fscn.concept_name_type = ''FULLY_SPECIFIED''
+                     AND obs_fscn.concept_name_type = 'FULLY_SPECIFIED'
                       LEFT JOIN concept_name coded_fscn ON
                      coded_fscn.concept_id = o.value_coded
-                     AND coded_fscn.concept_name_type = ''FULLY_SPECIFIED''
+                     AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
                      AND coded_fscn.voided IS FALSE
                       LEFT JOIN concept_name coded_scn ON
                      coded_scn.concept_id = o.value_coded
-                     AND coded_fscn.concept_name_type = ''SHORT''
+                     AND coded_fscn.concept_name_type = 'SHORT'
                      AND coded_scn.voided IS FALSE
                       LEFT JOIN (
                  SELECT en.visit_id,
@@ -89,13 +89,13 @@ from (
                  FROM obs
                           INNER JOIN concept_name obs_fscn ON
                          obs.concept_id = obs_fscn.concept_id
-                         AND obs_fscn.name IN (''Date Of presentation'',
-                                               ''Outcome of admission committee'',
-                                               ''Requested Admission'',
-                                               ''General comments from admission committee'',
-                                               ''Treating Surgeon'')
+                         AND obs_fscn.name IN ('Date Of presentation',
+                                               'Outcome of admission committee',
+                                               'Requested Admission',
+                                               'General comments from admission committee',
+                                               'Treating Surgeon')
                          AND obs_fscn.voided IS FALSE
-                         AND obs_fscn.concept_name_type = ''FULLY_SPECIFIED''
+                         AND obs_fscn.concept_name_type = 'FULLY_SPECIFIED'
                           JOIN encounter en ON
                          obs.encounter_id = en.encounter_id
                          AND obs.voided IS FALSE
@@ -105,7 +105,7 @@ from (
                          from visit v
                                   join visit_type vt on
                                  v.visit_type_id = vt.visit_type_id
-                                 and vt.name = ''MLO''
+                                 and vt.name = 'MLO'
                          group by v.patient_id)
                  GROUP BY obs.person_id,
                           obs.concept_id) latest_encounter ON
@@ -116,29 +116,29 @@ from (
              mlo_visit.person_id = pi.patient_id
                   LEFT JOIN (
              SELECT o.person_id                       AS person_id,
-                    GROUP_CONCAT(DISTINCT (IF(obs_fscn.name IN (''IME, Date of admission'')
+                    GROUP_CONCAT(DISTINCT (IF(obs_fscn.name IN ('IME, Date of admission')
                                                   AND latest_encounter.person_id IS NOT NULL,
-                                              DATE_FORMAT(o.value_datetime, ''%d/%m/%Y''),
-                                              NULL))) AS ''Date Of Admission'',
-                    e.encounter_datetime              as ''Encounter time''
+                                              DATE_FORMAT(o.value_datetime, '%d/%m/%Y'),
+                                              NULL))) AS 'Date Of Admission',
+                    e.encounter_datetime              as 'Encounter time'
              FROM encounter e
                       INNER JOIN obs o ON
                      o.encounter_id = e.encounter_id
                      AND o.voided IS FALSE
                      AND e.voided IS FALSE
-                     AND (o.form_namespace_and_path like ''%Initial Medical Examination%'')
+                     AND (o.form_namespace_and_path like '%Initial Medical Examination%')
                       INNER JOIN concept_name obs_fscn ON
                      o.concept_id = obs_fscn.concept_id
-                     AND obs_fscn.name IN (''IME, Date of admission'')
+                     AND obs_fscn.name IN ('IME, Date of admission')
                      AND obs_fscn.voided IS FALSE
-                     AND obs_fscn.concept_name_type = ''FULLY_SPECIFIED''
+                     AND obs_fscn.concept_name_type = 'FULLY_SPECIFIED'
                       LEFT JOIN concept_name coded_fscn ON
                      coded_fscn.concept_id = o.value_coded
-                     AND coded_fscn.concept_name_type = ''FULLY_SPECIFIED''
+                     AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
                      AND coded_fscn.voided IS FALSE
                       LEFT JOIN concept_name coded_scn ON
                      coded_scn.concept_id = o.value_coded
-                     AND coded_fscn.concept_name_type = ''SHORT''
+                     AND coded_fscn.concept_name_type = 'SHORT'
                      AND coded_scn.voided IS FALSE
                       LEFT JOIN (
                  SELECT en.visit_id,
@@ -148,9 +148,9 @@ from (
                  FROM obs
                           INNER JOIN concept_name obs_fscn ON
                          obs.concept_id = obs_fscn.concept_id
-                         AND obs_fscn.name IN (''IME, Date of admission'')
+                         AND obs_fscn.name IN ('IME, Date of admission')
                          AND obs_fscn.voided IS FALSE
-                         AND obs_fscn.concept_name_type = ''FULLY_SPECIFIED''
+                         AND obs_fscn.concept_name_type = 'FULLY_SPECIFIED'
                           JOIN encounter en ON
                          obs.encounter_id = en.encounter_id
                          AND obs.voided IS FALSE
@@ -160,8 +160,8 @@ from (
                          from visit v
                                   join visit_type vt on
                                  v.visit_type_id = vt.visit_type_id
-                                 and vt.name in (''OPD'',
-                                                 ''IPD'')
+                                 and vt.name in ('OPD',
+                                                 'IPD')
                          group by v.patient_id)
                  GROUP BY obs.person_id,
                           obs.concept_id) latest_encounter ON
@@ -171,12 +171,12 @@ from (
              GROUP BY o.person_id) other_visit ON
              other_visit.person_id = pi.patient_id
          where (mlo_visit.`Encounter time` > COALESCE(other_visit.`Encounter time`,
-                                                      ''01-01-0000'')
-             and mlo_visit.`Outcome of admission committee` = ''Valid''
+                                                      '01-01-0000')
+             and mlo_visit.`Outcome of admission committee` = 'Valid'
              and mlo_visit.`Date Of presentation` is not null)
             or (mlo_visit.`Encounter time` < other_visit.`Encounter time`
              and other_visit.`Date Of Admission` is null
-             and mlo_visit.`Outcome of admission committee` = ''Valid''
+             and mlo_visit.`Outcome of admission committee` = 'Valid'
              and mlo_visit.`Date Of presentation` is not null)
          GROUP BY pi.patient_id) final
          left outer join (
