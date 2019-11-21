@@ -402,8 +402,10 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Removal of sutu
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Replacement of (cement) spacer","Replacement of (cement) spacer",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Elongation of tendon achilles (ETA)","Elongation of tendon achilles (ETA)",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Insertion of PICC line (peripherally inserted central catheter)","Insertion of PICC line (peripherally inserted central catheter)",'N/A','Misc',false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Right","Right","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Left","Left","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Thigh circumference Right","Right","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Thigh circumference Left","Left","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Lower limb length Right","Right","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Lower limb length Left","Left","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pyogenic (septic) arthritis","Pyogenic (septic) arthritis","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Flexion deformity (or contracture)","Flexion deformity (or contracture)","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Acquired flat foot (pes planus)","Acquired flat foot (pes planus)","N/A","Misc",false);
@@ -427,9 +429,13 @@ VALUES ((select concept_id from concept_name where name = "IME, Thigh circumfere
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "IME, Lower limb length" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en' and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "IME, Right" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"cm",1,1);
+VALUES ((select concept_id from concept_name where name = "IME, Thigh circumference Right" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"cm",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "IME, Left" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"cm",1,1);
+VALUES ((select concept_id from concept_name where name = "IME, Thigh circumference Left" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"cm",1,1);
+INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
+VALUES ((select concept_id from concept_name where name = "IME, Lower limb length Right" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"cm",1,1);
+INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
+VALUES ((select concept_id from concept_name where name = "IME, Lower limb length Left" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"cm",1,1);
 
 #### Adding Description of the  concepts to the concept description table
 
@@ -445,8 +451,5 @@ INSERT INTO concept_description(concept_id,description,locale,creator,date_creat
 VALUES ((select concept_id from concept_name where name = "IME, Sensory examination/ skin lesions, wounds" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),"To record important remarks recording skin lesions, wound localization, and description",'en',1,now(),NULL,NULL,uuid());
 INSERT INTO concept_description(concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
 VALUES ((select concept_id from concept_name where name = "IME, Medication prescribed to patient at arrival" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),"Note of any medication prescribed to the patient at first consultation",'en',1,now(),NULL,NULL,uuid());
-
-
-
 
 ################### Recheck #################################################################
