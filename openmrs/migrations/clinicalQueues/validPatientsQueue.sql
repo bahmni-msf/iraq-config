@@ -6,14 +6,13 @@ into @uuid;
 INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
 VALUES ('emrapi.sqlSearch.validPatients',
         "select SQL_CACHE
-        date                 AS `Date Of Presentation`,
+        date                 AS `PATIENT_LISTING_QUEUES_DATE_OF_PRESENTATION`,
        identifier,
        name                 AS PATIENT_LISTING_QUEUES_HEADER_NAME,
        requested_adminssion AS PATIENT_LISTING_QUEUES_REQUESTED_ADMISSION,
        uuid,
        comments             AS PATIENT_LISTING_QUEUES_COMMENTS,
-       mlo                  AS PATIENT_LISTING_QUEUES_TREATING_SURGEON,
-       patientId
+       mlo                  AS PATIENT_LISTING_QUEUES_TREATING_SURGEON
 from (
          SELECT mlo_visit.`Date Of Presentation`           as date,
                 pi.identifier                              as identifier,
