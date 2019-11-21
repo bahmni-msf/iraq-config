@@ -92,6 +92,6 @@ FROM patient_identifier pi
                                                e.encounter_datetime
                     GROUP BY o.person_id) final ON final.person_id = pi.patient_id
 where final.`Date Of Admission` is not null
-GROUP BY pi.patient_id ORDER BY final.`Date Of Admission`",'Active Patients',
+GROUP BY pi.patient_id ORDER BY STR_TO_DATE(final.`Date Of Admission`,'%d/%m/%Y') ASC",'Active Patients',
         @uuid);
 

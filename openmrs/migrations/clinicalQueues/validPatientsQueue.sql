@@ -6,18 +6,18 @@ into @uuid;
 INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
 VALUES ('emrapi.sqlSearch.validPatients',
         "select SQL_CACHE
-        date                 AS `PATIENT_LISTING_QUEUES_DATE_OF_PRESENTATION`,
+        date_of_presentation              AS PATIENT_LISTING_QUEUES_DATE_OF_PRESENTATION,
        identifier,
        name                 AS PATIENT_LISTING_QUEUES_HEADER_NAME,
-       requested_adminssion AS PATIENT_LISTING_QUEUES_REQUESTED_ADMISSION,
+       requested_admission AS PATIENT_LISTING_QUEUES_REQUESTED_ADMISSION,
        uuid,
        comments             AS PATIENT_LISTING_QUEUES_COMMENTS,
        mlo                  AS PATIENT_LISTING_QUEUES_TREATING_SURGEON
 from (
-         SELECT mlo_visit.`Date Of Presentation`           as date,
+         SELECT mlo_visit.`Date Of Presentation`           as date_of_presentation,
                 pi.identifier                              as identifier,
                 concat(pn.given_name, ' ', COALESCE(pn.family_name,'')) AS name,
-                mlo_visit.`Requested Admission`            as requested_adminssion,
+                mlo_visit.`Requested Admission`            as requested_admission,
                 p.uuid                                     as uuid,
                 mlo_visit.`comments`                       as comments,
                 mlo_visit.`MLO`                            as mlo,
@@ -185,17 +185,18 @@ from (
               select visit_type_id
               from visit
               where visit_id = (
-                  select MAX(v3.visit_id)
-                  from visit v3
-                  WHERE v3.visit_id NOT IN (
-                      SELECT MAX(v2.visit_id)
-                      from visit v2
-                      where v2.patient_id = v.patient_id
-                        and v2.visit_type_id = 4)
-                    and v3.patient_id = v.patient_id)) = 4
-    GROUP by patient_id) latest_opd_patients on
+                  select MAX(second_max_visit.visit_id)
+                  from visit second_max_visit
+                  WHERE second_max_visit.visit_id NOT IN (
+                      SELECT MAX(max_visit.visit_id)
+                      from visit max_visit
+                      where max_visit.patient_id = v.patient_id
+                        and max_visit.visit_type_id = 4)
+                    and second_max_visit.patient_id = v.patient_id)) = 4
+    GROUP by patient_id
+    ) latest_opd_patients on
     final.patientId = latest_opd_patients.patient_id
-where latest_opd_patients.patient_id IS null
-ORDER BY date;",
+where latest_opd_patients.patient_id IS null 
+ORDER BY STR_TO_DATE(date_of_presentation,'%d/%m/%Y') ASC",
         'valid Patients',
         @uuid);
