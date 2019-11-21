@@ -17,7 +17,7 @@ VALUES ('emrapi.sqlSearch.validPatients',
 from (
          SELECT mlo_visit.`Date Of Presentation`           as date,
                 pi.identifier                              as identifier,
-                concat(pn.given_name, ' ', pn.family_name) AS name,
+                concat(pn.given_name, ' ', COALESCE(pn.family_name,'')) AS name,
                 mlo_visit.`Requested Admission`            as requested_adminssion,
                 p.uuid                                     as uuid,
                 mlo_visit.`comments`                       as comments,
@@ -197,6 +197,6 @@ from (
     GROUP by patient_id) latest_opd_patients on
     final.patientId = latest_opd_patients.patient_id
 where latest_opd_patients.patient_id IS null
-ORDER BY date",
+ORDER BY date;",
         'valid Patients',
         @uuid);
