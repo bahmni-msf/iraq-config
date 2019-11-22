@@ -402,10 +402,10 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Removal of sutu
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Replacement of (cement) spacer","Replacement of (cement) spacer",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Elongation of tendon achilles (ETA)","Elongation of tendon achilles (ETA)",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Insertion of PICC line (peripherally inserted central catheter)","Insertion of PICC line (peripherally inserted central catheter)",'N/A','Misc',false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Thigh circumference Right","Right","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Thigh circumference Left","Left","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Lower limb length Right","Right","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Lower limb length Left","Left","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Thigh circumference Right","Thigh circumference Right","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Thigh circumference Left","Thigh circumference Left","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Lower limb length Right","Lower limb length Right Right","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Lower limb length Left","Lower limb length Right Left","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pyogenic (septic) arthritis","Pyogenic (septic) arthritis","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Flexion deformity (or contracture)","Flexion deformity (or contracture)","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Acquired flat foot (pes planus)","Acquired flat foot (pes planus)","N/A","Misc",false);
