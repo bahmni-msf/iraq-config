@@ -3488,7 +3488,6 @@
         </sql>
     </changeSet>
 
-
     <changeSet id="IRAQ_CONFIG_201910031339" author="SivaKrishna">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -3500,7 +3499,7 @@
                 ("&#60; 18 years","18+ years")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "PA, How old is the patient");
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, ULA, How old is the patient");
             </sqlCheck>
         </preConditions>
         <comment>Adding Answers to Outcome of How old is the patient</comment>
@@ -3510,7 +3509,43 @@
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
 
-            select concept_id into @concept_id from concept_name where name = "PA, How old is the patient" and
+            select concept_id into @concept_id from concept_name where name = "PA, ULA, How old is the patient" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name = "&#60; 18 years" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child2_concept_id from concept_name where name = "18+ years" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_201910031948" author="SivaKrishna">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("&#60; 18 years","18+ years")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, LLA, How old is the patient");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Outcome of How old is the patient</comment>
+        <sql>
+
+            set @concept_id = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = "PA, LLA, How old is the patient" and
             concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
 
             select concept_id into @child1_concept_id from concept_name where name = "&#60; 18 years" and concept_name_type =
