@@ -98,7 +98,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Path","Path
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Trunk","Trunk",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Walking time","Walking time",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Gait Score","Gait Score",'Numeric','Computed',false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Total Score Tinetti Balance Assessment Tool","Total Score",'Numeric','Computed',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Total Score Tinetti Balance Assessment Tool","Tinetti Total Score",'Numeric','Computed',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Risk of falls","Risk of falls",'Text','Computed',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, LLA, How old is the patient","LLA, How old is the patient",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, ULA, How old is the patient","ULA, How old is the patient",'Coded','Question',false);
@@ -123,7 +123,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Running on 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Making sharp turns while running fast","Making sharp turns while running fast",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Hopping","Hopping",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Rolling over in bed","Rolling over in bed",'Coded','Question',false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Total Score Lower Extremity Functional Index (LEFI)","Total Score",'Numeric','Computed',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Total Score Lower Extremity Functional Index (LEFI)","LEFI Total Score",'Numeric','Computed',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I could get down on my knees without holding on to something","I could get down on my knees without holding on to something",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I could keep up when I played with other kids","I could keep up when I played with other kids",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I could walk for 15 minutes","I could walk for 15 minutes",'Coded','Question',false);
@@ -144,7 +144,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I could wal
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I could walk while wearing a backpack full of books","I could walk while wearing a backpack full of books",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I could bend over to pick something up","I could bend over to pick something up",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I could exercise that others my age can do","I could exercise that others my age can do",'Coded','Question',false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Total Score Pediatric Lower Extremity Function - Mobility","Total Score",'Numeric','Computed',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Total Score Pediatric Lower Extremity Function - Mobility","Pediatric LL Total Score",'Numeric','Computed',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Left : Shoulder flexion","Left : Shoulder flexion",'Text','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Right : Shoulder flexion","Right : Shoulder flexion",'Text','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Left : Shoulder extension","Left : Shoulder extension",'Text','Misc',false);
@@ -282,7 +282,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I was able 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I was able to dry my back with a towel","I was able to dry my back with a towel",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I was able to put on my clothes by myself","I was able to put on my clothes by myself",'Coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, I was able to zip up my clothes","I was able to zip up my clothes",'Coded','Question',false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Total score Pediatric Upper Extremity Function - Fine Motor, ADL","Total score",'Numeric','Computed',false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Total score Pediatric Upper Extremity Function - Fine Motor, ADL","Pediatric UL Total Score",'Numeric','Computed',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Problem List","Problem List",'Text','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Treatment goals","Treatment goals",'Text','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Treatment plan and exercises","Treatment plan and exercises",'Text','Misc',false);

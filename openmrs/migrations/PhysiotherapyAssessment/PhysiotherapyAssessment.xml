@@ -1040,12 +1040,12 @@
                 ("0 = Extreme Difficulty or unable to perform activity","1 = Quite a bit of difficulty","2= Moderate difficulty","3 = A little bit of difficulty","4 = No difficulty")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "PA, Any of your usual work, housework or school activities lower");
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, LLA, Any of your usual work, housework or school activities");
             </sqlCheck>
         </preConditions>
         <comment>Adding Answers to Any of your usual work, housework or school activities lower</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "PA, Any of your usual work, housework or school activities lower" and
+            select concept_id into @concept_id from concept_name where name = "PA, LLA, Any of your usual work, housework or school activities" and
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -3571,12 +3571,12 @@
                 ("0 = Extremely difficult or unable to do","1 = With much difficulty","2 = With moderate difficulty","3 = With a little difficulty","4 = No difficulty")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "PA, Any of your usual work, housework or school activities upper");
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, ULA, Any of your usual work, housework or school activities");
             </sqlCheck>
         </preConditions>
         <comment>Adding Answers to Any of your usual work, housework or school activities upper</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "PA, Any of your usual work, housework or school activities upper" and
+            select concept_id into @concept_id from concept_name where name = "PA, ULA, Any of your usual work, housework or school activities" and
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
