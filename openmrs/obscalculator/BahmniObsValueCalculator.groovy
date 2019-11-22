@@ -55,11 +55,11 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
 
     static List<String> paBalanceSectionControlIDs = Arrays.asList("/35-0", "/36-0", "/139-0", "/140-0", "/141-0", "/325-0", "/144-0", "/145-0", "/146-0", "/147-0");
     static List<String> paGaitSectionControlIDs = Arrays.asList("/38-0", "/39-0", "/149-0", "/150-0", "/151-0", "/152-0", "/153-0", "/154-0");
-    static List<String> paLefiSectionControlIDs = Arrays.asList("/44-0", "/45-0", "/156-0", "/157-0", "/158-0", "/159-0", "/160-0", "/161-0", "/162-0", "/163-0", "/165-0", "/166-0", "/167-0", "/168-0", "/169-0", "/170-0", "/171-0", "/172-0", "/173-0","/174-0");
+    static List<String> paLefiSectionControlIDs = Arrays.asList("/542-0", "/45-0", "/156-0", "/157-0", "/158-0", "/159-0", "/160-0", "/161-0", "/162-0", "/163-0", "/165-0", "/166-0", "/167-0", "/168-0", "/169-0", "/170-0", "/171-0", "/172-0", "/173-0","/174-0");
     static List<String> paPediatricLowerSectionControlIDs = Arrays.asList("/47-0", "/48-0", "/176-0", "/177-0", "/178-0", "/179-0", "/181-0", "/182-0", "/183-0", "/184-0", "/185-0", "/186-0", "/187-0", "/188-0", "/189-0", "/190-0", "/191-0", "/192-0", "/193-0","/194-0");
 
     static List<String> paBasicGripControlIDs = Arrays.asList("/66-0", "/67-0", "/284-0", "/285-0", "/286-0", "/287-0");
-    static List<String> paUefiControlIDs = Arrays.asList("/70-0", "/71-0", "/289-0", "/290-0", "/291-0", "/293-0", "/294-0", "/295-0", "/491-0", "/297-0", "/298-0", "/299-0", "/300-0", "/301-0", "/302-0");
+    static List<String> paUefiControlIDs = Arrays.asList("/543-0", "/71-0", "/289-0", "/290-0", "/291-0", "/293-0", "/294-0", "/295-0", "/491-0", "/297-0", "/298-0", "/299-0", "/300-0", "/301-0", "/302-0");
     static List<String> paPediatricUpperSectionControlIDs = Arrays.asList("/73-0", "/74-0", "/305-0", "/306-0", "/307-0", "/308-0", "/309-0", "/310-0", "/311-0", "/312-0", "/313-0", "/314-0", "/315-0", "/316-0", "/317-0", "/318-0", "/319-0", "/320-0","/321-0","/322-0");
 
     static List<String> amputeeBalanceSectionControlIDs = Arrays.asList("/272-0", "/273-0", "/274-0", "/275-0", "/277-0", "/279-0", "/280-0","/281-0", "/282-0", "/283-0");
