@@ -36,14 +36,14 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
 
     static final String PA_OBS_BALANCE_SECTION = "/492-0";
     static final String PA_OBS_GAIT_SECTION = "/493-0";
-    static final String PA_OBS_TINETTI_TOTAL = "/494-0";
+    static final String PA_OBS_TINETTI_TOTAL = "/541-0";
     static final String PA_OBS_RISK_OF_FALLS = "/510-0";
-    static final String PA_OBS_LEFI_TOTAL = "/496-0";
-    static final String PA_OBS_PEDIATRIC_LOWER_TOTAL = "/497-0";
+    static final String PA_OBS_LEFI_TOTAL = "/546-0";
+    static final String PA_OBS_PEDIATRIC_LOWER_TOTAL = "/547-0";
     static final String PA_OBS_BASIC_GRIP_TOTAL = "/498-0";
     static final String PA_OBS_UEFI_TOTAL = "/499-0";
     static final String PA_OBS_FINAL_SCORE_TOTAL = "/500-0";
-    static final String PA_OBS_PEDIATRIC_UPPER_TOTAL = "/501-0";
+    static final String PA_OBS_PEDIATRIC_UPPER_TOTAL = "/548-0";
 
     static final String AA_OBS_BALANCE_SECTION = "/335-0";
     static final String AA_OBS_GAIT_SECTION = "/336-0";
