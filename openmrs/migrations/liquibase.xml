@@ -300,6 +300,8 @@
     <include file="PhysiotherapyAssessment/PhysiotherapyAssessment.xml"/>
     <include file="AmputeeAssessment/AmputeeAssessment.xml"/>
     <include file="MicrobiologyLab/MicrobiologyLab.xml" />
+    <include file="NursingNoteFollowUp/NursingNote.xml" />
+
     <changeSet id="IRAQ-201120191806" author="Sreekalyan,Pritam">
         <preConditions onFail="CONTINUE">
             <sqlCheck expectedResult="1">
