@@ -302,6 +302,7 @@
     <include file="MicrobiologyLab/MicrobiologyLab.xml" />
     <include file="NursingNoteFollowUp/NursingNote.xml" />
     <include file="IPDProgressNote/IPDProgressNote.xml"/>
+    <include file="Complications/Complications.xml" />
 
     <changeSet id="IRAQ-201120191806" author="Sreekalyan,Pritam">
         <preConditions onFail="CONTINUE">

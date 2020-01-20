@@ -48,7 +48,8 @@
           "OPD Progress Note MD",
           "Physiotherapy Assessment",
           "IPD Progress Note MD",
-	  "Nursing Note Follow up"
+	  "Nursing Note Follow up",
+	  "Complications"
         ],
         "translationKey": "Edit Forms (2.0)"
       },
