@@ -47,7 +47,8 @@
           "Amputee Assessment",
           "OPD Progress Note MD",
           "Physiotherapy Assessment",
-          "IPD Progress Note MD"
+          "IPD Progress Note MD",
+	  "Nursing Note Follow up"
         ],
         "translationKey": "Edit Forms (2.0)"
       },
