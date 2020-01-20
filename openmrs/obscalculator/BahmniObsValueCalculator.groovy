@@ -26,6 +26,8 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static String OPD_FIELD_PATH = "OPD Progress Note MD.1";
     static String IME_FIELD_PATH_PREFIX = "Initial Medical Examination";
     static String IME_FIELD_PATH = "Initial Medical Examination.1";
+    static String IPN_FIELD_PATH_PREFIX = "IPD Progress Note MD";
+    static String IPN_FIELD_PATH = "IPD Progress Note MD.1";
 
     static boolean isLower = false;
     static boolean isUpper = false;
@@ -33,6 +35,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static boolean isAmputee = false;
     static boolean isOPD = false;
     static boolean isIME = false;
+    static boolean isIPN = false;
 
     static final String PA_OBS_BALANCE_SECTION = "/492-0";
     static final String PA_OBS_GAIT_SECTION = "/493-0";
@@ -52,6 +55,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
 
     static final String OPD_OBS_DN4_SUM = "/76-0";
     static final String IME_OBS_DN4_SUM = "/61-0/136-0";
+    static final String IPN_OBS_DN4_SUM = "/74-0";
 
     static List<String> paBalanceSectionControlIDs = Arrays.asList("/35-0", "/36-0", "/139-0", "/140-0", "/141-0", "/325-0", "/144-0", "/145-0", "/146-0", "/147-0");
     static List<String> paGaitSectionControlIDs = Arrays.asList("/38-0", "/39-0", "/149-0", "/150-0", "/151-0", "/152-0", "/153-0", "/154-0");
@@ -67,6 +71,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
 
     static List<String> opdDN4SectionControlIDs = Arrays.asList("/65-0", "/66-0", "/67-0", "/68-0", "/69-0", "/70-0", "/71-0","/72-0", "/73-0", "/74-0");
     static List<String> imeDN4SectionControlIDs = Arrays.asList("/61-0/62-0", "/61-0/63-0", "/61-0/64-0", "/61-0/65-0", "/61-0/67-0", "/61-0/68-0","/61-0/69-0", "/61-0/70-0", "/61-0/71-0", "/61-0/72-0");
+    static List<String> ipnDN4SectionControlIDs = Arrays.asList("/26-0", "/27-0", "/28-0", "/30-0", "/31-0", "/33-0", "/34-0","/36-0", "/37-0", "/40-0");
     static String imePrefix = "/49-";
 
     def static finalScore = ["0.0", "8.5", "14.4", "18.6", "21.7", "24.3", "26.5", "28.4", "30.1", "31.7",
@@ -104,6 +109,12 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
 //            logger.append("isIME FIELD_PATH " + FIELD_PATH + "\n");
             processIME(bahmniEncounterTransaction);
         }
+        if(isIPN) {
+            FIELD_PATH_PREFIX = IPN_FIELD_PATH_PREFIX;
+            FIELD_PATH = IPN_FIELD_PATH;
+//            logger.append("isIME FIELD_PATH " + FIELD_PATH + "\n");
+            processIPN(bahmniEncounterTransaction);
+        }
     }
 
     static void verifySections(Collection<BahmniObservation> observations) {
@@ -133,6 +144,10 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 if(observation.getFormFieldPath().startsWith(IME_FIELD_PATH_PREFIX)) {
                     isIME = true;
                     IME_FIELD_PATH = observation.getFormFieldPath().substring(0, observation.getFormFieldPath().indexOf("/"));
+                }
+                if(observation.getFormFieldPath().startsWith(IPN_FIELD_PATH_PREFIX)) {
+                    isIPN = true;
+                    IPN_FIELD_PATH = observation.getFormFieldPath().substring(0, observation.getFormFieldPath().indexOf("/"));
                 }
             }
         }
@@ -288,6 +303,17 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                 updateObservation(bahmniEncounterTransaction, "", "IME, Neuropathic pain score", "/" + addMoreID + IME_OBS_DN4_SUM);
             imeDN4SectionObsConceptMap.clear();
         }
+    }
+
+
+    static void processIPN(BahmniEncounterTransaction bahmniEncounterTransaction) {
+        Map<String, List<BahmniObservation>> bahmniMultiSelectObsConceptMap = new HashMap<>();
+        Map<String, BahmniObservation> ipnSectionObsConceptMap = new HashMap<>();
+        findObsForConceptsOfForm(ipnDN4SectionControlIDs, bahmniEncounterTransaction.getObservations(), ipnSectionObsConceptMap);
+        int balanceTotal = 0;
+        balanceTotal  = findSumOfObservations(bahmniEncounterTransaction, ipnSectionObsConceptMap, bahmniMultiSelectObsConceptMap, "IPN, Neuropathic pain score", IPN_OBS_DN4_SUM, 0, false);
+        if(balanceTotal == -1)
+            updateObservation(bahmniEncounterTransaction, "", "IPN, Neuropathic pain score", IPN_OBS_DN4_SUM);
     }
 
     static Set<String> getNumberOfAddMoreSections(String prefix, List<String> ControlIDsList, Collection<BahmniObservation> observations, Map<String, BahmniObservation> bahmniObsConceptMap) {
