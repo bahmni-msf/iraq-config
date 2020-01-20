@@ -46,7 +46,8 @@
           "Physiotherapy Prescription",
           "Amputee Assessment",
           "OPD Progress Note MD",
-          "Physiotherapy Assessment"
+          "Physiotherapy Assessment",
+          "IPD Progress Note MD"
         ],
         "translationKey": "Edit Forms (2.0)"
       },
