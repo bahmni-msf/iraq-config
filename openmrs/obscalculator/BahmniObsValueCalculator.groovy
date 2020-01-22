@@ -77,7 +77,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static List<String> opdDN4SectionControlIDs = Arrays.asList("/65-0", "/66-0", "/67-0", "/68-0", "/69-0", "/70-0", "/71-0","/72-0", "/73-0", "/74-0");
     static List<String> imeDN4SectionControlIDs = Arrays.asList("/61-0/62-0", "/61-0/63-0", "/61-0/64-0", "/61-0/65-0", "/61-0/67-0", "/61-0/68-0","/61-0/69-0", "/61-0/70-0", "/61-0/71-0", "/61-0/72-0");
     static List<String> ipnDN4SectionControlIDs = Arrays.asList("/26-0", "/27-0", "/28-0", "/30-0", "/31-0", "/33-0", "/34-0","/36-0", "/37-0", "/40-0");
-    static List<String> anaSectionControlIDs = Arrays.asList("/7-0", "/48-0");
+    static List<String> anaSectionControlIDs = Arrays.asList("/7-0", "/50-0");
     static String imePrefix = "/49-";
 
     def static finalScore = ["0.0", "8.5", "14.4", "18.6", "21.7", "24.3", "26.5", "28.4", "30.1", "31.7",

@@ -126,7 +126,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Asthma","121375");
             call CREATE_REFERENCE_MAPPING_CEIL("COPD","1295");
             call CREATE_REFERENCE_MAPPING_CEIL("Hypertension","117399");
-            call CREATE_REFERENCE_MAPPING_CEIL("High cholesterol","117399");
+            call CREATE_REFERENCE_MAPPING_CEIL("High cholesterol","117460");
             call CREATE_REFERENCE_MAPPING_CEIL("HIV","1169");
             call CREATE_REFERENCE_MAPPING_CEIL("Chronic bronchitis","120669");
             call CREATE_REFERENCE_MAPPING_CEIL("Tachypnea","125061");
