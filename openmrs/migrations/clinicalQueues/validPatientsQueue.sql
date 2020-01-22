@@ -197,6 +197,6 @@ from (
     ) latest_opd_patients on
     final.patientId = latest_opd_patients.patient_id
 where latest_opd_patients.patient_id IS null 
-ORDER BY STR_TO_DATE(date_of_presentation,'%d/%m/%Y') ASC",
+ORDER BY STR_TO_DATE(date_of_presentation,'%d/%m/%Y') DESC",
         'valid Patients',
         @uuid);
