@@ -1,0 +1,994 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="IRAQ_CONFIG_202001100759" author="SreeKalyan">
+        <comment>Adding Concepts for Admission Nursing Note</comment>
+        <sqlFile path="AdmissionNursingAssessment/addConceptForAdmissionNursingAssessment.sql"/>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_202001201300" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="4">
+
+                select
+                COUNT(*)
+                From
+                concept_reference_term
+                where `code` in
+                ("162869","160287","1633","5089")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where `name` = 'CEIL'  and retired =0
+                );
+
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding codes to specific concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'CEIL';
+
+            call CREATE_REFERENCE_MAPPING_CEIL('ANA, Past medical history', '1633');
+            call CREATE_REFERENCE_MAPPING_CEIL('ANA, Date recorded', '162869');
+            call CREATE_REFERENCE_MAPPING_CEIL('ANA, Pain score', '160287');
+            call CREATE_REFERENCE_MAPPING_CEIL('ANA, Weight', '5089');
+
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_202001201302" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+
+
+                select
+                COUNT(*)
+                From
+                concept_reference_term
+                where `code` in
+                ("121689","5090","1342","5085","5086","5078","5088","5092","5242","162643","116505","116986","121375","1295","117399","117460","1169","120669","125061","996","158500","147241")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where `name` = 'CEIL'  and retired =0
+                );
+
+
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding codes to specific concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'CEIL';
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"121689",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"5090",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"1342",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"5085",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"5086",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"5078",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"5088",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"5092",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"5242",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"162643",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"116505",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"116986",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"121375",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"1295",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"117399",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"117460",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"1169",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"120669",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"125061",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"996",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"158500",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (4,"147241",@source_id,uuid(),now());
+
+
+            call CREATE_REFERENCE_MAPPING_CEIL("ANA, Patient allergy","121689");
+            call CREATE_REFERENCE_MAPPING_CEIL("ANA, Height","5090");
+            call CREATE_REFERENCE_MAPPING_CEIL("ANA, BMI","1342");
+            call CREATE_REFERENCE_MAPPING_CEIL("ANA, Systolic blood pressure","5085");
+            call CREATE_REFERENCE_MAPPING_CEIL("ANA, Diastolic blood pressure","5086");
+            call CREATE_REFERENCE_MAPPING_CEIL("ANA, Heart rate (HR)","5078");
+            call CREATE_REFERENCE_MAPPING_CEIL("ANA, Temperature (Temp.)","5088");
+            call CREATE_REFERENCE_MAPPING_CEIL("ANA, Blood oxygen saturation (SatO2)","5092");
+            call CREATE_REFERENCE_MAPPING_CEIL("ANA, Respiratory rate (RR)","5242");
+            call CREATE_REFERENCE_MAPPING_CEIL("ANA, Level of consciousness","162643");
+            call CREATE_REFERENCE_MAPPING_CEIL("Kidney problems","116505");
+            call CREATE_REFERENCE_MAPPING_CEIL("Hepatitis","116986");
+            call CREATE_REFERENCE_MAPPING_CEIL("Asthma","121375");
+            call CREATE_REFERENCE_MAPPING_CEIL("COPD","1295");
+            call CREATE_REFERENCE_MAPPING_CEIL("Hypertension","117399");
+            call CREATE_REFERENCE_MAPPING_CEIL("High cholesterol","117399");
+            call CREATE_REFERENCE_MAPPING_CEIL("HIV","1169");
+            call CREATE_REFERENCE_MAPPING_CEIL("Chronic bronchitis","120669");
+            call CREATE_REFERENCE_MAPPING_CEIL("Tachypnea","125061");
+            call CREATE_REFERENCE_MAPPING_CEIL("Constipation","996");
+            call CREATE_REFERENCE_MAPPING_CEIL("Bedsores","158500");
+            call CREATE_REFERENCE_MAPPING_CEIL("Bleeding","147241");
+
+
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020012013145" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("New assessment","Re-assessment")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "ANA, Type of assessment");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Type of assessment</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "ANA, Type of assessment" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="New assessment" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Re-assessment" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020012013152" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("No","Yes","Unknown")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "ANA, Patient allergy");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Patient allergy</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "ANA, Patient allergy" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Unknown" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020012013168" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("None","Diabetes","Kidney problems","Hepatitis","Cardiac","Asthma","COPD","Hypertension","High cholesterol","HIV","Chronic bronchitis","Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "ANA, Past medical history");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Past medical history</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "ANA, Past medical history" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+            set @child10_concept_id = 0;
+            set @child11_concept_id = 0;
+            set @child12_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="None" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Diabetes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Kidney problems" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Hepatitis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Cardiac" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Asthma" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="COPD" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Hypertension" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="High cholesterol" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="HIV" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child11_concept_id from concept_name where name ="Chronic bronchitis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child12_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+            call add_concept_answer(@concept_id, @child10_concept_id, 10);
+            call add_concept_answer(@concept_id, @child11_concept_id, 11);
+            call add_concept_answer(@concept_id, @child12_concept_id, 12);
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020012013189" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Weight","Height ²")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "ANA, BMI");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to BMI</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "ANA, BMI" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Weight (in Kg)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Height ² (in metres)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020012013195" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Right","Left","Bilateral")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "ANA, Side of pain");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Side of pain</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "ANA, Side of pain" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Right" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Left" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Bilateral" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020012013204" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Groin","Gluteal","Hip","Thigh","Knee","Leg","Ankle","Foot","Toe","Shoulder","Axilla","Arm","Elbow","Forearm","Wrist","Hand","Finger","Breast","Trunk","Abdomen","Chest","Upper back","Lower back","Stump","Eye","Eyelid","Ear","Nose","Lip","Mouth","Jaw","Cheek","Chin","Scalp","Neck","Face","Forehead including eyebrow","Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "ANA, Site of pain");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Site of pain</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "ANA, Site of pain" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+            set @child10_concept_id = 0;
+            set @child11_concept_id = 0;
+            set @child12_concept_id = 0;
+            set @child13_concept_id = 0;
+            set @child14_concept_id = 0;
+            set @child15_concept_id = 0;
+            set @child16_concept_id = 0;
+            set @child17_concept_id = 0;
+            set @child18_concept_id = 0;
+            set @child19_concept_id = 0;
+            set @child20_concept_id = 0;
+            set @child21_concept_id = 0;
+            set @child22_concept_id = 0;
+            set @child23_concept_id = 0;
+            set @child24_concept_id = 0;
+            set @child25_concept_id = 0;
+            set @child26_concept_id = 0;
+            set @child27_concept_id = 0;
+            set @child28_concept_id = 0;
+            set @child29_concept_id = 0;
+            set @child30_concept_id = 0;
+            set @child31_concept_id = 0;
+            set @child32_concept_id = 0;
+            set @child33_concept_id = 0;
+            set @child34_concept_id = 0;
+            set @child35_concept_id = 0;
+            set @child36_concept_id = 0;
+            set @child37_concept_id = 0;
+            set @child38_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Groin" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Gluteal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Hip" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Thigh" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Knee" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Leg" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Ankle" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Foot" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Toe" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="Shoulder" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child11_concept_id from concept_name where name ="Axilla" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child12_concept_id from concept_name where name ="Arm" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child13_concept_id from concept_name where name ="Elbow" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child14_concept_id from concept_name where name ="Forearm" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child15_concept_id from concept_name where name ="Wrist" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child16_concept_id from concept_name where name ="Hand" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child17_concept_id from concept_name where name ="Finger" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child18_concept_id from concept_name where name ="Breast" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child19_concept_id from concept_name where name ="Trunk" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child20_concept_id from concept_name where name ="Abdomen" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child21_concept_id from concept_name where name ="Chest" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child22_concept_id from concept_name where name ="Upper back" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child23_concept_id from concept_name where name ="Lower back" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child24_concept_id from concept_name where name ="Stump" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child25_concept_id from concept_name where name ="Eye" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child26_concept_id from concept_name where name ="Eyelid" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child27_concept_id from concept_name where name ="Ear" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child28_concept_id from concept_name where name ="Nose" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child29_concept_id from concept_name where name ="Lip" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child30_concept_id from concept_name where name ="Mouth" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child31_concept_id from concept_name where name ="Jaw" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child32_concept_id from concept_name where name ="Cheek" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child33_concept_id from concept_name where name ="Chin" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child34_concept_id from concept_name where name ="Scalp" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child35_concept_id from concept_name where name ="Neck" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child36_concept_id from concept_name where name ="Face" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child37_concept_id from concept_name where name ="Forehead including eyebrow" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child38_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+            call add_concept_answer(@concept_id, @child10_concept_id, 10);
+            call add_concept_answer(@concept_id, @child11_concept_id, 11);
+            call add_concept_answer(@concept_id, @child12_concept_id, 12);
+            call add_concept_answer(@concept_id, @child13_concept_id, 13);
+            call add_concept_answer(@concept_id, @child14_concept_id, 14);
+            call add_concept_answer(@concept_id, @child15_concept_id, 15);
+            call add_concept_answer(@concept_id, @child16_concept_id, 16);
+            call add_concept_answer(@concept_id, @child17_concept_id, 17);
+            call add_concept_answer(@concept_id, @child18_concept_id, 18);
+            call add_concept_answer(@concept_id, @child19_concept_id, 19);
+            call add_concept_answer(@concept_id, @child20_concept_id, 20);
+            call add_concept_answer(@concept_id, @child21_concept_id, 21);
+            call add_concept_answer(@concept_id, @child22_concept_id, 22);
+            call add_concept_answer(@concept_id, @child23_concept_id, 23);
+            call add_concept_answer(@concept_id, @child24_concept_id, 24);
+            call add_concept_answer(@concept_id, @child25_concept_id, 25);
+            call add_concept_answer(@concept_id, @child26_concept_id, 26);
+            call add_concept_answer(@concept_id, @child27_concept_id, 27);
+            call add_concept_answer(@concept_id, @child28_concept_id, 28);
+            call add_concept_answer(@concept_id, @child29_concept_id, 29);
+            call add_concept_answer(@concept_id, @child30_concept_id, 30);
+            call add_concept_answer(@concept_id, @child31_concept_id, 31);
+            call add_concept_answer(@concept_id, @child32_concept_id, 32);
+            call add_concept_answer(@concept_id, @child33_concept_id, 33);
+            call add_concept_answer(@concept_id, @child34_concept_id, 34);
+            call add_concept_answer(@concept_id, @child35_concept_id, 35);
+            call add_concept_answer(@concept_id, @child36_concept_id, 36);
+            call add_concept_answer(@concept_id, @child37_concept_id, 37);
+            call add_concept_answer(@concept_id, @child38_concept_id, 38);
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020012013213" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal","Disoriented","Agitated or Anxious","Somnolent","Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "ANA, Level of consciousness");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Level of consciousness</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "ANA, Level of consciousness" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Disoriented" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Agitated or Anxious" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Somnolent" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020012013226" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal","Tachypnea","Bradypnea","Dyspnea","Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "ANA, Respiration");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Respiration</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "ANA, Respiration" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Tachypnea" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Bradypnea" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Dyspnea" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020012013235" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Regular","Low Salt","High Protein","Diabetic diet","Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "ANA, Nutritional Assessment");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Nutritional Assessment</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "ANA, Nutritional Assessment" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Regular" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Low Salt" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="High Protein" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Diabetic diet" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020012013248" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal","Retention of Urine","Urinary incontinence","Urinary catheter","Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "ANA, Urinary elimination");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Urinary elimination</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "ANA, Urinary elimination" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Retention of Urine" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Urinary incontinence" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Urinary catheter" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020012013259" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal","Constipation","Diarrhea","Fecal incontinence","Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "ANA, Bowel elimination");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Bowel elimination</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "ANA, Bowel elimination" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Constipation" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Diarrhea" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Fecal incontinence" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020012013269" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal","Bedsores","Bleeding","Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "ANA, Skin and mucous");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Skin and mucous</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "ANA, Skin and mucous" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Bedsores" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Bleeding" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020012013271" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Head","Spine","Shoulder","Shoulder blades","Upper arm","Lower arm","Elbow","Hip","Lower back","Upper back","Pelvis","Tailbone","Buttocks","Heel","Ankle","Knee","Thigh","Foot","Toe","Stump","Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "ANA, Site of bedsores");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Site of bedsores</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "ANA, Site of bedsores" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+            set @child10_concept_id = 0;
+            set @child11_concept_id = 0;
+            set @child12_concept_id = 0;
+            set @child13_concept_id = 0;
+            set @child14_concept_id = 0;
+            set @child15_concept_id = 0;
+            set @child16_concept_id = 0;
+            set @child17_concept_id = 0;
+            set @child18_concept_id = 0;
+            set @child19_concept_id = 0;
+            set @child20_concept_id = 0;
+            set @child21_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Head" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Spine" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Shoulder" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Shoulder blades" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Upper arm" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Lower arm" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Elbow" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Hip" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Lower back" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="Upper back" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child11_concept_id from concept_name where name ="Pelvis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child12_concept_id from concept_name where name ="Tailbone" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child13_concept_id from concept_name where name ="Buttocks" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child14_concept_id from concept_name where name ="Heel" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child15_concept_id from concept_name where name ="Ankle" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child16_concept_id from concept_name where name ="Knee" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child17_concept_id from concept_name where name ="Thigh" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child18_concept_id from concept_name where name ="Foot" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child19_concept_id from concept_name where name ="Toe" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child20_concept_id from concept_name where name ="Stump" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child21_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+            call add_concept_answer(@concept_id, @child10_concept_id, 10);
+            call add_concept_answer(@concept_id, @child11_concept_id, 11);
+            call add_concept_answer(@concept_id, @child12_concept_id, 12);
+            call add_concept_answer(@concept_id, @child13_concept_id, 13);
+            call add_concept_answer(@concept_id, @child14_concept_id, 14);
+            call add_concept_answer(@concept_id, @child15_concept_id, 15);
+            call add_concept_answer(@concept_id, @child16_concept_id, 16);
+            call add_concept_answer(@concept_id, @child17_concept_id, 17);
+            call add_concept_answer(@concept_id, @child18_concept_id, 18);
+            call add_concept_answer(@concept_id, @child19_concept_id, 19);
+            call add_concept_answer(@concept_id, @child20_concept_id, 20);
+            call add_concept_answer(@concept_id, @child21_concept_id, 21);
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020012013283" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Stage 1","Stage 2","Stage 3","Stage 4")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "ANA, Stage of bedsores");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Stage of bedsores</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "ANA, Stage of bedsores" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Stage 1" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Stage 2" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Stage 3" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Stage 4" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020012013292" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("No","Yes")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "ANA, Does the patient need an air mattress");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Does the patient need an air mattress</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "ANA, Does the patient need an air mattress" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020012013302" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("No","Yes")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "ANA, Surgical wound");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Surgical wound</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "ANA, Surgical wound" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="No" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Yes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020012013316" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Groin","Gluteal","Hip","Thigh","Knee","Leg","Ankle","Foot","Toe","Shoulder","Axilla","Arm","Elbow","Forearm","Wrist","Hand","Finger","Breast","Trunk","Abdomen","Chest","Upper back","Lower back","Stump","Eye","Eyelid","Ear","Nose","Lip","Mouth","Jaw","Cheek","Chin","Scalp","Neck","Face","Forehead including eyebrow","Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "ANA, Site of surgical wounds");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Site of surgical wounds</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "ANA, Site of surgical wounds" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+            set @child10_concept_id = 0;
+            set @child11_concept_id = 0;
+            set @child12_concept_id = 0;
+            set @child13_concept_id = 0;
+            set @child14_concept_id = 0;
+            set @child15_concept_id = 0;
+            set @child16_concept_id = 0;
+            set @child17_concept_id = 0;
+            set @child18_concept_id = 0;
+            set @child19_concept_id = 0;
+            set @child20_concept_id = 0;
+            set @child21_concept_id = 0;
+            set @child22_concept_id = 0;
+            set @child23_concept_id = 0;
+            set @child24_concept_id = 0;
+            set @child25_concept_id = 0;
+            set @child26_concept_id = 0;
+            set @child27_concept_id = 0;
+            set @child28_concept_id = 0;
+            set @child29_concept_id = 0;
+            set @child30_concept_id = 0;
+            set @child31_concept_id = 0;
+            set @child32_concept_id = 0;
+            set @child33_concept_id = 0;
+            set @child34_concept_id = 0;
+            set @child35_concept_id = 0;
+            set @child36_concept_id = 0;
+            set @child37_concept_id = 0;
+            set @child38_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Groin" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Gluteal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Hip" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Thigh" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Knee" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Leg" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Ankle" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Foot" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Toe" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="Shoulder" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child11_concept_id from concept_name where name ="Axilla" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child12_concept_id from concept_name where name ="Arm" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child13_concept_id from concept_name where name ="Elbow" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child14_concept_id from concept_name where name ="Forearm" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child15_concept_id from concept_name where name ="Wrist" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child16_concept_id from concept_name where name ="Hand" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child17_concept_id from concept_name where name ="Finger" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child18_concept_id from concept_name where name ="Breast" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child19_concept_id from concept_name where name ="Trunk" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child20_concept_id from concept_name where name ="Abdomen" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child21_concept_id from concept_name where name ="Chest" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child22_concept_id from concept_name where name ="Upper back" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child23_concept_id from concept_name where name ="Lower back" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child24_concept_id from concept_name where name ="Stump" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child25_concept_id from concept_name where name ="Eye" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child26_concept_id from concept_name where name ="Eyelid" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child27_concept_id from concept_name where name ="Ear" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child28_concept_id from concept_name where name ="Nose" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child29_concept_id from concept_name where name ="Lip" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child30_concept_id from concept_name where name ="Mouth" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child31_concept_id from concept_name where name ="Jaw" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child32_concept_id from concept_name where name ="Cheek" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child33_concept_id from concept_name where name ="Chin" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child34_concept_id from concept_name where name ="Scalp" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child35_concept_id from concept_name where name ="Neck" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child36_concept_id from concept_name where name ="Face" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child37_concept_id from concept_name where name ="Forehead including eyebrow" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child38_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+            call add_concept_answer(@concept_id, @child10_concept_id, 10);
+            call add_concept_answer(@concept_id, @child11_concept_id, 11);
+            call add_concept_answer(@concept_id, @child12_concept_id, 12);
+            call add_concept_answer(@concept_id, @child13_concept_id, 13);
+            call add_concept_answer(@concept_id, @child14_concept_id, 14);
+            call add_concept_answer(@concept_id, @child15_concept_id, 15);
+            call add_concept_answer(@concept_id, @child16_concept_id, 16);
+            call add_concept_answer(@concept_id, @child17_concept_id, 17);
+            call add_concept_answer(@concept_id, @child18_concept_id, 18);
+            call add_concept_answer(@concept_id, @child19_concept_id, 19);
+            call add_concept_answer(@concept_id, @child20_concept_id, 20);
+            call add_concept_answer(@concept_id, @child21_concept_id, 21);
+            call add_concept_answer(@concept_id, @child22_concept_id, 22);
+            call add_concept_answer(@concept_id, @child23_concept_id, 23);
+            call add_concept_answer(@concept_id, @child24_concept_id, 24);
+            call add_concept_answer(@concept_id, @child25_concept_id, 25);
+            call add_concept_answer(@concept_id, @child26_concept_id, 26);
+            call add_concept_answer(@concept_id, @child27_concept_id, 27);
+            call add_concept_answer(@concept_id, @child28_concept_id, 28);
+            call add_concept_answer(@concept_id, @child29_concept_id, 29);
+            call add_concept_answer(@concept_id, @child30_concept_id, 30);
+            call add_concept_answer(@concept_id, @child31_concept_id, 31);
+            call add_concept_answer(@concept_id, @child32_concept_id, 32);
+            call add_concept_answer(@concept_id, @child33_concept_id, 33);
+            call add_concept_answer(@concept_id, @child34_concept_id, 34);
+            call add_concept_answer(@concept_id, @child35_concept_id, 35);
+            call add_concept_answer(@concept_id, @child36_concept_id, 36);
+            call add_concept_answer(@concept_id, @child37_concept_id, 37);
+            call add_concept_answer(@concept_id, @child38_concept_id, 38);
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_202001201621" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("ANA, Systolic blood pressure","ANA, Diastolic blood pressure")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "Blood Pressure");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Surgical wound</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "Blood Pressure" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="ANA, Systolic blood pressure" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="ANA, Diastolic blood pressure" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_set_members(@concept_id, @child1_concept_id, 1);
+            call add_concept_set_members(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
