@@ -28,6 +28,9 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static String IME_FIELD_PATH = "Initial Medical Examination.1";
     static String IPN_FIELD_PATH_PREFIX = "IPD Progress Note MD";
     static String IPN_FIELD_PATH = "IPD Progress Note MD.1";
+    static String ANA_FIELD_PATH_PREFIX = "Admission Nursing Assessment";
+    static String ANA_FIELD_PATH = "Admission Nursing Assessment.1";
+
 
     static boolean isLower = false;
     static boolean isUpper = false;
@@ -36,6 +39,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static boolean isOPD = false;
     static boolean isIME = false;
     static boolean isIPN = false;
+    static boolean isANA = false;
 
     static final String PA_OBS_BALANCE_SECTION = "/492-0";
     static final String PA_OBS_GAIT_SECTION = "/493-0";
@@ -56,6 +60,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static final String OPD_OBS_DN4_SUM = "/76-0";
     static final String IME_OBS_DN4_SUM = "/61-0/136-0";
     static final String IPN_OBS_DN4_SUM = "/74-0";
+    static final String ANA_OBS_DN4_SUM = "/46-0";
 
     static List<String> paBalanceSectionControlIDs = Arrays.asList("/35-0", "/36-0", "/139-0", "/140-0", "/141-0", "/325-0", "/144-0", "/145-0", "/146-0", "/147-0");
     static List<String> paGaitSectionControlIDs = Arrays.asList("/38-0", "/39-0", "/149-0", "/150-0", "/151-0", "/152-0", "/153-0", "/154-0");
@@ -72,6 +77,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static List<String> opdDN4SectionControlIDs = Arrays.asList("/65-0", "/66-0", "/67-0", "/68-0", "/69-0", "/70-0", "/71-0","/72-0", "/73-0", "/74-0");
     static List<String> imeDN4SectionControlIDs = Arrays.asList("/61-0/62-0", "/61-0/63-0", "/61-0/64-0", "/61-0/65-0", "/61-0/67-0", "/61-0/68-0","/61-0/69-0", "/61-0/70-0", "/61-0/71-0", "/61-0/72-0");
     static List<String> ipnDN4SectionControlIDs = Arrays.asList("/26-0", "/27-0", "/28-0", "/30-0", "/31-0", "/33-0", "/34-0","/36-0", "/37-0", "/40-0");
+    static List<String> anaSectionControlIDs = Arrays.asList("/7-0", "/8-0");
     static String imePrefix = "/49-";
 
     def static finalScore = ["0.0", "8.5", "14.4", "18.6", "21.7", "24.3", "26.5", "28.4", "30.1", "31.7",
@@ -82,7 +88,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                              "69.9", "71.3", "72.9", "74.8", "76.8", "79.3", "82.3", "86.2", "91.8", "100.0"] as String[]
 
     public void run(BahmniEncounterTransaction bahmniEncounterTransaction) {
-//        logger.append( "*********************************************** "+ new Date() + "*********************************\n");
+        logger.append( "*********************************************** "+ new Date() + "*********************************\n");
         verifySections(bahmniEncounterTransaction.getObservations());
 
         if(isPhysiotherapy) {
@@ -114,6 +120,12 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
             FIELD_PATH = IPN_FIELD_PATH;
 //            logger.append("isIME FIELD_PATH " + FIELD_PATH + "\n");
             processIPN(bahmniEncounterTransaction);
+        }
+        if(isANA) {
+            FIELD_PATH_PREFIX = ANA_FIELD_PATH_PREFIX;
+            FIELD_PATH = ANA_FIELD_PATH;
+//            logger.append("isANA FIELD_PATH " + FIELD_PATH + "\n");
+            processANA(bahmniEncounterTransaction);
         }
     }
 
@@ -149,6 +161,11 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
                     isIPN = true;
                     IPN_FIELD_PATH = observation.getFormFieldPath().substring(0, observation.getFormFieldPath().indexOf("/"));
                 }
+
+                if(observation.getFormFieldPath().startsWith(ANA_FIELD_PATH_PREFIX)) {
+                    isANA = true;
+                    ANA_FIELD_PATH = observation.getFormFieldPath().substring(0, observation.getFormFieldPath().indexOf("/"));
+                }
             }
         }
 //        logger.append("isPhysiotherapy " + isPhysiotherapy + "\n");
@@ -157,6 +174,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
 //        logger.append("isIME " + isIME + "\n");
 //        logger.append("isLower " + isLower + "\n");
 //        logger.append("isUpper " + isUpper + "\n");
+//          logger.append("isANA " + isANA + "\n");
     }
 
     static void processPhysiotherapyAssessment(BahmniEncounterTransaction bahmniEncounterTransaction) {
@@ -316,6 +334,41 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
             updateObservation(bahmniEncounterTransaction, "", "IPN, Neuropathic pain score", IPN_OBS_DN4_SUM);
     }
 
+    static void processANA(BahmniEncounterTransaction bahmniEncounterTransaction) {
+        Map<String, List<BahmniObservation>> bahmniMultiSelectObsConceptMap = new HashMap<>();
+        Map<String, BahmniObservation> anaSectionObsConceptMap = new HashMap<>();
+        BahmniObservation bmiObservation = getObservation(bahmniEncounterTransaction.getObservations(), FIELD_PATH +  ANA_OBS_DN4_SUM);
+        findObsForConceptsOfForm(anaSectionControlIDs, bahmniEncounterTransaction.getObservations(), anaSectionObsConceptMap);
+        logger.append("hello heheh");
+        logger.append(anaSectionObsConceptMap.values());
+        if ( !hasValue(anaSectionObsConceptMap.values()[0]) ||  !hasValue(anaSectionObsConceptMap.values()[1])){
+            if(bmiObservation != null)
+                voidObs(bmiObservation);
+        }
+        if ( hasValue(anaSectionObsConceptMap.values()[0]) &&  hasValue(anaSectionObsConceptMap.values()[1]))
+        {
+            def weight = anaSectionObsConceptMap.values()[0].getValue().toFloat();
+            def height = anaSectionObsConceptMap.values()[1].getValue().toFloat();
+            float BMI = weight / (height/100 * height/100);
+
+            DecimalFormat df = new DecimalFormat("0.00");
+            BMI = df.format(BMI).toFloat() ;
+
+
+            def nowAsOfEncounter = bahmniEncounterTransaction.getEncounterDateTime() != null ? bahmniEncounterTransaction.getEncounterDateTime() : new Date();
+            Date obsDatetime = bmiObservation != null ? bmiObservation.getEncounterDateTime() : nowAsOfEncounter;
+            bmiObservation = bmiObservation != null ? bmiObservation : createObs("ANA, BMI", bahmniEncounterTransaction, obsDatetime) as BahmniObservation;
+            logger.append("\nValue [" + bmiObservation.getValue() + "]\n");
+            bmiObservation.setFormFieldPath(FIELD_PATH + ANA_OBS_DN4_SUM)
+            bmiObservation.setFormNamespace(NAMESPACE)
+            if("".equals(BMI))
+                voidObs(bmiObservation);
+            else
+                bmiObservation.setValue(BMI);
+        }
+        // voidObs(bmiObservation)
+    }
+
     static Set<String> getNumberOfAddMoreSections(String prefix, List<String> ControlIDsList, Collection<BahmniObservation> observations, Map<String, BahmniObservation> bahmniObsConceptMap) {
         int addMoreCount = 0;
         Set<String> allObs = new HashSet<>();
@@ -395,6 +448,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
 //        logger.append("Final -> " + FIELD_PATH + controlID + "\n")
         BahmniObservation observation = getObservation(bahmniEncounterTransaction.getObservations(), FIELD_PATH + controlID);
         Date obsDatetime = new Date();
+        logger.append(observation);
         observation = observation != null ? observation : createObs(conceptName, bahmniEncounterTransaction, obsDatetime) as BahmniObservation;
         observation.setValue("");
         observation.setFormFieldPath(FIELD_PATH + controlID)
@@ -470,7 +524,6 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
             observation.setValue(value);
 
     }
-
     private static boolean hasValue(BahmniObservation observation) {
         return observation != null && observation.getValue() != null && !StringUtils.isEmpty(observation.getValue().toString());
     }
@@ -486,6 +539,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     }
 
     static BahmniObservation createObs(String conceptName, BahmniEncounterTransaction encounterTransaction, Date obsDatetime) {
+
         def concept = bahmniBridge.getConceptByFullySpecifiedName(conceptName)
         BahmniObservation newObservation = new BahmniObservation()
         newObservation.setConcept(new EncounterTransaction.Concept(concept.getUuid(), conceptName))
