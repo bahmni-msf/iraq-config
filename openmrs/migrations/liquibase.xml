@@ -304,6 +304,7 @@
     <include file="IPDProgressNote/IPDProgressNote.xml"/>
     <include file="Complications/Complications.xml" />
     <include file="AdmissionNursingAssessment/AdmissionNursingAssessment.xml" />
+    <include file="InitialMedicalExamination/InitialMedicalExaminationFeedbackchanges.xml" />
 
     <changeSet id="IRAQ-201120191806" author="Sreekalyan,Pritam">
         <preConditions onFail="CONTINUE">

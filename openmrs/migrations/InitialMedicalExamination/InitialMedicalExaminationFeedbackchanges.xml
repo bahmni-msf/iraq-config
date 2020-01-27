@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="IRAQ_CONFIG_202001271116" author="Sivakrishna">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name = "IME, Gait training, comments";
+
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding IME, Gait training, comments</comment>
+        <sql>
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Gait training, comments","Gait training, comments","Text","Misc",false);
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_202001271117" author="Sivakrishna">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IME, Specify type of gait training");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Other to IME, Specify type of gait training</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IME, Specify type of gait training" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 4);
+
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
