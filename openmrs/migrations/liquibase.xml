@@ -304,7 +304,6 @@
     <include file="IPDProgressNote/IPDProgressNote.xml"/>
     <include file="Complications/Complications.xml" />
     <include file="AdmissionNursingAssessment/AdmissionNursingAssessment.xml" />
-    <include file="InitialMedicalExamination/InitialMedicalExaminationFeedbackchanges.xml" />
 
     <changeSet id="IRAQ-201120191806" author="Sreekalyan,Pritam">
         <preConditions onFail="CONTINUE">
@@ -328,97 +327,6 @@
         <sql>
             UPDATE global_property SET property_value = 'Outcome of admission committee|OPN, Discharge status' WHERE
             property='visits.closeOnAnOutcome.conceptName(s)';
-        </sql>
-    </changeSet>
-
-
-    <changeSet id="IRAQ-240120201317" author="Siva krishna">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from concept_answer ca
-                join
-                concept_name cn
-                on ca.concept_id = cn.concept_id
-                where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Dismissal")
-                and concept_name_type = "FULLY_SPECIFIED")
-                AND
-                cn.concept_id IN (select concept_id from concept_name where name = "OPN, Discharge status");
-            </sqlCheck>
-        </preConditions>
-        <comment>Add Dismissal to Discharge status concept in OPD progress note formand re arrange sort weights</comment>
-        <sql>
-            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dismissal","Dismissal",'N/A','Misc',false);
-
-            set @child1_concept_id = 0;
-            set @child2_concept_id = 0;
-            set @child3_concept_id = 0;
-            set @child4_concept_id = 0;
-            set @child5_concept_id = 0;
-
-            select concept_id into @concept_id from concept_name where name = "OPN, Discharge status" and concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
-
-            select concept_id into @child1_concept_id from concept_name where name = "Deceased" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name = "Referred to other facility for specialized care" and concept_name_type = 'FULLY_SPECIFIED' 
-            and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name = "Therapeutic break" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name = "Geographic relocation" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-
-            UPDATE concept_answer SET sort_weight=8 WHERE answer_concept=@child1_concept_id and concept_id=@concept_id;
-            UPDATE concept_answer SET sort_weight=9 WHERE answer_concept=@child2_concept_id and concept_id=@concept_id;
-            UPDATE concept_answer SET sort_weight=10 WHERE answer_concept=@child3_concept_id and concept_id=@concept_id;
-            UPDATE concept_answer SET sort_weight=11 WHERE answer_concept=@child4_concept_id and concept_id=@concept_id;
-
-
-            select concept_id into @child5_concept_id from concept_name where name ="Dismissal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-
-            call add_concept_answer(@concept_id, @child5_concept_id, 7);
-
-        </sql>
-    </changeSet>
-
-
-    <changeSet id="IRAQ-240120201318" author="Siva krishna">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from concept_answer ca
-                join
-                concept_name cn
-                on ca.concept_id = cn.concept_id
-                where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Dismissal")
-                and concept_name_type = "FULLY_SPECIFIED")
-                AND
-                cn.concept_id IN (select concept_id from concept_name where name = "IPN, Discharge status");
-            </sqlCheck>
-        </preConditions>
-        <comment>Add Dismissal to Discharge status concept in IPD progress note formand re arrange sort weights</comment>
-        <sql>
-
-            set @child1_concept_id = 0;
-            set @child2_concept_id = 0;
-            set @child3_concept_id = 0;
-            set @child4_concept_id = 0;
-            set @child5_concept_id = 0;
-
-            select concept_id into @concept_id from concept_name where name = "IPN, Discharge status" and concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
-
-            select concept_id into @child1_concept_id from concept_name where name = "Deceased" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name = "Referred to other facility for specialized care" and concept_name_type = 'FULLY_SPECIFIED' 
-            and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name = "Therapeutic break" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name = "Geographic relocation" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-
-            UPDATE concept_answer SET sort_weight=8 WHERE answer_concept=@child1_concept_id and concept_id=@concept_id;
-            UPDATE concept_answer SET sort_weight=9 WHERE answer_concept=@child2_concept_id and concept_id=@concept_id;
-            UPDATE concept_answer SET sort_weight=10 WHERE answer_concept=@child3_concept_id and concept_id=@concept_id;
-            UPDATE concept_answer SET sort_weight=11 WHERE answer_concept=@child4_concept_id and concept_id=@concept_id;
-
-
-            select concept_id into @child5_concept_id from concept_name where name ="Dismissal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-
-            call add_concept_answer(@concept_id, @child5_concept_id, 7);
-
         </sql>
     </changeSet>
 
