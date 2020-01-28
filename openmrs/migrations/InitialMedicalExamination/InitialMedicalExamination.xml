@@ -3619,5 +3619,81 @@
     </changeSet>
     <!-- MOBN-1044 | Changes in metadata for Initial Medical Examination Changes End -->
 
+    <!-- MOBN-1070 Feedback on Initial Medical Examination Form changes start -->
+    <changeSet id="IRAQ_CONFIG_202001271616" author="Sivakrishna">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in ( "IME, Main Diagnosis (surgical), other", "IME, Medical Diagnoses, other","Injury of brachial plexus");
+            </sqlCheck>
+        </preConditions>
+        <comment>Create "IME, Main Diagnosis (surgical), other" , "IME, Medical Diagnoses, other" and "Injury of brachial plexus" concepts</comment>
+        <sql>
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Main Diagnosis (surgical), other","Main Diagnosis (surgical), other","Text","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IME, Medical Diagnoses, other","Medical Diagnoses, other","Text","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Injury of brachial plexus","Injury of brachial plexus","N/A","Misc",false);
+
+        </sql>
+    </changeSet>
+
+
+    <changeSet id="IRAQ_CONFIG_202001271617" author="SivaKrishna">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Injury of brachial plexus")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IME, Main Diagnosis (surgical)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Injury of brachial plexus as answer to Main Diagnosis (surgical)</comment>
+        <sql>
+
+            set @concept_id = 0;
+            set @child1_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = "IME, Main Diagnosis (surgical)" and concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Injury of brachial plexus" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 89);
+
+        </sql>
+    </changeSet>
+
+
+    <!---Adding and mapping the ICD-10 Reference term source and codes -->
+    <changeSet id="IRAQ_CONFIG_202001271618" author="SivaKrishna">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select
+                count(*)
+                From
+                concept_reference_term
+                where `code` in
+                ("S14.3")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "ICD-10"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding codes to ICD-10 </comment>
+        <sql>
+
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "ICD-10";
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,"S14.3",@source_id,uuid(),now());
+
+            call CREATE_REFERENCE_MAPPING_ICD("Injury of brachial plexus","S14.3");
+
+        </sql>
+    </changeSet>
+
+    <!-- MOBN-1070 Feedback on Initial Medical Examination Form changes end -->
 
 </databaseChangeLog>
