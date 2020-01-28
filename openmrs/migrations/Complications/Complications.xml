@@ -501,4 +501,29 @@
         </sql>
     </changeSet>
 
+    <!-- MOBN-1072 Feedback on Complications form (description of Grade of complication) changes start -->
+    <changeSet id="IRAQ_CONFIG_202001281300" author="SivaKrishna">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+
+                select count(*) from concept_description where concept_id in (
+                select concept_id from concept_name where name = "CM, Grade of complication" and concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0);
+            </sqlCheck>
+        </preConditions>
+        <comment>Change description of Grade of complication</comment>
+        <sql>
+
+            set @concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = "CM, Grade of complication" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            update concept_description set description ='Grade I: Deviation from normal postoperative course. Allowed therapeutic regimens: antiemetics, antipyretics, analgesics, diuretics, electrolytes, physiotherapy; includes wound infections opened at bedside.  Grade II: Requiring pharmacological treatment with drugs other than those allowed for Grade I. Blood transfusions, total parenteral nutrition included.  Grade III: Requiring surgical, endoscopic, or radiological intervention (Grade IIIa, Grade IIIb).  Grade IV: Life-threatening complication requiring ICU management (Grade IVa, Grade IVb).  Grade V: Death of a patient'
+            where concept_id = @concept_id
+
+        </sql>
+    </changeSet>
+    <!-- MOBN-1072 Feedback on Complications form (description of Grade of complication) changes end -->
+
 </databaseChangeLog>
+
