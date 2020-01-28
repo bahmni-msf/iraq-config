@@ -330,5 +330,6 @@
         </sql>
     </changeSet>
 
+    <include file="OpdProgressNote/OpdProgressNoteFeedback.xml"/>
 
 </databaseChangeLog>
