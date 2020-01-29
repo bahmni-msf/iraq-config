@@ -663,5 +663,71 @@
         </sql>
     </changeSet>
 
+    <!-- MOBN-1071 Feedback on Nursing Note Follow-up (adding concepts Type of assessment, Discharge from nursing care) changes start -->
+    <changeSet id="IRAQ_CONFIG_202001281500" author="Sivakrishna">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in ( "NN, Type of assessment", "Discharge from nursing care");
+            </sqlCheck>
+        </preConditions>
+        <comment>Create "NN, Type of assessment", "Discharge from nursing care" concepts</comment>
+        <sql>
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NN, Type of assessment","Type of assessment",'Coded','Question',false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Discharge from nursing care","Discharge from nursing care","N/A","Misc",false);
+
+        </sql>
+    </changeSet>
+
+
+    <changeSet id="IRAQ_CONFIG_202001281501" author="SivaKrishna">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select
+                count(*)
+                from
+                concept_answer ca
+                join concept_name cn on
+                ca.concept_id = cn.concept_id
+                where
+                ca.answer_concept IN (
+                select concept_id
+                from
+                concept_name
+                where
+                name IN
+                ("New assessment",
+                "Re-assessment",
+                "Discharge from nursing care")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND cn.concept_id IN (
+                select concept_id
+                from
+                concept_name
+                where
+                name = "NN, Type of assessment");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Outcome of Type of assessment</comment>
+        <sql>
+
+            set @concept_id = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = "NN, Type of assessment" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name = "New assessment" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name = "Re-assessment" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name = "Discharge from nursing care" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+
+        </sql>
+    </changeSet>
+    <!-- MOBN-1071 Feedback on Nursing Note Follow-up (adding concepts Type of assessment, Discharge from nursing care) changes end -->
 
 </databaseChangeLog>
