@@ -332,4 +332,41 @@
 
     <include file="OpdProgressNote/OpdProgressNoteFeedback.xml"/>
 
+    <changeSet id="IRAQ-202031011245MOBN-1040" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(1) from visit_type where name = 'IPD';
+            </sqlCheck>
+        </preConditions>
+        <comment>Add IPD visit type </comment>
+        <sql>
+            INSERT INTO visit_type(name, description, creator, date_created, retired, uuid) VALUES ('IPD', 'IPD vist', 1, now(), 0, uuid());
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ-202031011255MOBN-1040" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(1) FROM global_property WHERE property='visits.closeOnAnOutcome.visitType(s)';
+            </sqlCheck>
+        </preConditions>
+        <comment>Add IPD Visit to the global property</comment>
+        <sql>
+            UPDATE global_property SET property_value = 'MLO,OPD,IPD' WHERE property='visits.closeOnAnOutcome.visitType(s)';
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ-202031011304MOBN-1040" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(1) FROM global_property WHERE property='visits.closeOnAnOutcome.visitType(s)';
+            </sqlCheck>
+        </preConditions>
+        <comment>Add visit closure logic to IPD visit type</comment>
+        <sql>
+            UPDATE global_property SET property_value = 'Outcome of admission committee|OPN, Discharge status|IPN, Discharge status' WHERE
+            property='visits.closeOnAnOutcome.conceptName(s)';
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
