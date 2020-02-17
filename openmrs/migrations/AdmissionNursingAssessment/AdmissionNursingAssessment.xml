@@ -991,4 +991,70 @@
         </sql>
     </changeSet>
 
+
+    <changeSet id="IRAQ-202002160756" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name = "IPN, Hemoglobin";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add "Hemoglobin" concept</comment>
+        <sql>
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPN, Hemoglobin","Hemoglobin",'Numeric','Misc',false);
+
+            INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
+            VALUES ((select concept_id from concept_name where name = "IPN, Hemoglobin" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"g/dl",1,1);
+
+        </sql>
+    </changeSet>
+
+
+    <changeSet id="IRAQ-202002160758" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name = "IPN, Random blood glucose";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add "IPN, Random blood glucose" concept</comment>
+        <sql>
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPN, Random blood glucose","Random blood glucose",'Numeric','Misc',false);
+
+            INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
+            VALUES ((select concept_id from concept_name where name = "IPN, Random blood glucose" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"mg/dl",1,1);
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_202002160800" author="Sreekalyan">
+    <preConditions onFail="MARK_RAN">
+        <sqlCheck expectedResult="0">
+            select
+            count(*)
+            From
+            concept_reference_term
+            where `code` in
+            ("161429","887")
+            and retired = 0
+            and concept_source_id = (
+            select concept_source_id from concept_reference_source where `name` = 'CEIL'  and retired =0
+            );
+        </sqlCheck>
+    </preConditions>
+    <comment>Adding codes to specific concepts</comment>
+    <sql>
+    SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'CEIL';
+
+    INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+    (4,'161429',@source_id,uuid(),now());
+    INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+    (4,'887',@source_id,uuid(),now());
+
+    call CREATE_REFERENCE_MAPPING_CEIL('IPN, Hemoglobin', '161429');
+    call CREATE_REFERENCE_MAPPING_CEIL('IPN, Random blood glucose', '887');
+
+    </sql>
+    </changeSet>
+
+
+
 </databaseChangeLog>

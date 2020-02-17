@@ -730,4 +730,112 @@
     </changeSet>
     <!-- MOBN-1071 Feedback on Nursing Note Follow-up (adding concepts Type of assessment, Discharge from nursing care) changes end -->
 
+    <changeSet id="IRAQ_CONFIG_202002160823" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in ( "NN, Does the patient have a cannula?", "NN, Cannula date of insertion","NN, Does the patient have stitches?","NN, Date of stitches removal","NN, Date to stop the dressing for the patient");
+            </sqlCheck>
+        </preConditions>
+        <comment>Create "Does the patient have a cannula?", "Discharge from nursing care" concepts</comment>
+        <sql>
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NN, Does the patient have a cannula?","Does the patient have a cannula?",'Coded','Question',false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NN, Cannula date of insertion","Cannula date of insertion","Date","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NN, Does the patient have stitches?","Does the patient have stitches?","Coded","Question",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NN, Date of stitches removal","Date of stitches removal","Date","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NN, Date to stop the dressing for the patient","Date to stop the dressing for the patient","Date","Misc",false);
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020020827" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select
+                count(*)
+                from
+                concept_answer ca
+                join concept_name cn on
+                ca.concept_id = cn.concept_id
+                where
+                ca.answer_concept IN (
+                select concept_id
+                from
+                concept_name
+                where
+                name IN
+                ("Yes","No")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND cn.concept_id IN (
+                select concept_id
+                from
+                concept_name
+                where
+                name = "NN, Does the patient have a cannula?");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Was the dressing changed</comment>
+        <sql>
+
+            set @concept_id = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = "NN, Does the patient have a cannula?" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name = "Yes" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name = "No" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020020830" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select
+                count(*)
+                from
+                concept_answer ca
+                join concept_name cn on
+                ca.concept_id = cn.concept_id
+                where
+                ca.answer_concept IN (
+                select concept_id
+                from
+                concept_name
+                where
+                name IN
+                ("Yes","No")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND cn.concept_id IN (
+                select concept_id
+                from
+                concept_name
+                where
+                name = "NN, Does the patient have stitches?");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to Was the dressing changed</comment>
+        <sql>
+
+            set @concept_id = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @concept_id from concept_name where name = "NN, Does the patient have stitches?" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name = "Yes" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name = "No" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
