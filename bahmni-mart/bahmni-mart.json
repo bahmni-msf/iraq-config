@@ -55,7 +55,8 @@
             "Patient Phone Number 1",
             "Patient Phone Number 2",
             "phoneNumber",
-            "previousBMRCIDNumber"
+            "previousBMRCIDNumber",
+            "fullNameOfFriendOrRelative"
           ]
         },
         {
