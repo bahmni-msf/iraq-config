@@ -281,6 +281,7 @@
         <sqlFile path="displayControl/get_parent_form_field_path.sql"/>
     </changeSet>
     <changeSet id="IRAQ-15632549402" author="Sivakrishna" context="rel3.5" >
+        <validCheckSum>3:f003e52860955b2bcb4c7c6bf181ee56</validCheckSum>
         <comment>Adding global property for patient surgical diagnosis display control</comment>
         <sqlFile path="displayControl/surgicalDiagnosisDisplayControl.sql"/>
     </changeSet>
@@ -367,6 +368,10 @@
             UPDATE global_property SET property_value = 'Outcome of admission committee|OPN, Discharge status|IPN, Discharge status' WHERE
             property='visits.closeOnAnOutcome.conceptName(s)';
         </sql>
+    </changeSet>
+    <changeSet id="IRAQ-202025021630" author="Vineela">
+        <comment>Include MLO visit type to Diagnoses display control</comment>
+        <sqlFile path="displayControl/surgicalDiagnosisDisplayControl.sql"/>
     </changeSet>
 
 </databaseChangeLog>

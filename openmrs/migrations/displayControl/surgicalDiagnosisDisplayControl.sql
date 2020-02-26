@@ -31,7 +31,7 @@ VALUES ('bahmni.sqlGet.surgicalDiagnosisData',
                     INNER JOIN visit_type vt ON
                         v.visit_type_id = vt.visit_type_id
                         AND vt.name in ('OPD',
-                        'IPD')
+                        'IPD', 'MLO')
                         AND v.voided IS FALSE
                         AND vt.retired IS FALSE
                     GROUP BY
