@@ -369,7 +369,7 @@
         </sql>
     </changeSet>
     <changeSet id="IRAQ-202026021541" author="Vineela">
-        <preConditions onFail="MARK_RAN">
+        <preConditions onFail="CONTINUE">
             <sqlCheck expectedResult="1">
                 SELECT count(1) FROM global_property WHERE property='bahmni.sqlGet.surgicalDiagnosisData';
             </sqlCheck>
