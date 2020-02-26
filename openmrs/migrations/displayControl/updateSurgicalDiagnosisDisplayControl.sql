@@ -1,9 +1,5 @@
-DELETE FROM global_property WHERE property = 'bahmni.sqlGet.surgicalDiagnosisData';
-SELECT uuid() INTO @uuid;
-
-INSERT INTO global_property (property, property_value, description, uuid)
-VALUES ('bahmni.sqlGet.surgicalDiagnosisData',
-        "SELECT
+UPDATE global_property SET property_value =
+        ("SELECT
             p.person_id,
             surgical_diagnosis,
             side_site
@@ -31,7 +27,7 @@ VALUES ('bahmni.sqlGet.surgicalDiagnosisData',
                     INNER JOIN visit_type vt ON
                         v.visit_type_id = vt.visit_type_id
                         AND vt.name in ('OPD',
-                        'IPD')
+                        'IPD', 'MLO')
                         AND v.voided IS FALSE
                         AND vt.retired IS FALSE
                     GROUP BY
@@ -119,4 +115,5 @@ VALUES ('bahmni.sqlGet.surgicalDiagnosisData',
             AND (side_site != ''
             or surgical_diagnosis != '')
             AND p.uuid = ${patientUuid}"
-           , 'surgical diagnosis data for patient', @uuid);
+)
+          WHERE property = 'bahmni.sqlGet.surgicalDiagnosisData';
