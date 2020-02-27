@@ -377,5 +377,14 @@
         <comment>Include MLO visit type to Diagnoses display control</comment>
         <sqlFile path="displayControl/updateSurgicalDiagnosisDisplayControl.sql"/>
     </changeSet>
+    <changeSet id="IRAQ-202027021940" author="Vinisha, Siva">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(1) FROM global_property WHERE property='bahmni.sqlGet.initialClinicalExaminationData';
+            </sqlCheck>
+        </preConditions>
+        <comment>Include MLO visit and take latest encounter with values</comment>
+        <sqlFile path="displayControl/updateInitialClinicalExaminationDisplayControl.sql"/>
+    </changeSet>
 
 </databaseChangeLog>
