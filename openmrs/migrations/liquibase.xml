@@ -387,4 +387,14 @@
         <sqlFile path="displayControl/updateInitialClinicalExaminationDisplayControl.sql"/>
     </changeSet>
 
+    <changeSet id="IRAQ-2020021341" author="Bindu Sreekalyan">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(1) FROM global_property WHERE property='emrapi.sqlSearch.activePatients';
+            </sqlCheck>
+        </preConditions>
+        <comment>Include Date of Next Communication from IPD Progress Note form</comment>
+        <sqlFile path="clinicalQueues/UpdateActivePatientQueue.sql"/>
+    </changeSet>
+
 </databaseChangeLog>
