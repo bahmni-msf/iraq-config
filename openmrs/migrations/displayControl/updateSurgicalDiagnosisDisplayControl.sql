@@ -38,75 +38,77 @@ UPDATE global_property SET property_value =
                 AND e.patient_id = hospitalVisit.patient_id
             INNER JOIN (
                 select
-                    encounter_id,
-                    GROUP_CONCAT(DISTINCT surgical_diagnosis SEPARATOR ', ') AS `surgical_diagnosis`,
-                    CONCAT(side, ' ', GROUP_CONCAT(DISTINCT site SEPARATOR ', ')) AS `side_site`,
-                    path
-                from
-                    (
-                    select
-                        distinct diagnosis.encounter_id,
-                        daignosis_answer_cn.name AS `surgical_diagnosis`,
-                        COALESCE(site_coded_answer_cn.concept_short_name,
-                        site_coded_answer_cn.concept_full_name,
-                        '') AS site,
-                        COALESCE(side_coded_answer_cn.name,
-                        '') AS side,
-                        get_parent_form_field_path(diagnosis.form_namespace_and_path) AS `path`
-                    FROM
-                        obs diagnosis
-                    INNER JOIN concept_name diagnosis_cn ON
-                        diagnosis_cn.concept_name_type = 'FULLY_SPECIFIED'
-                        AND diagnosis_cn.voided IS FALSE
-                        AND diagnosis_cn.name = 'IME, Main Diagnosis (surgical)'
-                    INNER JOIN concept_name site_of_diagnosis ON
-                        site_of_diagnosis.concept_name_type = 'FULLY_SPECIFIED'
-                        AND site_of_diagnosis.voided IS FALSE
-                        AND site_of_diagnosis.name = 'IME, Site of diagnosis'
-                    INNER JOIN concept_name side_of_diagnosis_cn ON
-                        side_of_diagnosis_cn.concept_name_type = 'FULLY_SPECIFIED'
-                        AND side_of_diagnosis_cn.voided IS FALSE
-                        AND side_of_diagnosis_cn.name = 'IME, Side of diagnosis'
-                    LEFT OUTER JOIN obs surgical_diagnosis_proc ON
-                        diagnosis.encounter_id = surgical_diagnosis_proc.encounter_id
-                        AND get_parent_form_field_path(diagnosis.form_namespace_and_path) = get_parent_form_field_path(surgical_diagnosis_proc.form_namespace_and_path)
-                        AND surgical_diagnosis_proc.concept_id = diagnosis_cn.concept_id
-                        AND surgical_diagnosis_proc.voided IS FALSE
-                    LEFT OUTER JOIN concept_name daignosis_answer_cn ON
-                        daignosis_answer_cn.concept_id = surgical_diagnosis_proc.value_coded
-                        AND daignosis_answer_cn.concept_name_type = 'FULLY_SPECIFIED'
-                        AND daignosis_answer_cn.voided IS FALSE
-                    LEFT OUTER JOIN obs site_of_surgical_procedure ON
-                        diagnosis.encounter_id = site_of_surgical_procedure.encounter_id
-                        AND get_parent_form_field_path(diagnosis.form_namespace_and_path) = get_parent_form_field_path(site_of_surgical_procedure.form_namespace_and_path)
-                        AND site_of_surgical_procedure.concept_id = site_of_diagnosis.concept_id
-                        AND site_of_surgical_procedure.voided IS FALSE
-                    LEFT OUTER JOIN concept_view site_coded_answer_cn ON
-                        site_coded_answer_cn.concept_id = site_of_surgical_procedure.value_coded
-                        AND site_coded_answer_cn.retired IS FALSE
-                    LEFT OUTER JOIN obs side_of_surgical_diagnosis ON
-                        diagnosis.encounter_id = side_of_surgical_diagnosis.encounter_id
-                        AND get_parent_form_field_path(diagnosis.form_namespace_and_path) = get_parent_form_field_path(side_of_surgical_diagnosis.form_namespace_and_path)
-                        AND side_of_surgical_diagnosis.concept_id = side_of_diagnosis_cn.concept_id
-                        AND side_of_surgical_diagnosis.voided IS FALSE
-                    LEFT OUTER JOIN concept_name side_coded_answer_cn ON
-                        side_coded_answer_cn.concept_id = side_of_surgical_diagnosis.value_coded
-                        AND side_coded_answer_cn.concept_name_type = 'FULLY_SPECIFIED'
-                        AND side_coded_answer_cn.voided IS FALSE
-                    where
-                        diagnosis.concept_id in (
-                        select
-                            concept_id
-                        from
-                            concept_name
-                        where
-                            name in ('IME, Main Diagnosis (surgical)',
-                            'IME, Site of diagnosis',
-                            'IME, Side of diagnosis')
-                            and diagnosis_cn.concept_name_type = 'FULLY_SPECIFIED') ) PQR
-                group by
-                    PQR.path,
-                    PQR.encounter_id ) diagnoses_data ON
+  person_id,
+  encounter_id,
+  group_concat(distinct main_diagnosis)                         as surgical_diagnosis,
+  CONCAT(side, ' ', GROUP_CONCAT(DISTINCT site SEPARATOR ', ')) AS `side_site`,
+  path
+from (
+       select
+         side_diagnosis_obs.person_id,
+         side_diagnosis_obs.encounter_id,
+         main_diagnosis,
+         side,
+         site,
+         get_parent_form_field_path(side_diagnosis_obs.form_namespace_and_path) as path
+       from
+
+         (select
+            person_id,
+            encounter_id,
+            (select name
+             from concept_name
+             where
+               concept_id = value_coded and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en') as main_diagnosis,
+            form_namespace_and_path
+          from obs
+          where form_namespace_and_path like 'Bahmni^Initial Medical Examination%'
+                and concept_id in (select concept_name.concept_id
+                                   from concept_name
+                                   where
+                                     name in ('IME, Main Diagnosis (surgical)') and
+                                     concept_name_type = 'FULLY_SPECIFIED' and
+                                     voided = 0 and locale = 'en')) main_diagnosis_obs
+         join (
+                select
+                  person_id,
+                  encounter_id,
+                  (select name
+                   from concept_name
+                   where concept_id = value_coded and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en') as side,
+                  form_namespace_and_path
+                from obs
+                where form_namespace_and_path like 'Bahmni^Initial Medical Examination%'
+                      and concept_id in (select concept_name.concept_id
+                                         from concept_name
+                                         where name in ('IME, Side of diagnosis')
+                                               and concept_name_type = 'FULLY_SPECIFIED' and voided = 0 and
+                                               locale = 'en')
+              ) side_diagnosis_obs
+           on side_diagnosis_obs.encounter_id = main_diagnosis_obs.encounter_id
+
+         join (
+                select
+                  person_id,
+                  encounter_id,
+                  (select name
+                   from concept_name
+                   where concept_id = value_coded and concept_name_type = 'FULLY_SPECIFIED' and voided = 0 and
+                         locale = 'en') as site,
+                  form_namespace_and_path
+                from obs
+                where form_namespace_and_path like 'Bahmni^Initial Medical Examination%'
+                      and concept_id in (select concept_name.concept_id
+                                         from concept_name
+                                         where name in ('IME, Site of diagnosis')
+                                               and concept_name_type = 'FULLY_SPECIFIED' and voided = 0 and
+                                               locale = 'en')
+              ) site_diagnosis_obs
+           on site_diagnosis_obs.encounter_id = main_diagnosis_obs.encounter_id
+
+       order by side_diagnosis_obs.encounter_id, side_diagnosis_obs.form_namespace_and_path
+     ) as aa
+group by encounter_id, path ) diagnoses_data ON
                 diagnoses_data.encounter_id = e.encounter_id ) total_data ON
             total_data.patient_id = p.person_id
         WHERE
