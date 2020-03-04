@@ -1055,6 +1055,26 @@
     </sql>
     </changeSet>
 
+    <changeSet id="IRAQ-CONFIG-202003041900" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="2">
+                select count(*) from concept_name where name in ('ANA, Blood oxygen saturation (SatO2)','ANA,
+                Respiratory rate (RR)')
+                and locale ='en' and voided =0 and concept_name_type = 'FULLY_SPECIFIED';
+            </sqlCheck>
+        </preConditions>
+        <comment>updating concept short names</comment>
+        <sql>
+            select concept_id into @concept_id1 from concept_name where name = 'ANA, Blood oxygen saturation (SatO2)';
+            select concept_id into @concept_id2 from concept_name where name = 'ANA, Respiratory rate (RR)';
+
+            update concept_name set name = 'Blood oxygen saturation' where concept_id = @concept_id1 and
+            concept_name_type = 'SHORT';
+            update concept_name set name = 'Respiratory rate' where concept_id = @concept_id2 and concept_name_type =
+            'SHORT';
+
+        </sql>
+    </changeSet>
 
 
 </databaseChangeLog>

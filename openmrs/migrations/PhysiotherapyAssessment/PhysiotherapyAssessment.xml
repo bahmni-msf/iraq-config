@@ -4159,4 +4159,31 @@
         </sql>
     </changeSet>
 
+    <changeSet id="IRAQ-CONFIG-202003041900" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="4">
+                select count(*) from concept_name where name in ('PA, Left : Radial Dev.','PA,MTUL Left : Radial
+                Dev.','PA, Right : Radial Dev.','PA,MTUL Right : Radial Dev.')
+                and locale ='en' and voided =0 and concept_name_type = 'FULLY_SPECIFIED';
+            </sqlCheck>
+        </preConditions>
+        <comment>updating concept short name</comment>
+        <sql>
+            select concept_id into @concept_id1 from concept_name where name = 'PA, Left : Radial Dev.';
+            select concept_id into @concept_id2 from concept_name where name = 'PA,MTUL Left : Radial Dev.';
+            select concept_id into @concept_id1 from concept_name where name = 'PA, Right : Radial Dev.';
+            select concept_id into @concept_id1 from concept_name where name = 'PA,MTUL Right : Radial Dev.';
+
+            update concept_name set name = 'ROM, Left : Radial Dev.' where concept_id = @concept_id1 and
+            concept_name_type = 'SHORT';
+            update concept_name set name = 'MTUL, Left : Radial Dev.' where concept_id = @concept_id2 and
+            concept_name_type = 'SHORT';
+            update concept_name set name = 'ROM, Right : Radial Dev.' where concept_id = @concept_id3 and
+            concept_name_type = 'SHORT';
+            update concept_name set name = 'MTUL Right : Radial Dev.' where concept_id = @concept_id4 and
+            concept_name_type = 'SHORT';
+
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
