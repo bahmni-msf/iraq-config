@@ -62,7 +62,7 @@ from (
                concept_id = value_coded and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en') as main_diagnosis,
             form_namespace_and_path
           from obs
-          where form_namespace_and_path like 'Bahmni^Initial Medical Examination%'
+          where form_namespace_and_path like 'Bahmni^Initial Medical Examination%' and voided=0
                 and concept_id in (select concept_name.concept_id
                                    from concept_name
                                    where
@@ -78,7 +78,7 @@ from (
                    where concept_id = value_coded and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en') as side,
                   form_namespace_and_path
                 from obs
-                where form_namespace_and_path like 'Bahmni^Initial Medical Examination%'
+                where form_namespace_and_path like 'Bahmni^Initial Medical Examination%' and voided=0
                       and concept_id in (select concept_name.concept_id
                                          from concept_name
                                          where name in ('IME, Side of diagnosis')
@@ -97,7 +97,7 @@ from (
                          locale = 'en') as site,
                   form_namespace_and_path
                 from obs
-                where form_namespace_and_path like 'Bahmni^Initial Medical Examination%'
+                where form_namespace_and_path like 'Bahmni^Initial Medical Examination%' and voided=0
                       and concept_id in (select concept_name.concept_id
                                          from concept_name
                                          where name in ('IME, Site of diagnosis')
