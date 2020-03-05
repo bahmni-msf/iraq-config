@@ -86,6 +86,7 @@ from (
                                                locale = 'en')
               ) side_diagnosis_obs
            on side_diagnosis_obs.encounter_id = main_diagnosis_obs.encounter_id
+           and get_parent_form_field_path(side_diagnosis_obs.form_namespace_and_path)=get_parent_form_field_path(main_diagnosis_obs.form_namespace_and_path)
 
          join (
                 select
@@ -105,6 +106,7 @@ from (
                                                locale = 'en')
               ) site_diagnosis_obs
            on site_diagnosis_obs.encounter_id = main_diagnosis_obs.encounter_id
+           and get_parent_form_field_path(site_diagnosis_obs.form_namespace_and_path) = get_parent_form_field_path(main_diagnosis_obs.form_namespace_and_path)
 
        order by side_diagnosis_obs.encounter_id, side_diagnosis_obs.form_namespace_and_path
      ) as aa
