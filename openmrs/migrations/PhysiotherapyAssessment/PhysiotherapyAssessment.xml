@@ -4184,7 +4184,7 @@
             update concept_name set name = 'ROM, Right : Radial Dev.' where concept_id = @concept_id5 and concept_name_type = 'SHORT';
             update concept_name set name = 'MTUL, Right : Radial Dev.' where concept_id = @concept_id6 and concept_name_type = 'SHORT';
             update concept_name set name = 'ROM, Right : Ulnar Dev.' where concept_id = @concept_id7 and concept_name_type = 'SHORT';
-            update concept_name set name = 'MTUL Right : Ulnar Dev.' where concept_id = @concept_id8 and concept_name_type = 'SHORT';
+            update concept_name set name = 'MTUL, Right : Ulnar Dev.' where concept_id = @concept_id8 and concept_name_type = 'SHORT';
 
 
         </sql>
