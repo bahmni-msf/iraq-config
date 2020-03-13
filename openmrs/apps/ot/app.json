@@ -13,6 +13,7 @@
       "dayViewStart": "08:00",
       "dayViewEnd": "18:00",
       "dayViewSplit": "60"
-    }
+    },
+    "startOfWeek": "Monday"
   }
 }
