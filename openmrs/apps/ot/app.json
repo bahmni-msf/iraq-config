@@ -7,6 +7,7 @@
       "link": "/bahmni/clinical/#/default/patient/{{patientUuid}}/dashboard",
       "errorMessage": "The patient is not enrolled to the program"
     },
+    "surgeryAttributes": ["procedure", "estTimeHours", "estTimeMinutes", "cleaningTime", "otherSurgeon", "surgicalAssistant", "anaesthetist", "scrubNurse", "circulatingNurse", "notes"],
     "primarySurgeonsForOT" : ["Yogesh Kumar","Super Man","Unknown Provider","labsystem system","Billing System","automation automation"],
     "printListViewTemplateUrl" : "/bahmni_config/openmrs/apps/ot/printListView.html",
     "calendarView": {
