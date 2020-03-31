@@ -9,7 +9,6 @@
     },
     "primarySurgeonsForOT" : ["Yogesh Kumar","Super Man","Unknown Provider","labsystem system","Billing System","automation automation"],
     "printListViewTemplateUrl" : "/bahmni_config/openmrs/apps/ot/printListView.html",
-    "surgicalAppointmentUrl": "/bahmni_config/openmrs/apps/ot/surgicalAppointment.html",
     "calendarView": {
       "dayViewStart": "08:00",
       "dayViewEnd": "18:00",
