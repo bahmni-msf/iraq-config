@@ -106,7 +106,12 @@
     {
       "name": "Bacteriology Data",
       "conceptReferenceSource": "",
-      "type": "bacteriology"
+      "type": "bacteriology",
+      "incrementalUpdateConfig": {
+        "updateOn": "encounter_id",
+        "eventCategory": "Encounter",
+        "openmrsTableName": "encounter"
+      }
     },
     {
       "name": "MetaData Dictionary",
