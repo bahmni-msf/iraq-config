@@ -4,3 +4,4 @@ bahmni_ie_apps: https://v2-artefacts.s3.ap-south-1.amazonaws.com/openmrs-module-
 bahmniapps: https://v2-artefacts.s3.ap-south-1.amazonaws.com/openmrs-module-bahmniapps/build/bahmniapps-37.zip
 implementer_interface: https://v2-artefacts.s3.ap-south-1.amazonaws.com/implementer-interface/build/bahmni-implementer-interface-91-31.noarch.rpm
 appointment_frontend: https://v2-artefacts.s3.ap-south-1.amazonaws.com/openmrs-module-appointments-frontend/build/appointment-frontend-10.zip
+uiframework: https://dl.bintray.com/openmrs/omod/uiframework-3.19.0.omod

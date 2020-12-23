@@ -1,0 +1,20 @@
+- name: Find existing uiframework omod
+  find:
+    paths: /opt/openmrs/modules
+    patterns: uiframework*.omod
+  register: result
+
+- name: Delete uiframework omod
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ result.files }}"
+
+- name: Get uiframework omod from openmrs bintray and place it in /opt/openmrs/modules
+  get_url:
+    url: "{{ uiframework }}"
+    dest: /opt/openmrs/modules/uiframework-3.19-latest.omod
+    mode: 0644
+
+- name: Change ownership of uiframework file
+  action: file state=file path=/opt/openmrs/modules/uiframework-3.19-latest.omod owner=bahmni group=bahmni

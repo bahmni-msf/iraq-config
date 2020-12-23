@@ -7,3 +7,4 @@
     - { role: bahmni-apps, tags: bahmni-apps }
     - { role: implementer-interface, tags: implementer-interface }
     - { role: appointment-frontend, tags: appointment-frontend }
+    - { role: openmrs-ui-framework, tags: openmrs_ui_framework }
