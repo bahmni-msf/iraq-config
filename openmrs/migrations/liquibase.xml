@@ -396,5 +396,17 @@
         <comment>Include Date of Next Communication from IPD Progress Note form</comment>
         <sqlFile path="clinicalQueues/UpdateActivePatientQueue.sql"/>
     </changeSet>
-
+    <changeSet id="IRAQ-202102081952" author="Tarun,Bindu">
+        <comment>Updating the global property for webservices maxResultsDefault</comment>
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM global_property WHERE property = "webservices.rest.maxResultsDefault";
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            UPDATE global_property
+            SET property_value = 200
+            WHERE property = "webservices.rest.maxResultsDefault";
+        </sql>
+    </changeSet>
 </databaseChangeLog>
