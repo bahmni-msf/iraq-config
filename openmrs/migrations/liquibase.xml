@@ -410,4 +410,15 @@
             WHERE property = "webservices.rest.maxResultsDefault";
         </sql>
     </changeSet>
+    <changeSet id="Amman-202103222253" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM global_property WHERE property = "obs.complex_obs_dir";
+            </sqlCheck>
+        </preConditions>
+        <comment>Update value for obs.complex_obs_dir global property</comment>
+        <sql>
+            update global_property set property_value = 'complex_obs' where property = 'obs.complex_obs_dir';
+        </sql>
+    </changeSet>
 </databaseChangeLog>
