@@ -212,6 +212,18 @@
           "template": "<patient-information section='config' patient='patient' enrollment='enrollment'></patient-information>"
         }
       },
+      "bacteriologyResults": {
+        "translationKey": "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY",
+        "type": "bacteriologyResultsControl",
+        "displayOrder": 3,
+        "scope": "All",
+        "orderType": "",
+        "dashboardConfig": {
+          "conceptNames": [
+            "BACTERIOLOGY CONCEPT SET"
+          ]
+        }
+      },
       "Clinical Summary OPD": {
         "translationKey": "CLINICALSUMMARY_OPD_TREATMENT_KEY",
         "type": "vitals",

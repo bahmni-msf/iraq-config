@@ -120,5 +120,6 @@
   "DASHBOARD_TITLE_INITIAL_CLINICAL_EXAMINATION": "Initial Clinical Examination",
   "DASHBOARD_TITLE_LOWER_LIMB_PHYSIO_SUMMARY_LAB_RESULTS_KEY": "Lower Limb Physiotherapy Assessment",
   "DASHBOARD_TITLE_UPPER_LIMB_PHYSIO_SUMMARY_LAB_RESULTS_KEY": "Upper Limb Physiotherapy Assessment",
-  "NO_SUMMARY_FOUND_MESSAGE": "No Summary found for this patient"
+  "NO_SUMMARY_FOUND_MESSAGE": "No Summary found for this patient",
+  "DASHBOARD_TITLE_MICROBIOLOGY_LAB_RESULTS_KEY": "Microbiology Results"
 }
