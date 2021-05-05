@@ -421,4 +421,16 @@
             update global_property set property_value = 'complex_obs' where property = 'obs.complex_obs_dir';
         </sql>
     </changeSet>
+    <changeSet id="IRAQ-202105051311MOBN-1648" author="Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(1) FROM global_property WHERE property='visits.closeOnAnOutcome.visitType(s)';
+            </sqlCheck>
+        </preConditions>
+        <comment>Update the property values for visit closure logic</comment>
+        <sql>
+            UPDATE global_property SET property_value = '{ "Outcome of admission committee" : ["Valid", "Pending","Refused","Refer to Amman RSP", "ABCD"] } | { "OPN, Reason for visit" : ["Transfer to IPD", "Discharge" ] } | {"IPN, Exit from IPD" : ["Transfer to OPD", "Discharge"]}'
+            WHERE property='visits.closeOnAnOutcome.conceptName(s)';
+        </sql>
+    </changeSet>
 </databaseChangeLog>
