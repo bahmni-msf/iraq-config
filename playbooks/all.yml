@@ -8,3 +8,7 @@
     - { role: implementer-interface, tags: implementer-interface }
     - { role: appointment-frontend, tags: appointment-frontend }
     - { role: openmrs-ui-framework, tags: openmrs_ui_framework }
+    - { role: emr-api-omod, tags: emr-api-omod }
+    - { role: event-omod, tags: event-omod }
+    - { role: visit-close-module, tags: visit_close_module }
+    - { role: patient-identifier-generator, tags: patient_identifier_generator }

@@ -1,0 +1,21 @@
+- name: Find existing patient-identifier omod
+  find:
+    paths: /opt/openmrs/modules
+    patterns: patientindentifiergenerator*.omod
+  register: result
+  ignore_errors: yes
+
+- name: Delete patient-identifier omod
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ result.files }}"
+  ignore_errors: yes
+
+- name: Get patient-identifier omod from s3 bucket and place it in /opt/openmrs/modules
+  get_url:
+    url: "{{ patient_identifier_generator }}"
+    dest: /opt/openmrs/modules/
+    mode: 0644
+    owner: bahmni
+    group: bahmni

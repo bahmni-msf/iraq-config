@@ -1,0 +1,21 @@
+- name: Find existing visit-close omod
+  find:
+    paths: /opt/openmrs/modules
+    patterns: visit-close-module*.omod
+  register: result
+  ignore_errors: yes
+
+- name: Delete visit-close omod
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ result.files }}"
+  ignore_errors: yes
+
+- name: Get visit-close omod from s3 bucket and place it in /opt/openmrs/modules
+  get_url:
+    url: "{{ visit_close_omod }}"
+    dest: /opt/openmrs/modules/
+    mode: 0644
+    owner: bahmni
+    group: bahmni
