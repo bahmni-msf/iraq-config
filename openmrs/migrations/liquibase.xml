@@ -429,7 +429,7 @@
         </preConditions>
         <comment>Update the property values for visit closure logic</comment>
         <sql>
-            UPDATE global_property SET property_value = '{ "Outcome of admission committee" : ["Valid", "Pending","Refused","Refer to Amman RSP", "ABCD"] } | { "OPN, Reason for visit" : ["Transfer to IPD", "Discharge" ] } | {"IPN, Exit from IPD" : ["Transfer to OPD", "Discharge"]}'
+            UPDATE global_property SET property_value = '{ "Outcome of admission committee" : ["Valid", "Pending","Refused","Refer to Amman RSP"] } | { "OPN, Reason for visit" : ["Transfer to IPD", "Discharge" ] } | {"IPN, Exit from IPD" : ["Transfer to OPD", "Discharge"]}'
             WHERE property='visits.closeOnAnOutcome.conceptName(s)';
         </sql>
     </changeSet>
