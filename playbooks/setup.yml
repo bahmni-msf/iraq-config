@@ -1,8 +1,8 @@
 appointments: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.3.1/appointments-1.3.0-SNAPSHOT-2.1.0.omod
 bahmni_core: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.4.1/bahmnicore-0.93-SNAPSHOT-2.4.1.omod
 bahmni_ie_apps: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.3.1/bahmni.ie.apps-1.1.0-SNAPSHOT-2.2.0.omod
-bahmniapps: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.3.1/bahmniapps-2.3.0.zip
-implementer_interface: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.3.1/bahmni-implementer-interface-91-2.2.0.noarch.rpm
+bahmniapps: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.4.1/bahmniapps-2.4.1.zip
+implementer_interface: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.4.1/bahmni-implementer-interface-91-2.4.1.noarch.rpm
 appointment_frontend: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.3.1/appointment-frontend-2.0.1.zip
 uiframework: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.3.1/uiframework-3.19-2.1.0.omod
 patient_identifier_generator: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.3.1/patientidentifiergenerator-0.1.0-2.0.0.omod
