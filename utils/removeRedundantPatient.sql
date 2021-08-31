@@ -118,9 +118,14 @@ WHERE
         patient_id IN (
         @patient_database_id1
         );
-/* removing patient from patient identifier table */
-DELETE FROM
+/* voiding patient from patient identifier table */
+UPDATE
     patient_identifier
+set
+    voided = 1,
+    voided_by = 1,
+    date_voided = now(),
+    void_reason = 'redundant patient data removal FD 1178'
 WHERE
         patient_id IN (
         @patient_database_id1
