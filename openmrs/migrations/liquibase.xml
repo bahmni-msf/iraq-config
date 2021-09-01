@@ -433,4 +433,15 @@
             WHERE property='visits.closeOnAnOutcome.conceptName(s)';
         </sql>
     </changeSet>
+    <changeSet id="IRAQ-202109011515" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from role_privilege where role = 'Appointments:ManageAppointments' and privilege = 'Reset Appointment Status'
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Reset Appointment status privilege to ManageAppointments Role</comment>
+        <sql>
+            insert into role_privilege values('Appointments:ManageAppointments', 'Reset Appointment Status');
+        </sql>
+    </changeSet>
 </databaseChangeLog>
