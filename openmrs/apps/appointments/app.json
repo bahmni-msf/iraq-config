@@ -10,6 +10,7 @@
   "config": {
     "minCharLengthToTriggerPatientSearch": 3,
     "enableSpecialities": false,
+    "enableResetAppointmentStatuses": ["CheckedIn","Missed"],
     "startOfWeek": 1,
     "weekStart": "week",
     "calendarSlotDuration": "00:10:00",
