@@ -46,11 +46,11 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static final String PA_OBS_TINETTI_TOTAL = "/543-0";
     static final String PA_OBS_RISK_OF_FALLS = "/510-0";
     static final String PA_OBS_LEFI_TOTAL = "/544-0";
-    static final String PA_OBS_PEDIATRIC_LOWER_TOTAL = "/546-0";
+    static final String PA_OBS_PEDIATRIC_LOWER_TOTAL = "/567-0";
     static final String PA_OBS_BASIC_GRIP_TOTAL = "/498-0";
     static final String PA_OBS_UEFI_TOTAL = "/499-0";
     static final String PA_OBS_FINAL_SCORE_TOTAL = "/500-0";
-    static final String PA_OBS_PEDIATRIC_UPPER_TOTAL = "/547-0";
+    static final String PA_OBS_PEDIATRIC_UPPER_TOTAL = "/566-0";
 
     static final String AA_OBS_BALANCE_SECTION = "/335-0";
     static final String AA_OBS_GAIT_SECTION = "/336-0";
@@ -68,7 +68,7 @@ public class BahmniObsValueCalculator implements ObsValueCalculator {
     static List<String> paPediatricLowerSectionControlIDs = Arrays.asList("/47-0", "/48-0", "/176-0", "/177-0", "/178-0", "/179-0", "/181-0", "/182-0", "/183-0", "/184-0", "/185-0", "/186-0", "/187-0", "/188-0", "/189-0", "/190-0", "/191-0", "/192-0", "/193-0","/194-0");
 
     static List<String> paBasicGripControlIDs = Arrays.asList("/66-0", "/67-0", "/284-0", "/285-0", "/286-0", "/287-0");
-    static List<String> paUefiControlIDs = Arrays.asList("/548-0", "/71-0", "/289-0", "/290-0", "/291-0", "/293-0", "/294-0", "/295-0", "/491-0", "/297-0", "/298-0", "/299-0", "/300-0", "/301-0", "/302-0");
+    static List<String> paUefiControlIDs = Arrays.asList("/565-0", "/71-0", "/289-0", "/290-0", "/291-0", "/293-0", "/294-0", "/295-0", "/491-0", "/297-0", "/298-0", "/299-0", "/300-0", "/301-0", "/302-0");
     static List<String> paPediatricUpperSectionControlIDs = Arrays.asList("/73-0", "/74-0", "/305-0", "/306-0", "/307-0", "/308-0", "/309-0", "/310-0", "/311-0", "/312-0", "/313-0", "/314-0", "/315-0", "/316-0", "/317-0", "/318-0", "/319-0", "/320-0","/321-0","/322-0");
 
     static List<String> amputeeBalanceSectionControlIDs = Arrays.asList("/272-0", "/273-0", "/274-0", "/275-0", "/277-0", "/279-0", "/280-0","/281-0", "/282-0", "/283-0");
