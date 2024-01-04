@@ -444,4 +444,8 @@
             insert into role_privilege values('Appointments:ManageAppointments', 'Reset Appointment Status');
         </sql>
     </changeSet>
+    <changeSet id="IRAQ-2024041840" author="Bindu, Supriya" runOnChange="true">
+        <comment>Adding all listing queues in clinical module to view patients who are registered in tabular view  </comment>
+        <sqlFile path="clinicalQueues/allPatientsQueue.sql"/>
+    </changeSet>
 </databaseChangeLog>

@@ -71,8 +71,10 @@
     "extensionPointId": "org.bahmni.patient.search",
     "type": "config",
     "extensionParams": {
+      "searchHandler": "emrapi.sqlSearch.allPatients",
       "translationKey": "MODULE_LABEL_ALL_KEY",
-      "forwardUrl": "#/default/patient/{{patientUuid}}/dashboard"
+      "forwardUrl": "#/default/patient/{{patientUuid}}/dashboard",
+      "view": "tabular"
     },
     "label": "All",
     "order": 7,
