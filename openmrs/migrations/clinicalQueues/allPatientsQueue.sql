@@ -5,14 +5,12 @@ VALUES ('emrapi.sqlSearch.allPatients',
         "SELECT DISTINCT
     pi.identifier                                  AS identifier,
     concat(pn.given_name,' ', pn.family_name)      AS name,
-    DATE_FORMAT(pa.value,'%Y/%m/%d')               AS 'Date of Entry',
-    concat('', p.uuid)                             AS uuid
-    FROM person p
-    INNER JOIN person_name pn ON p.person_id = pn.person_id AND p.voided IS FALSE AND pn.voided IS FALSE
-    INNER JOIN patient_identifier pi ON p.person_id = pi.patient_id AND pi.voided IS FALSE
-    INNER JOIN person_attribute pa ON p.person_id = pa.person_id AND pa.voided IS FALSE
-    INNER JOIN person_attribute_type pat ON pa.person_attribute_type_id = pat.person_attribute_type_id
-        AND pat.name='dateOfEntry' AND pa.value >= '2021-01-01'
-        ORDER BY pa.value DESC",'All Patients',
+    DATE_FORMAT(p.date_created,'%Y/%m/%d')               AS 'Registered Date',
+    concat('', pe.uuid)                             AS uuid
+    FROM patient p
+    INNER JOIN person pe ON pe.person_id = p.patient_id AND p.voided IS FALSE and pe.voided = FALSE
+    INNER JOIN person_name pn ON p.patient_id = pn.person_id AND pn.voided IS FALSE
+    INNER JOIN patient_identifier pi ON p.patient_id = pi.patient_id AND pi.voided IS FALSE
+      AND p.date_created >= '2021-01-01'
+        ORDER BY p.date_created DESC",'All Patients',
         @uuid);
-
