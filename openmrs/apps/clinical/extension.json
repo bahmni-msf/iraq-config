@@ -74,6 +74,7 @@
       "searchHandler": "emrapi.sqlSearch.allPatients",
       "translationKey": "MODULE_LABEL_ALL_KEY",
       "forwardUrl": "#/default/patient/{{patientUuid}}/dashboard",
+      "searchColumns": ["identifier", "name", "Registered Date"],
       "view": "tabular"
     },
     "label": "All",
